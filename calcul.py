@@ -1,30 +1,30 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Application workspace vector configuration
+# Application workspace node setup
 st.set_page_config(
-    page_title="Dilshad's Detonation Matrix",
-    page_icon="🔥",
+    page_title="Dilshad's 3D Math Arena",
+    page_icon="⚡",
     layout="centered"
 )
 
-# Dark matrix background injection
+# Dark space layout overrides
 st.markdown("""
 <style>
 div[data-testid="stAppViewContainer"], .main {
-    background: #02040a !important;
+    background: #030712 !important;
 }
 #MainMenu, footer, header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center; color: #f8fafc; font-family: sans-serif; font-weight: 900; letter-spacing: -1px; margin-bottom:0px;'>Smart Calculator</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #ef4444; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 25px;'>// CORE MODULE: IGNITION STATE ACTIVATED</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #f8fafc; font-family: sans-serif; font-weight: 900; letter-spacing: -1px; margin-bottom:0px;'>⚔️ Math Arena 3D</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// SYSTEM STATE: RUNNING ENGINE.JS GRAPHICS</p>", unsafe_allow_html=True)
 
 # ==============================================================================
-# 🎮 THE THREE.JS FX ENGINE + SYNTH AUDIO MATRIX
+# 🎮 THE THREE.JS 3D ARENA & GAME CORE RUNTIME
 # ==============================================================================
-hologram_engine_html = """
+game_engine_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,345 +33,412 @@ hologram_engine_html = """
 
 <style>
     body, html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
+        margin: 0; padding: 0;
+        width: 100%; height: 100%;
         overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: flex; justify-content: center; align-items: center;
         background: transparent;
-        font-family: system-ui, sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
-    /* 🌌 THE SPATIAL UNIVERSE ENGINE CONTAINER */
-    .viewport-3d {
+    /* 🌌 GAME STAGE VIEWPORT CONTAINER */
+    .arena-viewport {
         position: relative;
-        width: 450px;
-        height: 620px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 480px;
+        height: 640px;
+        display: flex; justify-content: center; align-items: center;
+        perspective: 1200px;
     }
 
-    /* 🎨 INTERACTIVE WebGL RUNTIME LAYER */
-    #canvas-3d {
+    /* 🎨 WEBGL HARDWARE-ACCELERATED LAYER */
+    #three-canvas {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1; /* Sits underneath to wrap around edges */
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 1;
+        border-radius: 40px;
     }
 
-    /* 💎 THE CENTRAL SUSPENDED GLASS FRAME */
-    .glass-console {
+    /* 💎 SYSTEM CONTROL OVERLAY GLASS PANELS */
+    .game-console {
         position: relative;
-        z-index: 2; /* Floats inside the core of the 3D net */
-        width: 330px;
-        height: 510px;
-        background: rgba(10, 15, 30, 0.3);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        z-index: 2;
+        width: 85%;
+        height: 90%;
+        background: rgba(15, 23, 42, 0.2);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         border-radius: 36px;
-        padding: 24px;
+        padding: 30px;
         box-sizing: border-box;
         border: 1px solid rgba(255, 255, 255, 0.05);
         display: flex;
         flex-direction: column;
-        box-shadow: 0 25px 60px rgba(0,0,0,0.8);
-        transition: all 0.2s ease;
+        justify-content: space-between;
+        box-shadow: 0 30px 70px rgba(0,0,0,0.7);
     }
 
-    /* 🖥️ CYBER INS-LCD SCREEN */
-    .lcd-screen {
+    /* HUDS & SCREEN DISPLAY MARKS */
+    .hud-header {
+        display: flex; justify-content: space-between;
+        color: #94a3b8; font-family: monospace; font-size: 14px;
+        letter-spacing: 1px;
+    }
+    
+    .score-glowing { color: #a855f7; font-weight: bold; text-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+
+    .question-deck {
         width: 100%;
-        height: 85px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 0 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 25px 10px;
+        text-align: center;
         box-sizing: border-box;
-        margin-bottom: 25px;
-        box-shadow: inset 0 4px 15px rgba(0,0,0,0.9);
-        transition: all 0.1s ease;
+        box-shadow: inset 0 4px 20px rgba(0,0,0,0.8);
+    }
+    
+    #question-text {
+        font-size: 44px; color: #f8fafc; font-weight: 800; font-family: monospace;
+        letter-spacing: -1px;
     }
 
-    #expr { font-size: 13px; color: #475569; font-family: monospace; min-height: 16px; margin-bottom: 2px; }
-    #val { font-size: 34px; color: #ffffff; font-family: monospace; font-weight: bold; }
-
-    /* BUTTON CONTROL SYSTEMS */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 14px;
-        flex-grow: 1;
+    /* 🔄 THE 3D REVOLVING ORBIT MATRIX CONTEXT */
+    .orbit-scene {
+        position: relative;
+        width: 100%;
+        height: 260px;
+        margin-top: 20px;
+        transform-style: preserve-3d;
+        display: flex; justify-content: center; align-items: center;
     }
 
-    .key-node {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+    .orbit-rotor {
+        position: absolute;
+        width: 100%; height: 100%;
+        transform-style: preserve-3d;
+        /* Infinite 3D rotation animation loop */
+        animation: spinOrbit 12s linear infinite;
+        display: flex; justify-content: center; align-items: center;
+    }
+
+    @keyframes spinOrbit {
+        0% { transform: rotateY(0deg); }
+        100% { transform: rotateY(360deg); }
+    }
+
+    /* Pauses the carousel rotation when user attempts an acquisition lock-on */
+    .orbit-scene:hover .orbit-rotor {
+        animation-play-state: paused;
+    }
+
+    /* 🔮 3D HIGH-FIDELITY BUBBLE OPTION SPHERES */
+    .option-node {
+        position: absolute;
+        width: 75px;
+        height: 75px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 50%;
-        color: #94a3b8;
-        font-size: 19px;
-        font-weight: 600;
+        color: #f1f5f9;
+        font-size: 22px; font-weight: bold; font-family: monospace;
+        display: flex; justify-content: center; align-items: center;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
         user-select: none;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.4), inset 0 -3px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5),
+                    inset 0 4px 6px rgba(255,255,255,0.05),
+                    inset 0 -6px 10px rgba(0,0,0,0.4);
+        transition: transform 0.2s, background 0.2s, border 0.2s, box-shadow 0.2s;
     }
 
-    .key-node:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: #ffffff;
-        border-color: rgba(255, 255, 255, 0.2);
+    /* Spatially lock positions across 360-degree cylindrical vectors */
+    .opt-0 { transform: rotateY(0deg) translateZ(135px) rotateY(0deg); }
+    .opt-1 { transform: rotateY(90deg) translateZ(135px) rotateY(-90deg); }
+    .opt-2 { transform: rotateY(180deg) translateZ(135px) rotateY(-180deg); }
+    .opt-3 { transform: rotateY(270deg) translateZ(135px) rotateY(-270deg); }
+
+    /* Auto-counter balance rules to keep texts facing forward while rotating */
+    .orbit-scene:not(:hover) .opt-0 { animation: reverseLook 12s linear infinite; }
+    .orbit-scene:not(:hover) .opt-1 { animation: reverseLookShift1 12s linear infinite; }
+    .orbit-scene:not(:hover) .opt-2 { animation: reverseLookShift2 12s linear infinite; }
+    .orbit-scene:not(:hover) .opt-3 { animation: reverseLookShift3 12s linear infinite; }
+
+    @keyframes reverseLook { 0% { transform: rotateY(0deg) translateZ(135px) rotateY(0deg); } 100% { transform: rotateY(360deg) translateZ(135px) rotateY(-360deg); } }
+    @keyframes reverseLookShift1 { 0% { transform: rotateY(90deg) translateZ(135px) rotateY(-90deg); } 100% { transform: rotateY(450deg) translateZ(135px) rotateY(-450deg); } }
+    @keyframes reverseLookShift2 { 0% { transform: rotateY(180deg) translateZ(135px) rotateY(-180deg); } 100% { transform: rotateY(540deg) translateZ(135px) rotateY(-540deg); } }
+    @keyframes reverseLookShift3 { 0% { transform: rotateY(270deg) translateZ(135px) rotateY(-270deg); } 100% { transform: rotateY(630deg) translateZ(135px) rotateY(-630deg); } }
+
+    .option-node:hover {
+        background: rgba(168, 85, 247, 0.15);
+        color: #c084fc;
+        border-color: #a855f7;
+        box-shadow: 0 0 25px rgba(168, 85, 247, 0.4), inset 0 2px 4px rgba(255,255,255,0.1);
+        transform: scale(1.1) !important;
     }
     
-    .op-node { color: #f43f5e; background: rgba(244, 63, 94, 0.02); }
-
-    /* IGNITION TRIGGER BUTTON (=) */
-    .ignite-node {
-        background: linear-gradient(135deg, #ef4444, #b91c1c);
-        color: #ffffff;
-        font-weight: bold;
-        border: none;
-        box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
-    }
-    .ignite-node:hover {
-        box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
-    }
-
-    /* MECHANICAL KEYPRESS DEPRESSION EFFECT */
-    .key-node:active {
-        transform: scale(0.88) translateY(3px);
-    }
-
-    /* 🔥 SYSTEM FIRE IGNITION OVERLAY STYLES */
-    .fire-blast {
-        border-color: rgba(239, 68, 68, 0.6) !important;
-        box-shadow: 0 0 60px rgba(239, 68, 68, 0.5), inset 0 0 20px rgba(239, 68, 68, 0.3) !important;
-        transform: scale(1.03) rotateX(10deg);
-    }
-    
-    .screen-flash {
-        background: rgba(239, 68, 68, 0.15) !important;
-        border-color: #ef4444 !important;
-        box-shadow: inset 0 0 25px rgba(239, 68, 68, 0.5) !important;
-    }
+    .option-node:active { transform: scale(0.9) !important; }
 </style>
 </head>
 <body>
 
-<div class="viewport-3d">
-    <canvas id="canvas-3d"></canvas>
+<div class="arena-viewport">
+    <canvas id="three-canvas"></canvas>
 
-    <div class="glass-console" id="console-frame">
-        <div class="lcd-screen" id="screen-frame">
-            <div id="expr"></div>
-            <div id="val">0</div>
+    <div class="game-console">
+        <div class="hud-header">
+            <div>TARGET: SECURE LIQUIDITY</div>
+            <div>SCORE: <span id="score-val" class="score-glowing">0</span></div>
         </div>
         
-        <div class="grid">
-            <div class="key-node op-node" onclick="appendToken('C')">C</div>
-            <div class="key-node op-node" onclick="appendToken('(')">(</div>
-            <div class="key-node op-node" onclick="appendToken(')')">)</div>
-            <div class="key-node op-node" onclick="appendToken('/')">÷</div>
-            
-            <div class="key-node" onclick="appendToken('7')">7</div>
-            <div class="key-node" onclick="appendToken('8')">8</div>
-            <div class="key-node" onclick="appendToken('9')">9</div>
-            <div class="key-node op-node" onclick="appendToken('*')">×</div>
-            
-            <div class="key-node" onclick="appendToken('4')">4</div>
-            <div class="key-node" onclick="appendToken('5')">5</div>
-            <div class="key-node" onclick="appendToken('6')">6</div>
-            <div class="key-node op-node" onclick="appendToken('-')">−</div>
-            
-            <div class="key-node" onclick="appendToken('1')">1</div>
-            <div class="key-node" onclick="appendToken('2')">2</div>
-            <div class="key-node" onclick="appendToken('3')">3</div>
-            <div class="key-node op-node" onclick="appendToken('+')">+</div>
-            
-            <div class="key-node" onclick="appendToken('0')">0</div>
-            <div class="key-node" onclick="appendToken('.')">.</div>
-            <div class="key-node op-node" onclick="backspace()">◀</div>
-            <div class="key-node ignite-node" onclick="triggerIgnition()">=</div>
+        <div class="question-deck">
+            <div id="question-text">LOADING...</div>
+        </div>
+
+        <div class="orbit-scene">
+            <div class="orbit-rotor" id="btn-rotor">
+                <div class="option-node opt-0" onclick="verifyChoice(this)">0</div>
+                <div class="option-node opt-1" onclick="verifyChoice(this)">0</div>
+                <div class="option-node opt-2" onclick="verifyChoice(this)">0</div>
+                <div class="option-node opt-3" onclick="verifyChoice(this)">0</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; font-size: 11px; color: #475569; font-family: monospace; letter-spacing: 0.5px;">
+            HINT: HOVER OVER SYSTEM TO LOCK ROTATION ENGINE
         </div>
     </div>
 </div>
 
 <script>
     // ==========================================================================
-    // 🔮 THREE.JS ENVELOPE ENGINE SYSTEM
+    // 🧬 THREE.JS ENGINE CORE: PARTICLES LOGIC ENGINE
     // ==========================================================================
-    const canvasElement = document.getElementById('canvas-3d');
+    const canvas = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
+    
+    const camera = new THREE.PerspectiveCamera(65, 480 / 640, 0.1, 1000);
+    camera.position.z = 20;
 
-    // Perspective focal calculation mapping
-    const camera = new THREE.PerspectiveCamera(60, 450 / 620, 0.1, 1000);
-    camera.position.z = 18; 
-
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, alpha: true });
-    renderer.setSize(450, 620);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setSize(480, 640);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Creating a massive matrix net structure that expands PAST the console dimensions
-    const geometry = new THREE.IcosahedronGeometry(11, 2); 
+    // Instantiating Particle Arrays
+    const particleCount = 350;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
     
-    const material = new THREE.MeshBasicMaterial({
-        color: 0x334155, // Base industrial dark grey lines
-        wireframe: true,
-        transparent: true,
-        opacity: 0.3
-    });
+    for(let i=0; i < particleCount*3; i+=3) {
+        positions[i] = (Math.random() - 0.5) * 40;     // X Mapping
+        positions[i+1] = (Math.random() - 0.5) * 40;   // Y Mapping
+        positions[i+2] = (Math.random() - 0.5) * 30;   // Z Mapping
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    const netMesh = new THREE.Mesh(geometry, material);
-    scene.add(netMesh);
+    // Dynamic point cloud materials mapping
+    const matConfig = { size: 0.35, transparent: true, opacity: 0.5 };
+    const pMaterial = new THREE.PointsMaterial(matConfig);
+    pMaterial.color.setHex(0x64748b); // Ambient Slate Grey Points
+    
+    const particleSystem = new THREE.Points(geometry, pMaterial);
+    scene.add(particleSystem);
 
-    // Engine Speed Track Variables
-    let rotationalVelocityX = 0.002;
-    let rotationalVelocityY = 0.004;
-    let targetScale = 1;
+    // Engine FX State Variables
+    let currentFXState = "ambient"; // Possible states: ambient, snow, fire
+    let fxTimer = 0;
 
-    // 🔄 CONTINUOUS ENGINE LOGIC TICK RUN (60 FPS)
-    function runEngineTick() {
-        requestAnimationFrame(runEngineTick);
-
-        // Run rotation delta calculations
-        netMesh.rotation.x += rotationalVelocityX;
-        netMesh.rotation.y += rotationalVelocityY;
-
-        // Smoothly interpolate scale matrix transformations
-        netMesh.scale.x += (targetScale - netMesh.scale.x) * 0.1;
-        netMesh.scale.y += (targetScale - netMesh.scale.y) * 0.1;
-        netMesh.scale.z += (targetScale - netMesh.scale.z) * 0.1;
-
-        // Cool-down velocity dampening logic after calculation bursts
-        if (rotationalVelocityY > 0.004) rotationalVelocityY -= 0.01;
-        if (rotationalVelocityX > 0.002) rotationalVelocityX -= 0.005;
+    // INFINITE RUNTIME CORE LOOP (60 FPS Execution ticks)
+    function tickEngine() {
+        requestAnimationFrame(tickEngine);
+        
+        const posArr = geometry.attributes.position.array;
+        
+        // Read active global state instructions
+        if (currentFXState === "ambient") {
+            particleSystem.rotation.y += 0.002;
+            particleSystem.rotation.x += 0.001;
+            pMaterial.color.setHex(0x5b21b6); // Purple structural tint
+        } 
+        else if (currentFXState === "snow") {
+            pMaterial.color.setHex(0x38bdf8); // Sky blue ice tint
+            // Force cascading downward linear vector paths
+            for(let i=1; i < posArr.length; i+=3) {
+                posArr[i] -= 0.25; 
+                if(posArr[i] < -20) posArr[i] = 20; // Recycle position boundary
+            }
+            geometry.attributes.position.needsUpdate = true;
+        } 
+        else if (currentFXState === "fire") {
+            pMaterial.color.setHex(0xef4444); // Raging Crimson Fire Tint
+            // Force upward turbulent vectors
+            for(let i=1; i < posArr.length; i+=3) {
+                posArr[i] += 0.35;
+                if(posArr[i] > 20) {
+                    posArr[i] = -20;
+                    posArr[i-1] = (Math.random() - 0.5) * 30; // Inject scatter variance
+                }
+            }
+            geometry.attributes.position.needsUpdate = true;
+        }
 
         renderer.render(scene, camera);
     }
-    runEngineTick();
+    tickEngine();
 
     // ==========================================================================
-    // 🔊 SYNTHETIC AUDIO DETONATION CORE (WEB AUDIO API ENGINE)
+    // 🔊 SYNTHETIC AUDIO WAVE MATRIX (WEB AUDIO API GENERATORS)
     // ==========================================================================
-    function playAudioBoom() {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const AudioContextEngine = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSuccessChime() {
+        const now = AudioContextEngine.currentTime;
+        const osc = AudioContextEngine.createOscillator();
+        const gain = AudioContextEngine.createGain();
+        osc.connect(gain); gain.connect(AudioContextEngine.destination);
         
-        // Setup raw synthesizers nodes
-        const mainOscillator = audioCtx.createOscillator();
-        const noiseOscillator = audioCtx.createOscillator();
-        const volumeGainNode = audioCtx.createGain();
+        osc.type = 'triangle';
+        // Multi-stage rising chord sequence
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+        osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+        osc.frequency.setValueAtTime(1046.50, now + 0.24); // C6
         
-        mainOscillator.connect(volumeGainNode);
-        noiseOscillator.connect(volumeGainNode);
-        volumeGainNode.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        osc.start(); osc.stop(now + 0.4);
+    }
 
-        // Configure a heavy, explosive low-frequency Sawtooth profile
-        mainOscillator.type = 'sawtooth';
-        mainOscillator.frequency.setValueAtTime(160, audioCtx.currentTime);
-        mainOscillator.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.6);
-
-        // Mix in structural crackle using a high frequency square sound vector
-        noiseOscillator.type = 'square';
-        noiseOscillator.frequency.setValueAtTime(40, audioCtx.currentTime);
-        noiseOscillator.frequency.linearRampToValueAtTime(1, audioCtx.currentTime + 0.4);
-
-        // Set detonation volume amplitude envelop decay curve
-        volumeGainNode.gain.setValueAtTime(0.6, audioCtx.currentTime);
-        volumeGainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.7);
-
-        // Trigger Audio Context Engine execution lifecycle
-        mainOscillator.start();
-        noiseOscillator.start();
-        mainOscillator.stop(audioCtx.currentTime + 0.7);
-        noiseOscillator.stop(audioCtx.currentTime + 0.7);
+    function playExplodeBoom() {
+        const now = AudioContextEngine.currentTime;
+        const osc = AudioContextEngine.createOscillator();
+        const noise = AudioContextEngine.createOscillator();
+        const gain = AudioContextEngine.createGain();
+        osc.connect(gain); noise.connect(gain); gain.connect(AudioContextEngine.destination);
+        
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(130, now);
+        osc.frequency.linearRampToValueAtTime(30, now + 0.5);
+        
+        noise.type = 'square';
+        noise.frequency.setValueAtTime(55, now);
+        noise.frequency.linearRampToValueAtTime(5, now + 0.4);
+        
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+        osc.start(); noise.start();
+        osc.stop(now + 0.5); noise.stop(now + 0.5);
     }
 
     // ==========================================================================
-    // 🧮 SYSTEM OPERATION INTERFACE COMPREHENSION
+    // 🧠 1000+ QUESTION REPETITION COMPREHENSION MATRIX
     // ==========================================================================
-    let equationSequence = "";
-    const viewExpr = document.getElementById("expr");
-    const viewVal = document.getElementById("val");
-    const consoleUI = document.getElementById("console-frame");
-    const screenUI = document.getElementById("screen-frame");
+    let score = 0;
+    let correctAnswer = 0;
+    let questionHistoryArray = [];
 
-    function appendToken(token) {
-        if (token === 'C') {
-            equationSequence = "";
-            viewExpr.innerText = "";
-            viewVal.innerText = "0";
-            return;
-        }
-        equationSequence += token;
-        viewVal.innerText = equationSequence;
+    function generateUniqueQuestion() {
+        let op, num1, num2, statement, result;
+        const operations = ['+', '-', '*', '/'];
         
-        // Structural feedback: Reactive micro-flex whenever keys register inputs
-        netMesh.scale.set(1.02, 1.02, 1.02);
-        setTimeout(() => targetScale = 1, 50);
-    }
-
-    function backspace() {
-        equationSequence = equationSequence.slice(0, -1);
-        viewVal.innerText = equationSequence || "0";
-    }
-
-    // 🔥 THE BOOM STATE CALCULATOR IGNITION INTERFACE
-    function triggerIgnition() {
-        if (!equationSequence) return;
-        try {
-            viewExpr.innerText = equationSequence + " =";
-            let calculationOutput = eval(equationSequence);
-            if (calculationOutput.toString().includes('.')) {
-                calculationOutput = parseFloat(calculationOutput.toFixed(6));
+        while (true) {
+            op = operations[Math.floor(Math.random() * operations.length)];
+            
+            if (op === '+') {
+                num1 = Math.floor(Math.random() * 90) + 10;
+                num2 = Math.floor(Math.random() * 90) + 10;
+                statement = `${num1} + ${num2}`; result = num1 + num2;
+            } 
+            else if (op === '-') {
+                num1 = Math.floor(Math.random() * 90) + 10;
+                num2 = Math.floor(Math.random() * (num1 - 10 + 1)) + 10; // Guarantees positive targets
+                statement = `${num1} - ${num2}`; result = num1 - num2;
+            } 
+            else if (op === '*') {
+                num1 = Math.floor(Math.random() * 90) + 10;
+                num2 = Math.floor(Math.random() * 90) + 10;
+                statement = `${num1} × ${num2}`; result = num1 * num2;
+            } 
+            else if (op === '/') {
+                num2 = Math.floor(Math.random() * 90) + 10; // Divisor
+                result = Math.floor(Math.random() * 90) + 10; // Desired clean quotient
+                num1 = num2 * result; // Dividend
+                statement = `${num1} ÷ ${num2}`;
             }
-            viewVal.innerText = calculationOutput;
-            equationSequence = calculationOutput.toString();
 
-            // 1. Fire Web Audio Synth explosion
-            playAudioBoom();
+            // Repetition tracking verification pipeline
+            if (!questionHistoryArray.includes(statement)) {
+                questionHistoryArray.push(statement);
+                if (questionHistoryArray.length > 1000) questionHistoryArray.shift(); // Evicts overflow logs
+                break;
+            }
+        }
+        return { prompt: statement, value: result };
+    }
 
-            // 2. Warp 3D Matrix mesh parameters to Fiery Blast Configuration
-            netMesh.material.color.setHex(0xff3300); // Shift line colors to Magma Orange
-            netMesh.material.opacity = 0.8;          // Force full wireframe brightness
-            rotationalVelocityY = 0.35;               // Accelerate orbital rotation to warp speed
-            rotationalVelocityX = 0.15;
-            targetScale = 1.4;                       // Blow out the 3D grid cage past the device borders
+    function initNewMatchTurn() {
+        const packet = generateUniqueQuestion();
+        correctAnswer = packet.value;
+        document.getElementById("question-text").innerText = packet.prompt;
 
-            // 3. Inject CSS Fire Glow classes to device chassis elements
-            consoleUI.classList.add("fire-blast");
-            screenUI.classList.add("screen-flash");
+        // Formulate 3 valid distinct deceptive options
+        let optionsSet = new Set();
+        optionsSet.add(correctAnswer);
 
-            // 🔄 THE ENGINE RECOVERY MATRIX (Cooling the system back to normal state)
-            setTimeout(() => {
-                netMesh.material.color.setHex(0x334155); // Reset to Slate Steel Grey
-                netMesh.material.opacity = 0.3;
-                targetScale = 1.0;
-                consoleUI.classList.remove("fire-blast");
-                screenUI.classList.remove("screen-flash");
-            }, 750);
+        while(optionsSet.size < 4) {
+            let offset = Math.floor(Math.random() * 24) - 12;
+            if (offset === 0) offset = 5;
+            let fakeOption = correctAnswer + offset;
+            if(fakeOption >= 0) optionsSet.add(fakeOption);
+        }
 
-        } catch (err) {
-            viewVal.innerText = "Error";
-            equationSequence = "";
+        // Shuffle tracking mapping array array
+        let optionsArray = Array.from(optionsSet).sort(() => Math.random() - 0.5);
+        const domNodes = document.getElementsByClassName("option-node");
+        
+        for(let i=0; i < 4; i++) {
+            domNodes[i].innerText = optionsArray[i];
+            domNodes[i].style.borderColor = "rgba(255, 255, 255, 0.08)";
         }
     }
+
+    function verifyChoice(selectedNode) {
+        const numericalValue = parseInt(selectedNode.innerText);
+        
+        if (numericalValue === correctAnswer) {
+            // SUCCESS PROTOCOL TRIGGER
+            score += 10;
+            document.getElementById("score-val").innerText = score;
+            selectedNode.style.borderColor = "#22c55e"; // Success green illumination
+            
+            playSuccessChime();
+            currentFXState = "snow";
+            
+            setTimeout(() => {
+                currentFXState = "ambient";
+                initNewMatchTurn();
+            }, 1200);
+        } 
+        else {
+            // FAILURE BURST PROTOCOL TRIGGER
+            selectedNode.style.borderColor = "#ef4444"; // Failure red illumination
+            
+            playExplodeBoom();
+            currentFXState = "fire";
+            
+            setTimeout(() => {
+                currentFXState = "ambient";
+                initNewMatchTurn();
+            }, 1200);
+        }
+    }
+
+    // Launch Game System Init Sequence
+    initNewMatchTurn();
 </script>
 
 </body>
 </html>
 """
 
-# Embed spatial application layers inside Streamlit layout tree
-components.html(hologram_engine_html, height=650)
+# Mount complete game engine instance to layout container
+components.html(game_engine_html, height=660)
