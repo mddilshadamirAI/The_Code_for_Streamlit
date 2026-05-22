@@ -35,7 +35,7 @@ div[data-testid="stAppViewContainer"], .main {
 """, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center; color: #f8fafc; font-family: sans-serif; font-weight: 900; letter-spacing: -1px; margin-bottom:0px;'>⚔️ Math Arena 2D</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #38bdf8; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// SYSTEM: TEMPLATE REPLACE ENGINE LIVE / NO F-STRINGS USED</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #38bdf8; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// SYSTEM: SYNTAX RECONCILIATION COMPLETE / REPO AUDIO CORE ACTIVE</p>", unsafe_allow_html=True)
 
 # ==============================================================================
 # 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (CLEAN STRING MODEL)
@@ -419,4 +419,12 @@ raw_template_html = """
 </html>
 """
 
-# Inject
+# Inject audio streams cleanly without using an f-string
+sanitized_game_html = raw_template_html.replace(
+    "%%RIGHT_AUDIO_REPLACE%%", right_answer_audio
+).replace(
+    "%%WRONG_AUDIO_REPLACE%%", wrong_answer_audio
+)
+
+# Render application matrix into main Streamlit container framework
+components.html(sanitized_game_html, height=660)
