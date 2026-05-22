@@ -35,7 +35,8 @@ div[data-testid="stAppViewContainer"], .main {
 """, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ CYBER ARENA 2D ⚡</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 12px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// VISUAL CORE V2.0 ENGINE ENGAGED</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #06b6d4; font-family: monospace; font-size: 14px; margin-top:6px; margin-bottom: 0px; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(6,182,212,0.6);'>🚀 DEVELOPED BY MD DILSHAD</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 11px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// VISUAL CORE V2.0 ENGINE ENGAGED</p>", unsafe_allow_html=True)
 
 # ==============================================================================
 # 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (EXTREME UI EDITION)
@@ -111,7 +112,7 @@ raw_template_html = """
     .hud-header {
         display: flex; justify-content: space-between;
         color: #94a3b8; font-size: 11px;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         padding-bottom: 10px;
     }
@@ -172,9 +173,9 @@ raw_template_html = """
         100% { transform: rotate(360deg); }
     }
 
+    /* Visual tracking tint swap on container hover - NEVER PAUSES REVOLUTION */
     .orbit-container:hover .orbit-rotor-2d {
-        animation-play-state: paused;
-        border-color: rgba(168, 85, 247, 0.3);
+        border-color: rgba(168, 85, 247, 0.4);
     }
 
     /* 🔮 PLASMA ORB DESIGN OPTION NODES */
@@ -202,12 +203,6 @@ raw_template_html = """
 
     /* COUNTER-ROTATOR STABILIZATION MATRIX */
     .orbit-rotor-2d .option-node-2d { animation: keepUpright 16s linear infinite; }
-    .orbit-container:hover .option-node-2d { animation-play-state: paused !important; }
-
-    @keyframes keepUpright {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(-360deg); } 
-    }
 
     /* EXTREME NEON GLOW HOVER ARCHITECTURE */
     .option-node-2d:hover {
@@ -228,7 +223,7 @@ raw_template_html = """
 
     <div class="game-console" id="console-box">
         <div class="hud-header">
-            <div>SYS.STATUS: OPERATIONAL</div>
+            <div>BY: MD DILSHAD // SYS.ACTIVE</div>
             <div>SCORE: <span id="score-val" class="score-glow">0</span></div>
         </div>
         
@@ -246,7 +241,7 @@ raw_template_html = """
         </div>
         
         <div style="text-align: center; font-size: 10px; color: #475569; letter-spacing: 1px;">
-            💥 SPEED MULTIPLIER ACTIVE // HOVER TO LOCK RANGE
+            🔥 KINETIC ORBIT ACTIVE // VELOCITY LOCK REMOVED
         </div>
     </div>
 </div>
@@ -285,7 +280,7 @@ raw_template_html = """
     renderer.setSize(480, 640);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const totalParticles = 400; // Increased particle density
+    const totalParticles = 400; 
     const geometry = new THREE.BufferGeometry();
     const positionArray = new Float32Array(totalParticles * 3);
     
@@ -297,7 +292,7 @@ raw_template_html = """
     geometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
 
     const pointMaterial = new THREE.PointsMaterial({ size: 0.4, transparent: true, opacity: 0.65 });
-    pointMaterial.color.setHex(0xa855f7); // Cyan-purple baseline
+    pointMaterial.color.setHex(0xa855f7); 
     
     const engineParticles = new THREE.Points(geometry, pointMaterial);
     scene.add(engineParticles);
@@ -314,7 +309,7 @@ raw_template_html = """
             pointMaterial.color.setHex(0xa855f7); 
         } 
         else if (activeFXState === "snow") {
-            pointMaterial.color.setHex(0x10b981); // Emerald Matrix hyper speed
+            pointMaterial.color.setHex(0x10b981); 
             for(let i=1; i < positions.length; i+=3) {
                 positions[i] -= 0.5; 
                 if(positions[i] < -22) positions[i] = 22;
@@ -322,7 +317,7 @@ raw_template_html = """
             geometry.attributes.position.needsUpdate = true;
         } 
         else if (activeFXState === "fire") {
-            pointMaterial.color.setHex(0xef4444); // Crimson solar flare escalation
+            pointMaterial.color.setHex(0xef4444); 
             for(let i=1; i < positions.length; i+=3) {
                 positions[i] += 0.65; 
                 if(positions[i] > 22) {
@@ -417,13 +412,11 @@ raw_template_html = """
             score += 10;
             document.getElementById("score-val").innerText = score;
             
-            // Extreme UI node impact state
             node.style.borderColor = "#10b981";
             node.style.background = "radial-gradient(circle at center, #10b981 0%, #059669 100%)";
             node.style.color = "#ffffff";
             node.style.boxShadow = "0 0 35px #10b981";
             
-            // Matrix Console Glow Alert Flash
             consoleBox.classList.add("console-correct");
             
             playFaaCorrect();
@@ -436,13 +429,11 @@ raw_template_html = """
             }, 1200);
         } 
         else {
-            // Extreme UI failure impact state
             node.style.borderColor = "#ef4444";
             node.style.background = "radial-gradient(circle at center, #ef4444 0%, #dc2626 100%)";
             node.style.color = "#ffffff";
             node.style.boxShadow = "0 0 35px #ef4444";
             
-            // Crimson Shockwave Alert Flash
             consoleBox.classList.add("console-incorrect");
             
             playHahaIncorrect();
