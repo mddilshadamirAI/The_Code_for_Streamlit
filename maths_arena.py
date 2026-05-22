@@ -36,7 +36,7 @@ div[data-testid="stAppViewContainer"], .main {
 """, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center; color: #f8fafc; font-family: sans-serif; font-weight: 900; letter-spacing: -1px; margin-bottom:0px;'>⚔️ Math Arena 2D</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #38bdf8; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// AUDIO SYSTEM: REPO MP3 PIPELINE LOADED SUCCESSFUL</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #38bdf8; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// SYSTEM: ALL F-STRING BRACES ESCAPED CORRECTLY</p>", unsafe_allow_html=True)
 
 # ==============================================================================
 # 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS
@@ -301,7 +301,7 @@ game_engine_html = f"""
                 if(positions[i] > 20) {{
                     positions[i] = -20;
                     positions[i-1] = (Math.random() - 0.5) * 30;
-                }
+                }}
             }}
             geometry.attributes.position.needsUpdate = true;
         }}
@@ -389,7 +389,7 @@ game_engine_html = f"""
             node.style.borderColor = "#22c55e";
             node.style.background = "rgba(34, 197, 94, 0.2)";
             
-            // Trigger updated trend rules
+            // Trigger correct sound effect (faa.mp3)
             playFaaCorrect();
             activeFXState = "snow";
             
@@ -402,7 +402,7 @@ game_engine_html = f"""
             node.style.borderColor = "#ef4444";
             node.style.background = "rgba(239, 68, 68, 0.2)";
             
-            // Trigger updated trend rules
+            // Trigger incorrect sound effect (haha.mp3)
             playHahaIncorrect();
             activeFXState = "fire";
             
