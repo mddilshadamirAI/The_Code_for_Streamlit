@@ -1,195 +1,259 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
-# Page layout configurations
+# Page configurations
 st.set_page_config(
-    page_title="Dilshad's 3D Engine OS",
+    page_title="Smart Calculator 3D",
     page_icon="🧮",
     layout="centered"
 )
 
-# ==============================================================================
-# 🧬 THE 3D SKEUOMORPHIC STYLING MATRIX
-# ==============================================================================
+# Set a dark, deep background for the Streamlit page to make the glass pop
 st.markdown("""
 <style>
-/* App workspace depth configuration */
 div[data-testid="stAppViewContainer"], .main {
-    background: #0b0f17 !important;
+    background: #0d1117 !important;
 }
-
-/* Main Tactile Phone Frame Engine */
-.phone-deck {
-    background: linear-gradient(145deg, #1e2633, #0f131a);
-    border-radius: 36px;
-    padding: 28px;
-    box-shadow: 12px 12px 25px #05070a, 
-                -12px -12px 25px #273142, 
-                inset 1px 1px 1px rgba(255, 255, 255, 0.1);
-    border: 1px solid #1c232e;
-    max-width: 360px;
-    margin: 0 auto;
-}
-
-/* Inset Bezel Display Screen Engine */
-.display-screen {
-    background: #06090d;
-    border-radius: 18px;
-    padding: 20px;
-    box-shadow: inset 4px 4px 8px #020304, 
-                inset -4px -4px 8px #101621;
-    border: 1px solid #131a24;
-    min-height: 90px;
-    text-align: right;
-    margin-bottom: 25px;
-}
-
-/* Global Streamlit Button Remapping to Mechanical 3D Keycaps */
-div.stButton > button {
-    width: 100% !important;
-    height: 60px !important;
-    background: linear-gradient(135deg, #222b3a, #161b24) !important;
-    color: #f8fafc !important;
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    border-radius: 16px !important;
-    border: 1px solid #2a3447 !important;
-    
-    /* 3D Cap Thickness Shadow Layering */
-    box-shadow: 0px 6px 0px #090c12, 
-                0px 8px 15px rgba(0, 0, 0, 0.5) !important;
-    transition: all 0.05s ease-in-out !important;
-}
-
-/* Key Hover state glow matrix */
-div.stButton > button:hover {
-    background: linear-gradient(135deg, #2a3547, #1b212c) !important;
-    color: #06b6d4 !important;
-    border-color: #06b6d4 !important;
-}
-
-/* Physical Mechanical Compress Down Animation */
-div.stButton > button:active {
-    transform: translateY(5px) !important;
-    box-shadow: 0px 1px 0px #090c12, 
-                0px 2px 4px rgba(0, 0, 0, 0.5) !important;
-}
+#MainMenu, footer, header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-# ==============================================================================
-# 🧠 MEMORY MANAGEMENT LOOP
-# ==============================================================================
-if "calc_expression" not in st.session_state:
-    st.session_state.calc_expression = ""
-if "last_calculation" not in st.session_state:
-    st.session_state.last_calculation = ""
-
-# Helper function to append digits/operators
-def input_token(token):
-    st.session_state.calc_expression += str(token)
-
-# Helper function to compute expression evaluations securely
-def evaluate_expression():
-    try:
-        expr = st.session_state.calc_expression
-        if expr:
-            # Safe internal evaluations string mapping
-            result = eval(expr)
-            # Formatting floats cleanly
-            if isinstance(result, float) and result.is_integer():
-                result = int(result)
-            st.session_state.last_calculation = expr + " ="
-            st.session_state.calc_expression = str(result)
-    except ZeroDivisionError:
-        st.session_state.calc_expression = "Error: Div by 0"
-    except Exception:
-        st.session_state.calc_expression = "Syntax Error"
+# Headline
+st.markdown("<h1 style='text-align: center; color: #e2e8f0; font-family: sans-serif; font-weight: 700; letter-spacing: 1px;'>🛸 Smart Calculator</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #64748b; margin-bottom: 30px;'>Hyper-Fast • 3D Glassmorphism Engine</p>", unsafe_allow_html=True)
 
 # ==============================================================================
-# 📱 THE TACTILE CONSOLE INTERFACE BUILD
+# 🚀 PURE CLIENT-SIDE 3D GRAPHICS & LOGIC ENGINE (HTML/JS/CSS)
 # ==============================================================================
-st.write("")
-st.write("")
+calculator_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        perspective: 1000px; /* Unlocks true 3D spatial depth */
+    }
 
-# Layout isolation vector to constrain size like a smartphone
-left_space, center_deck, right_space = st.columns([1, 2, 1])
-
-with center_deck:
-    # Open HTML Phone Deck Chassis container
-    st.markdown('<div class="phone-deck">', unsafe_allow_html=True)
+    /* 💎 THE GLASSMORPHISM CHASSIS */
+    .calc-container {
+        width: 340px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transform: rotateX(10deg) rotateY(-5deg); /* Slight 3D angled viewpoint */
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
+    }
     
-    # Render the Custom Inset Depth Screen
-    history_view = st.session_state.last_calculation
-    current_view = st.session_state.calc_expression or "0"
+    .calc-container:hover {
+        transform: rotateX(5deg) rotateY(-2deg);
+    }
+
+    /* 🖥️ GLOWING INSET DISPLAY */
+    .display {
+        width: 100%;
+        height: 85px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0 4px 10px rgba(0,0,0,0.9);
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    #expr {
+        font-size: 14px;
+        color: #64748b;
+        min-height: 18px;
+        margin-bottom: 4px;
+        letter-spacing: 1px;
+    }
+
+    #val {
+        font-size: 32px;
+        color: #00f2fe;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        white-space: nowrap;
+    }
+
+    /* 🎛️ BUTTON MATRIX GRID */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    /* 📦 3D CUBE BUTTON STRUCTURE */
+    .btn-wrapper {
+        position: relative;
+        height: 60px;
+        perspective: 400px;
+    }
+
+    .cube-btn {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: #e2e8f0;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        /* The 3D Base Layer (Thickness of the Cube) */
+        box-shadow: 0 6px 0px rgba(0, 0, 0, 0.4),
+                    0 10px 15px rgba(0, 0, 0, 0.5);
+        transform: translateZ(0);
+        transition: all 0.06s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        user-select: none;
+    }
+
+    /* Hover Glow States */
+    .cube-btn:hover {
+        background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+        color: #00f2fe;
+        border-color: rgba(0, 242, 254, 0.3);
+        box-shadow: 0 6px 0px rgba(0, 0, 0, 0.4),
+                    0 0 15px rgba(0, 242, 254, 0.4);
+    }
+
+    /* Special Operator Cube Variant */
+    .op-btn {
+        background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(79, 172, 254, 0.1));
+        border-color: rgba(0, 242, 254, 0.2);
+        color: #00f2fe;
+    }
     
-    st.markdown(f"""
-    <div class="display-screen">
-        <div style="color: #475569; font-size: 13px; font-family: monospace; min-height: 18px; letter-spacing: 1px;">{history_view}</div>
-        <div style="color: #06b6d4; font-size: 30px; font-family: monospace; font-weight: bold; overflow-x: auto; white-space: nowrap; direction: ltr;">{current_view}</div>
+    .eq-btn {
+        background: linear-gradient(135deg, #00f2fe, #4facfe);
+        color: #0d1117;
+        font-weight: bold;
+        border: none;
+        box-shadow: 0 6px 0px #008ba3, 0 10px 15px rgba(0, 242, 254, 0.3);
+    }
+    .eq-btn:hover {
+        color: #0d1117;
+        box-shadow: 0 6px 0px #008ba3, 0 0 20px rgba(0, 242, 254, 0.6);
+    }
+
+    /* 🛑 PHYSICAL COMPRESSION ANIMATION (Pushed down along the Z-axis) */
+    .cube-btn:active {
+        transform: translateY(5px) translateZ(-2px);
+        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.4),
+                    0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .eq-btn:active {
+        transform: translateY(5px) translateZ(-2px);
+        box-shadow: 0 1px 0px #008ba3, 0 2px 5px rgba(0, 242, 254, 0.2);
+    }
+</style>
+</head>
+<body>
+
+<div class="calc-container">
+    <div class="display">
+        <div id="expr"></div>
+        <div id="val">0</div>
     </div>
-    """, unsafe_allow_html=True)
     
-    # --- ROW 1 CONTROL KEYS ---
-    r1_c1, r1_c2, r1_c3, r1_c4 = st.columns(4)
-    with r1_c1:
-        if st.button("C"):
-            st.session_state.calc_expression = ""
-            st.session_state.last_calculation = ""
-            st.rerun()
-    with r1_c2:
-        if st.button("("): input_token("("); st.rerun()
-    with r1_c3:
-        if st.button(")"): input_token(")"); st.rerun()
-    with r1_c4:
-        if st.button("÷"): input_token("/"); st.rerun()
+    <div class="grid">
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="clearAll()">C</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append('(')">(</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append(')')">)</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append('/')">÷</div></div>
+        
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('7')">7</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('8')">8</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('9')">9</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append('*')">×</div></div>
+        
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('4')">4</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('5')">5</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('6')">6</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append('-')">−</div></div>
+        
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('1')">1</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('2')">2</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('3')">3</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="append('+')">+</div></div>
+        
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('0')">0</div></div>
+        <div class="btn-wrapper"><div class="cube-btn" onclick="append('.')">.</div></div>
+        <div class="btn-wrapper"><div class="cube-btn op-btn" onclick="backspace()">◀</div></div>
+        <div class="btn-wrapper"><div class="cube-btn eq-btn" onclick="compute()">=</div></div>
+    </div>
+</div>
 
-    # --- ROW 2 NUMERIC GRID ---
-    r2_c1, r2_c2, r2_c3, r2_c4 = st.columns(4)
-    with r2_c1:
-        if st.button("7"): input_token("7"); st.rerun()
-    with r2_c2:
-        if st.button("8"): input_token("8"); st.rerun()
-    with r2_c3:
-        if st.button("9"): input_token("9"); st.rerun()
-    with r2_c4:
-        if st.button("×"): input_token("*"); st.rerun()
+<script>
+    let currentExpression = "";
+    const exprDiv = document.getElementById("expr");
+    const valDiv = document.getElementById("val");
 
-    # --- ROW 3 NUMERIC GRID ---
-    r3_c1, r3_c2, r3_c3, r3_c4 = st.columns(4)
-    with r3_c1:
-        if st.button("4"): input_token("4"); st.rerun()
-    with r3_c2:
-        if st.button("5"): input_token("5"); st.rerun()
-    with r3_c3:
-        if st.button("6"): input_token("6"); st.rerun()
-    with r3_c4:
-        if st.button("−"): input_token("-"); st.rerun()
+    function append(token) {
+        currentExpression += token;
+        valDiv.innerText = currentExpression;
+    }
 
-    # --- ROW 4 NUMERIC GRID ---
-    r4_c1, r4_c2, r4_c3, r4_c4 = st.columns(4)
-    with r4_c1:
-        if st.button("1"): input_token("1"); st.rerun()
-    with r4_c2:
-        if st.button("2"): input_token("2"); st.rerun()
-    with r4_c3:
-        if st.button("3"): input_token("3"); st.rerun()
-    with r4_c4:
-        if st.button("+"): input_token("+"); st.rerun()
+    function clearAll() {
+        currentExpression = "";
+        exprDiv.innerText = "";
+        valDiv.innerText = "0";
+    }
 
-    # --- ROW 5 BASE DECK GRID ---
-    r5_c1, r5_c2, r5_c3, r5_c4 = st.columns(4)
-    with r5_c1:
-        if st.button("0"): input_token("0"); st.rerun()
-    with r5_c2:
-        if st.button("."): input_token("."); st.rerun()
-    with r5_c3:
-        if st.button("◀"):
-            st.session_state.calc_expression = st.session_state.calc_expression[:-1]
-            st.rerun()
-    with r5_c4:
-        if st.button("="):
-            evaluate_expression()
-            st.rerun()
-            
-    # Close HTML Phone Deck container
-    st.markdown('</div>', unsafe_allow_html=True)
+    function backspace() {
+        currentExpression = currentExpression.slice(0, -1);
+        valDiv.innerText = currentExpression || "0";
+    }
+
+    function compute() {
+        if (!currentExpression) return;
+        try {
+            exprDiv.innerText = currentExpression + " =";
+            // Secure calculation evaluation within browser runtime
+            let result = eval(currentExpression);
+            if (Number.isFloat = n => n % 1 !== 0 && !isNaN(n)) {
+                if (result.toString().includes('.')) {
+                    result = parseFloat(result.toFixed(6));
+                }
+            }
+            valDiv.innerText = result;
+            currentExpression = result.toString();
+        } catch (err) {
+            valDiv.innerText = "Syntax Error";
+            currentExpression = "";
+        }
+    }
+</script>
+
+</body>
+</html>
+"""
+
+# Render JavaScript/CSS Engine inside Streamlit Workspace
+components.html(calculator_html, height=520)
