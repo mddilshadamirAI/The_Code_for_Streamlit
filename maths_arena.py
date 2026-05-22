@@ -4,8 +4,8 @@ import base64
 
 # Layout configurations
 st.set_page_config(
-    page_title="Dilshad's Trend Arena",
-    page_icon="⚡",
+    page_title="Dilshad's Cyber Arena 2D",
+    page_icon="👑",
     layout="centered"
 )
 
@@ -28,17 +28,17 @@ wrong_answer_audio = load_local_audio_base64("haha.mp3")
 st.markdown("""
 <style>
 div[data-testid="stAppViewContainer"], .main {
-    background: #020617 !important;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%) !important;
 }
 #MainMenu, footer, header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center; color: #f8fafc; font-family: sans-serif; font-weight: 900; letter-spacing: -1px; margin-bottom:0px;'>⚔️ Math Arena 2D</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #38bdf8; font-family: monospace; font-size: 13px; margin-top:4px; margin-bottom: 20px;'>// SYSTEM: SYNTAX RECONCILIATION COMPLETE / REPO AUDIO CORE ACTIVE</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ CYBER ARENA 2D ⚡</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 12px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// VISUAL CORE V2.0 ENGINE ENGAGED</p>", unsafe_allow_html=True)
 
 # ==============================================================================
-# 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (CLEAN STRING MODEL)
+# 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (EXTREME UI EDITION)
 # ==============================================================================
 raw_template_html = """
 <!DOCTYPE html>
@@ -54,18 +54,21 @@ raw_template_html = """
         overflow: hidden;
         display: flex; justify-content: center; align-items: center;
         background: transparent;
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family: 'Courier New', Courier, monospace;
     }
 
-    /* 🌌 ARENA CONTAINER */
+    /* 🌌 ARENA CONTAINER WITH INTENSE EDGE GLOW */
     .arena-viewport {
         position: relative;
         width: 480px;
         height: 640px;
         display: flex; justify-content: center; align-items: center;
+        border-radius: 40px;
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.15);
+        transition: box-shadow 0.3s ease;
     }
 
-    /* 🎨 THREE.JS CORE WEBGL BACKING */
+    /* WEBG BACKING */
     #three-canvas {
         position: absolute;
         top: 0; left: 0;
@@ -74,55 +77,78 @@ raw_template_html = """
         border-radius: 40px;
     }
 
-    /* 💎 GLASSMORPHIC INTERACTIVE CONSOLE FRAME */
+    /* 💎 NEXT-LEVEL NEON GLASSMORPHISM CONSOLE */
     .game-console {
         position: relative;
         z-index: 2;
-        width: 88%;
-        height: 92%;
-        background: rgba(15, 23, 42, 0.3);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        width: 90%;
+        height: 94%;
+        background: rgba(4, 10, 26, 0.65);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         border-radius: 36px;
         padding: 30px;
         box-sizing: border-box;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(168, 85, 247, 0.25);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+        box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.1), 0 25px 60px rgba(0,0,0,0.8);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* HUD PANELS */
+    /* STATE FLASHER MODIFIERS EXECUTED VIA JS */
+    .console-correct {
+        border-color: #10b981 !important;
+        box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
+    }
+    .console-incorrect {
+        border-color: #ef4444 !important;
+        box-shadow: inset 0 0 40px rgba(239, 68, 68, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
+    }
+
+    /* 📊 EXTREME HUD PANELS */
     .hud-header {
         display: flex; justify-content: space-between;
-        color: #64748b; font-family: monospace; font-size: 13px;
-        letter-spacing: 1px;
+        color: #94a3b8; font-size: 11px;
+        letter-spacing: 2px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 10px;
     }
     
-    .score-glow { color: #38bdf8; font-weight: bold; text-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+    .score-glow { 
+        color: #06b6d4; 
+        font-weight: 900; 
+        font-size: 18px;
+        text-shadow: 0 0 12px #06b6d4, 0 0 25px rgba(6, 182, 212, 0.5);
+        transition: all 0.2s ease;
+    }
 
-    /* CORE QUESTION AREA */
+    /* 🔮 MATRICES LEVEL QUESTION DECK */
     .question-deck {
         width: 100%;
-        background: rgba(0, 0, 0, 0.6);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        padding: 22px 10px;
+        border: 1px solid rgba(6, 182, 212, 0.25);
+        padding: 25px 10px;
         text-align: center;
         box-sizing: border-box;
-        box-shadow: inset 0 4px 20px rgba(0,0,0,0.8);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 2px 10px rgba(6, 182, 212, 0.1);
     }
     
     #question-text {
-        font-size: 42px; color: #f8fafc; font-weight: 800; font-family: monospace;
+        font-size: 46px; 
+        color: #ffffff; 
+        font-weight: 900; 
+        letter-spacing: -1px;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
-    /* 🔄 2D PLANETARY ORBIT SYSTEM */
+    /* 🔄 RE-ENGINEERED 2D ROTATIONAL AXIS SYSTEM */
     .orbit-container {
         position: relative;
         width: 100%;
-        height: 300px;
+        height: 310px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -130,14 +156,15 @@ raw_template_html = """
 
     .orbit-rotor-2d {
         position: absolute;
-        width: 240px;
-        height: 240px;
+        width: 230px;
+        height: 230px;
         border-radius: 50%;
-        border: 1px dashed rgba(255, 255, 255, 0.05);
+        border: 2px dashed rgba(6, 182, 212, 0.15);
+        box-shadow: 0 0 20px rgba(6, 182, 212, 0.03);
         display: flex;
         justify-content: center;
         align-items: center;
-        animation: spin2D 14s linear infinite;
+        animation: spin2D 16s linear infinite;
     }
 
     @keyframes spin2D {
@@ -147,35 +174,34 @@ raw_template_html = """
 
     .orbit-container:hover .orbit-rotor-2d {
         animation-play-state: paused;
+        border-color: rgba(168, 85, 247, 0.3);
     }
 
-    /* 🔮 PRECISE 2D OPTION BUBBLES */
+    /* 🔮 PLASMA ORB DESIGN OPTION NODES */
     .option-node-2d {
         position: absolute;
-        width: 72px;
-        height: 72px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.01));
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        width: 76px;
+        height: 76px;
+        background: radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%);
+        border: 1px solid rgba(6, 182, 212, 0.4);
         border-radius: 50%;
-        color: #f1f5f9;
-        font-size: 22px; font-weight: bold; font-family: monospace;
+        color: #38bdf8;
+        font-size: 24px; font-weight: 900;
         display: flex; justify-content: center; align-items: center;
         cursor: pointer;
         user-select: none;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.4),
-                    inset 0 3px 6px rgba(255,255,255,0.05),
-                    inset 0 -5px 8px rgba(0,0,0,0.4);
-        transition: transform 0.15s, background 0.15s, border 0.15s, box-shadow 0.15s;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.1);
+        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* 🧭 PLANETARY GEOMETRIC POSITION LOGIC */
-    .opt-0 { top: -36px; left: 84px; }   
-    .opt-1 { top: 84px; right: -36px; }  
-    .opt-2 { bottom: -36px; left: 84px; }
-    .opt-3 { top: 84px; left: -36px; }   
+    /* GEOMETRIC OFFSETS */
+    .opt-0 { top: -38px; left: 77px; }   
+    .opt-1 { top: 77px; right: -38px; }  
+    .opt-2 { bottom: -38px; left: 77px; }
+    .opt-3 { top: 77px; left: -38px; }   
 
-    /* 🛡️ COUNTER-AXIS STABILIZER */
-    .orbit-rotor-2d .option-node-2d { animation: keepUpright 14s linear infinite; }
+    /* COUNTER-ROTATOR STABILIZATION MATRIX */
+    .orbit-rotor-2d .option-node-2d { animation: keepUpright 16s linear infinite; }
     .orbit-container:hover .option-node-2d { animation-play-state: paused !important; }
 
     @keyframes keepUpright {
@@ -183,30 +209,31 @@ raw_template_html = """
         100% { transform: rotate(-360deg); } 
     }
 
+    /* EXTREME NEON GLOW HOVER ARCHITECTURE */
     .option-node-2d:hover {
-        background: rgba(56, 189, 248, 0.15);
-        color: #38bdf8;
-        border-color: #38bdf8;
-        box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-        transform: scale(1.1) !important;
+        color: #ffffff;
+        background: radial-gradient(circle at center, #06b6d4 0%, #0891b2 100%);
+        border-color: #22d3ee;
+        box-shadow: 0 0 30px #06b6d4, 0 0 50px rgba(6, 182, 212, 0.4);
+        transform: scale(1.18) !important;
     }
     
-    .option-node-2d:active { transform: scale(0.9) !important; }
+    .option-node-2d:active { transform: scale(0.88) !important; }
 </style>
 </head>
 <body>
 
-<div class="arena-viewport">
+<div class="arena-viewport" id="viewport-frame">
     <canvas id="three-canvas"></canvas>
 
-    <div class="game-console">
+    <div class="game-console" id="console-box">
         <div class="hud-header">
-            <div>ARENA: REPO AUDIO DATA ACTIVATED</div>
+            <div>SYS.STATUS: OPERATIONAL</div>
             <div>SCORE: <span id="score-val" class="score-glow">0</span></div>
         </div>
         
         <div class="question-deck">
-            <div id="question-text">LOADING ENGINE...</div>
+            <div id="question-text">LOADING CORE...</div>
         </div>
 
         <div class="orbit-container">
@@ -218,8 +245,8 @@ raw_template_html = """
             </div>
         </div>
         
-        <div style="text-align: center; font-size: 11px; color: #475569; font-family: monospace; letter-spacing: 0.5px;">
-            HINT: HOVER OVER INTERFACE TO LOCK VECTOR ROTATION
+        <div style="text-align: center; font-size: 10px; color: #475569; letter-spacing: 1px;">
+            💥 SPEED MULTIPLIER ACTIVE // HOVER TO LOCK RANGE
         </div>
     </div>
 </div>
@@ -246,31 +273,31 @@ raw_template_html = """
     }
 
     // ==========================================================================
-    // 🧬 THREE.JS GRID PARTICLES SYSTEM
+    // 🧬 THREE.JS GRID PARTICLES SYSTEM (RE-CONFIGURED INITIATION)
     // ==========================================================================
     const canvasElement = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
     
     const camera = new THREE.PerspectiveCamera(65, 480 / 640, 0.1, 1000);
-    camera.position.z = 20;
+    camera.position.z = 18;
 
     const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, alpha: true });
     renderer.setSize(480, 640);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const totalParticles = 350;
+    const totalParticles = 400; // Increased particle density
     const geometry = new THREE.BufferGeometry();
     const positionArray = new Float32Array(totalParticles * 3);
     
     for(let i=0; i < totalParticles*3; i+=3) {
-        positionArray[i] = (Math.random() - 0.5) * 40;     
-        positionArray[i+1] = (Math.random() - 0.5) * 40;   
-        positionArray[i+2] = (Math.random() - 0.5) * 30;   
+        positionArray[i] = (Math.random() - 0.5) * 45;     
+        positionArray[i+1] = (Math.random() - 0.5) * 45;   
+        positionArray[i+2] = (Math.random() - 0.5) * 25;   
     }
     geometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
 
-    const pointMaterial = new THREE.PointsMaterial({ size: 0.35, transparent: true, opacity: 0.5 });
-    pointMaterial.color.setHex(0x38bdf8); 
+    const pointMaterial = new THREE.PointsMaterial({ size: 0.4, transparent: true, opacity: 0.65 });
+    pointMaterial.color.setHex(0xa855f7); // Cyan-purple baseline
     
     const engineParticles = new THREE.Points(geometry, pointMaterial);
     scene.add(engineParticles);
@@ -282,24 +309,25 @@ raw_template_html = """
         const positions = geometry.attributes.position.array;
         
         if (activeFXState === "ambient") {
-            engineParticles.rotation.y += 0.003;
-            pointMaterial.color.setHex(0x1e1b4b); 
+            engineParticles.rotation.y += 0.004;
+            engineParticles.rotation.x += 0.001;
+            pointMaterial.color.setHex(0xa855f7); 
         } 
         else if (activeFXState === "snow") {
-            pointMaterial.color.setHex(0x38bdf8); 
+            pointMaterial.color.setHex(0x10b981); // Emerald Matrix hyper speed
             for(let i=1; i < positions.length; i+=3) {
-                positions[i] -= 0.3; 
-                if(positions[i] < -20) positions[i] = 20;
+                positions[i] -= 0.5; 
+                if(positions[i] < -22) positions[i] = 22;
             }
             geometry.attributes.position.needsUpdate = true;
         } 
         else if (activeFXState === "fire") {
-            pointMaterial.color.setHex(0xef4444); 
+            pointMaterial.color.setHex(0xef4444); // Crimson solar flare escalation
             for(let i=1; i < positions.length; i+=3) {
-                positions[i] += 0.45; 
-                if(positions[i] > 20) {
-                    positions[i] = -20;
-                    positions[i-1] = (Math.random() - 0.5) * 30;
+                positions[i] += 0.65; 
+                if(positions[i] > 22) {
+                    positions[i] = -22;
+                    positions[i-1] = (Math.random() - 0.5) * 35;
                 }
             }
             geometry.attributes.position.needsUpdate = true;
@@ -374,41 +402,57 @@ raw_template_html = """
         
         for(let i=0; i < 4; i++) {
             slots[i].innerText = shuffled[i];
-            slots[i].style.borderColor = "rgba(255, 255, 255, 0.08)";
-            slots[i].style.background = "linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.01))";
+            slots[i].style.borderColor = "rgba(6, 182, 212, 0.4)";
+            slots[i].style.background = "radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%)";
+            slots[i].style.color = "#38bdf8";
+            slots[i].style.boxShadow = "0 10px 25px rgba(0,0,0,0.5)";
         }
     }
 
     function verifyChoice(node) {
         const input = parseInt(node.innerText);
+        const consoleBox = document.getElementById("console-box");
         
         if (input === targetAnswer) {
             score += 10;
             document.getElementById("score-val").innerText = score;
-            node.style.borderColor = "#22c55e";
-            node.style.background = "rgba(34, 197, 94, 0.2)";
             
-            // Right answer triggers faa.mp3
+            // Extreme UI node impact state
+            node.style.borderColor = "#10b981";
+            node.style.background = "radial-gradient(circle at center, #10b981 0%, #059669 100%)";
+            node.style.color = "#ffffff";
+            node.style.boxShadow = "0 0 35px #10b981";
+            
+            // Matrix Console Glow Alert Flash
+            consoleBox.classList.add("console-correct");
+            
             playFaaCorrect();
             activeFXState = "snow";
             
             setTimeout(() => {
+                consoleBox.classList.remove("console-correct");
                 activeFXState = "ambient";
                 renderMatchStage();
-            }, 1300);
+            }, 1200);
         } 
         else {
+            // Extreme UI failure impact state
             node.style.borderColor = "#ef4444";
-            node.style.background = "rgba(239, 68, 68, 0.2)";
+            node.style.background = "radial-gradient(circle at center, #ef4444 0%, #dc2626 100%)";
+            node.style.color = "#ffffff";
+            node.style.boxShadow = "0 0 35px #ef4444";
             
-            // Wrong answer triggers haha.mp3
+            // Crimson Shockwave Alert Flash
+            consoleBox.classList.add("console-incorrect");
+            
             playHahaIncorrect();
             activeFXState = "fire";
             
             setTimeout(() => {
+                consoleBox.classList.remove("console-incorrect");
                 activeFXState = "ambient";
                 renderMatchStage();
-            }, 1300);
+            }, 1200);
         }
     }
 
