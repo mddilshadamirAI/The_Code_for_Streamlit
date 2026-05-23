@@ -143,7 +143,7 @@ function loadQuestion() {{
         document.body.innerHTML = `
         <div class="question-box" style="border-color: #10b981;">
             <h1 style='color:#10b981'>🏆 ARENA COMPLETED</h1>
-            <h2>Final Result Score: <span style="color:#22d3ee">\${score}</span> / \${{QUESTIONS.length}}</h2>
+            <h2>Final Result Score: <span style="color:#22d3ee">\${{score}}</span> / \${{QUESTIONS.length}}</h2>
             <p style="color: #64748b;">Adjust sidebar filters to run a new round generation simulation!</p>
         </div>`;
         return;
