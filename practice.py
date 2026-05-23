@@ -294,5 +294,4 @@ loadQuestion();
 # ============================================================
 # 🌐 MODERNIZED DEPLOYMENT RENDER ENGINE
 # ============================================================
-# Upgraded from st.components.v1.html to comply with the new framework standard
 st.iframe(html_code, height=650)
