@@ -17,7 +17,6 @@ st.set_page_config(
 # ============================================================
 # 📦 STATIC TEXTBOOK QUESTION BANK (CLASS 1)
 # ============================================================
-# Embedded directly so your app works instantly without extra files
 STATIC_BANK = {
     "g1_c1": [
         {"question": "A cat is sitting inside a basket and a puppy is playing outside. Where is the cat? Inside(1) or Outside(2)?", "answer": 1, "options": [1, 2, 3, 4]},
@@ -169,14 +168,12 @@ engine.register("g8_c2", g8_linear_2)
 st.title("⚡ CYBER ARENA DATA ENGINE ⚡")
 st.write("Welcome to the infinite quiz pipeline. Select your target chapter below:")
 
-# Sidebar routing controls
 st.sidebar.header("🎯 Chapter Selector")
 grade_selection = st.sidebar.selectbox(
     "Choose Grade Level:",
     ["Class 1 (Textbook Pool)", "Class 6 (Infinite Math Engine)", "Class 7 (Infinite Math Engine)", "Class 8 (Infinite Math Engine)"]
 )
 
-# Chapter routing dictionary maps
 chapter_map = {
     "Class 1 (Textbook Pool)": {"g1_c1": "Chapter 1: Shapes & Space", "g1_c2": "Chapter 2: Numbers 1 to 9", "g1_c3": "Chapter 3: Addition Basics"},
     "Class 6 (Infinite Math Engine)": {"g6_c1": "Chapter 1: Knowing Our Numbers"},
@@ -197,17 +194,13 @@ total_questions_to_play = st.sidebar.slider("Number of Arena Rounds:", min_value
 # ============================================================
 questions = []
 
-# Router Checks if selected chapter belongs to Algorithmic Engine or Static JSON Bank
 if selected_chapter_code in engine.generators:
-    # Run the live generation loop to compile custom fresh non-repeating sessions
     for _ in range(total_questions_to_play):
         questions.append(engine.generate(selected_chapter_code))
 elif selected_chapter_code in STATIC_BANK:
-    # Read straight from the pre-generated textbook data array pool
     available_pool = STATIC_BANK[selected_chapter_code]
     questions = random.sample(available_pool, min(total_questions_to_play, len(available_pool)))
 else:
-    # Safety fallback mechanism
     for _ in range(total_questions_to_play):
         questions.append(engine.fallback_question())
 
@@ -287,7 +280,6 @@ body {{
 </div>
 
 <script>
-// Parse data directly from Python Pipeline safely via JSON string serialization
 const QUESTIONS = {question_json};
 
 let currentIndex = 0;
@@ -321,9 +313,9 @@ function loadQuestion() {{
         if(q.options && q.options[i] !== undefined) {{
             buttons[i].innerText = q.options[i];
             buttons[i].style.display = "block";
-        } else {{
+        }} else {{
             buttons[i].style.display = "none";
-        }
+        }}
     }}
 }}
 
@@ -331,7 +323,6 @@ function checkAnswer(btn) {{
     let selected = btn.innerText.trim();
     let correct = String(QUESTIONS[currentIndex].answer).trim();
 
-    // Check both numeric equivalent evaluations string-wise safely
     if(selected === correct || Number(selected) === Number(correct)) {{
         score++;
     }}
@@ -341,7 +332,6 @@ function checkAnswer(btn) {{
     loadQuestion();
 }}
 
-// Initialize setup script execution loops
 loadQuestion();
 </script>
 
@@ -349,5 +339,4 @@ loadQuestion();
 </html>
 """
 
-# Render application UI layers securely inside Streamlit frames
 components.html(html_code, height=650, scrolling=False)
