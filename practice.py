@@ -65,13 +65,14 @@ question_json = json.dumps(compiled_questions)
 # ============================================================
 # 🎨 EMBEDDED HIGH-PERFORMANCE HTML/JS VIEW ENGINE
 # ============================================================
-html_code = f"""
+# NOTE: Removed the 'f' prefix completely to stop Python from parsing curly braces!
+html_template = """
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <style>
-body {{
+body {
     background: #020617;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,9 +80,9 @@ body {{
     margin: 0;
     padding: 10px;
     overflow-x: hidden;
-}}
+}
 
-.question-box {{
+.question-box {
     width: 90%;
     max-width: 600px;
     margin: auto;
@@ -93,9 +94,9 @@ body {{
     box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
     position: relative;
     transition: all 0.3s ease;
-}}
+}
 
-.option-btn {{
+.option-btn {
     display: block;
     width: 100%;
     margin: 14px auto;
@@ -110,55 +111,55 @@ body {{
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     outline: none;
-}}
+}
 
-.option-btn:hover:not([disabled]) {{
+.option-btn:hover:not([disabled]) {
     background: #06b6d4;
     color: white;
     transform: scale(1.02);
     box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
-}}
+}
 
-.correct-flash {{
+.correct-flash {
     background: #10b981 !important;
     color: white !important;
     border-color: #059669 !important;
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
-}}
+}
 
-.wrong-flash {{
+.wrong-flash {
     background: #ef4444 !important;
     color: white !important;
     border-color: #dc2626 !important;
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
-}}
+}
 
-.score {{
+.score {
     font-size: 22px;
     color: #22d3ee;
     margin-top: 25px;
     letter-spacing: 1px;
     font-weight: bold;
-}}
+}
 
-.emoji-particle {{
+.emoji-particle {
     position: absolute;
     bottom: -50px;
     pointer-events: none;
     z-index: 999;
     animation: floatUp 3s ease-out forwards;
-}}
+}
 
-@keyframes floatUp {{
-    0% {{
+@keyframes floatUp {
+    0% {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
-    }}
-    100% {{
+    }
+    100% {
         transform: translateY(-700px) rotate(360deg);
         opacity: 0;
-    }}
-}}
+    }
+}
 </style>
 </head>
 <body>
@@ -175,48 +176,48 @@ body {{
 </div>
 
 <script>
-const QUESTIONS = {question_json};
-const audioCorrect = new Audio("{correct_audio_uri}");
-const audioWrong = new Audio("{wrong_audio_uri}");
+const QUESTIONS = __QUESTION_JSON__;
+const audioCorrect = new Audio("__CORRECT_AUDIO_URI__");
+const audioWrong = new Audio("__WRONG_AUDIO_URI__");
 
 let currentIndex = 0;
 let score = 0;
 let canClick = true;
 
-function loadQuestion() {{
+function loadQuestion() {
     canClick = true;
     
-    if(QUESTIONS.length === 0) {{
+    if(QUESTIONS.length === 0) {
         document.body.innerHTML = `
         <div class="question-box">
             <h1 style='color:#ef4444'>⚠️ ENGINE EMPTY</h1>
             <h2>No questions compiled for this subset target.</h2>
         </div>`;
         return;
-    }}
+    }
 
-    if(currentIndex >= QUESTIONS.length) {{
+    if(currentIndex >= QUESTIONS.length) {
         renderFinalScreen();
         return;
-    }}
+    }
 
     let q = QUESTIONS[currentIndex];
     document.getElementById("question").innerText = q.question;
     let buttons = document.getElementsByClassName("option-btn");
     
-    for(let i = 0; i < 4; i++) {{
-        if(q.options && q.options[i] !== undefined) {{
+    for(let i = 0; i < 4; i++) {
+        if(q.options && q.options[i] !== undefined) {
             buttons[i].innerText = q.options[i];
             buttons[i].className = "option-btn"; 
             buttons[i].style.display = "block";
             buttons[i].removeAttribute("disabled");
-        }} else {{
+        } else {
             buttons[i].style.display = "none";
-        }}
-    }}
-}}
+        }
+    }
+}
 
-function checkAnswer(btn) {{
+function checkAnswer(btn) {
     if (!canClick) return;
     canClick = false; 
 
@@ -227,51 +228,51 @@ function checkAnswer(btn) {{
     let buttons = document.getElementsByClassName("option-btn");
     for(let b of buttons) b.setAttribute("disabled", "true");
 
-    if(isCorrect) {{
+    if(isCorrect) {
         score++;
         btn.classList.add("correct-flash");
-        if(audioCorrect.src) audioCorrect.play().catch(e => console.log("Audio play error:", e));
-    }} else {{
+        if(audioCorrect.src && audioCorrect.src.length > 20) audioCorrect.play().catch(e => console.log(e));
+    } else {
         btn.classList.add("wrong-flash");
-        if(audioWrong.src) audioWrong.play().catch(e => console.log("Audio play error:", e));
+        if(audioWrong.src && audioWrong.src.length > 20) audioWrong.play().catch(e => console.log(e));
         
-        for(let b of buttons) {{
-            if(b.innerText.trim() === correct || Number(b.innerText.trim()) === Number(correct)) {{
+        for(let b of buttons) {
+            if(b.innerText.trim() === correct || Number(b.innerText.trim()) === Number(correct)) {
                 b.classList.add("correct-flash");
-            }}
-        }}
-    }}
+            }
+        }
+    }
     
     document.getElementById("score-display").innerText = "Score: " + score;
     currentIndex++;
     
     setTimeout(loadQuestion, 800);
-}}
+}
 
-function renderFinalScreen() {{
+function renderFinalScreen() {
     let isEpicWin = (score >= 9);
     let finalHTML = `
-    <div class="question-box" style="border-color: \${isEpicWin ? '#10b981' : '#06b6d4'}; box-shadow: 0 0 25px \${isEpicWin ? 'rgba(16,185,129,0.3)' : 'rgba(6,182,212,0.2)'};">
-        <h1 style="color: \${isEpicWin ? '#10b981' : '#22d3ee'}; margin-bottom: 5px;">
-            \${isEpicWin ? '🏆 MASTER UNLOCKED 🏆' : '🏁 ARENA COMPLETED'}
+    <div class="question-box" style="border-color: ${isEpicWin ? '#10b981' : '#06b6d4'}; box-shadow: 0 0 25px ${isEpicWin ? 'rgba(16,185,129,0.3)' : 'rgba(6,182,212,0.2)'};">
+        <h1 style="color: ${isEpicWin ? '#10b981' : '#22d3ee'}; margin-bottom: 5px;">
+            ${isEpicWin ? '🏆 MASTER UNLOCKED 🏆' : '🏁 ARENA COMPLETED'}
         </h1>
-        <h2 style="font-size: 26px; margin-top: 10px;">Final Result Score: <span style="color:#22d3ee">\${score}</span> / \${QUESTIONS.length}</h2>
+        <h2 style="font-size: 26px; margin-top: 10px;">Final Result Score: <span style="color:#22d3ee">${score}</span> / ${QUESTIONS.length}</h2>
         <p style="color: #94a3b8; font-size: 15px; line-height: 1.6;">
-            \${isEpicWin ? 'Absolutely legendary performance! You have completely crushed this chapter.' : 'Good run! Adjust sidebar filters to run a new round generation simulation!'}
+            ${isEpicWin ? 'Absolutely legendary performance! You have completely crushed this chapter.' : 'Good run! Adjust sidebar filters to run a new round generation simulation!'}
         </p>
     </div>`;
     
     document.body.innerHTML = finalHTML;
 
-    if (isEpicWin) {{
+    if (isEpicWin) {
         triggerClaps();
-    }}
-}}
+    }
+}
 
-function triggerClaps() {{
+function triggerClaps() {
     const emojis = ['👏', '🎉', '✨', '🔥'];
-    for (let i = 0; i < 35; i++) {{
-        setTimeout(() => {{
+    for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
             const particle = document.createElement('div');
             particle.className = 'emoji-particle';
             particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
@@ -280,9 +281,9 @@ function triggerClaps() {{
             document.body.appendChild(particle);
             
             setTimeout(() => particle.remove(), 3000);
-        }}, i * 80);
-    }}
-}}
+        }, i * 80);
+    }
+}
 
 loadQuestion();
 </script>
@@ -290,6 +291,14 @@ loadQuestion();
 </body>
 </html>
 """
+
+# ============================================================
+# ⚙️ SAFE VARIABLE INJECTION ENGINE
+# ============================================================
+# Safely parsing data values without using broken Python f-string parsers
+html_code = html_template.replace("__QUESTION_JSON__", question_json)
+html_code = html_code.replace("__CORRECT_AUDIO_URI__", correct_audio_uri)
+html_code = html_code.replace("__WRONG_AUDIO_URI__", wrong_audio_uri)
 
 # ============================================================
 # 🌐 MODERNIZED DEPLOYMENT RENDER ENGINE
