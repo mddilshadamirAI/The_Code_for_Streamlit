@@ -23,7 +23,7 @@ def load_local_audio_base64(file_path):
 # Convert your newly uploaded repo files into secure memory strings
 right_answer_audio = load_local_audio_base64("faa.mp3")
 wrong_answer_audio = load_local_audio_base64("haha.mp3")
-bg_music_audio = load_local_audio_base64("newmusic.mp3")
+background_music = load_local_audio_base64("newmusic.mp3")
 
 # Dark space layout overrides
 st.markdown("""
@@ -240,13 +240,13 @@ raw_template_html = """
     const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%";
     const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
 
-    // BACKGROUND MUSIC ENGINE
-    let bgAudio = new Audio(BG_AUDIO_STREAM);
+    // BACKGROUND MUSIC SYSTEM
+    const bgAudio = new Audio(BG_AUDIO_STREAM);
     bgAudio.loop = true;
-    bgAudio.volume = 0.25;
+    bgAudio.volume = 0.3;
     
     function startMusic() {
-        bgAudio.play().catch(err => console.log("Audio lock:", err));
+        bgAudio.play().catch(e => console.log("Waiting for user interaction"));
         document.removeEventListener('click', startMusic);
     }
     document.addEventListener('click', startMusic);
@@ -452,7 +452,7 @@ sanitized_game_html = raw_template_html.replace(
 ).replace(
     "%%WRONG_AUDIO_REPLACE%%", wrong_answer_audio
 ).replace(
-    "%%BG_AUDIO_REPLACE%%", bg_music_audio
+    "%%BG_AUDIO_REPLACE%%", background_music
 )
 
 # Render application matrix into main Streamlit container framework
