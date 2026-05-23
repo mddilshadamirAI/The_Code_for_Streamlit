@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import json
 import random
 import base64
@@ -57,7 +56,7 @@ total_questions_to_play = st.sidebar.slider(
     "Number of Arena Rounds:", 
     min_value=1, 
     max_value=total_available, 
-    value=min(10, total_available)  # 🧠 Defaulting to 10 rounds per session!
+    value=min(10, total_available)
 )
 
 compiled_questions = random.sample(active_question_pool, total_questions_to_play)
@@ -120,7 +119,6 @@ body {{
     box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
 }}
 
-/* Dynamic Action States */
 .correct-flash {{
     background: #10b981 !important;
     color: white !important;
@@ -143,7 +141,6 @@ body {{
     font-weight: bold;
 }}
 
-/* Floating Animation Elements */
 .emoji-particle {{
     position: absolute;
     bottom: -50px;
@@ -210,7 +207,7 @@ function loadQuestion() {{
     for(let i = 0; i < 4; i++) {{
         if(q.options && q.options[i] !== undefined) {{
             buttons[i].innerText = q.options[i];
-            buttons[i].className = "option-btn"; // Reset color classes
+            buttons[i].className = "option-btn"; 
             buttons[i].style.display = "block";
             buttons[i].removeAttribute("disabled");
         }} else {{
@@ -221,13 +218,12 @@ function loadQuestion() {{
 
 function checkAnswer(btn) {{
     if (!canClick) return;
-    canClick = false; // Block multiple rapid taps
+    canClick = false; 
 
     let selected = btn.innerText.trim();
     let correct = String(QUESTIONS[currentIndex].answer).trim();
     let isCorrect = (selected === correct || Number(selected) === Number(correct));
     
-    // Disable all options during feedback window
     let buttons = document.getElementsByClassName("option-btn");
     for(let b of buttons) b.setAttribute("disabled", "true");
 
@@ -239,7 +235,6 @@ function checkAnswer(btn) {{
         btn.classList.add("wrong-flash");
         if(audioWrong.src) audioWrong.play().catch(e => console.log("Audio play error:", e));
         
-        // Show the student the right answer instantly by turning it green
         for(let b of buttons) {{
             if(b.innerText.trim() === correct || Number(b.innerText.trim()) === Number(correct)) {{
                 b.classList.add("correct-flash");
@@ -250,26 +245,24 @@ function checkAnswer(btn) {{
     document.getElementById("score-display").innerText = "Score: " + score;
     currentIndex++;
     
-    // Smooth transition delay so they can learn from feedback
     setTimeout(loadQuestion, 800);
 }}
 
 function renderFinalScreen() {{
     let isEpicWin = (score >= 9);
     let finalHTML = `
-    <div class="question-box" style="border-color: ${{isEpicWin ? '#10b981' : '#06b6d4'}}; box-shadow: 0 0 25px ${{isEpicWin ? 'rgba(16,185,129,0.3)' : 'rgba(6,182,212,0.2)'}};">
-        <h1 style="color: ${{isEpicWin ? '#10b981' : '#22d3ee'}}; margin-bottom: 5px;">
-            ${{isEpicWin ? '🏆 MASTER UNLOCKED 🏆' : '🏁 ARENA COMPLETED'}}
+    <div class="question-box" style="border-color: \${isEpicWin ? '#10b981' : '#06b6d4'}; box-shadow: 0 0 25px \${isEpicWin ? 'rgba(16,185,129,0.3)' : 'rgba(6,182,212,0.2)'};">
+        <h1 style="color: \${isEpicWin ? '#10b981' : '#22d3ee'}; margin-bottom: 5px;">
+            \${isEpicWin ? '🏆 MASTER UNLOCKED 🏆' : '🏁 ARENA COMPLETED'}
         </h1>
         <h2 style="font-size: 26px; margin-top: 10px;">Final Result Score: <span style="color:#22d3ee">\${score}</span> / \${QUESTIONS.length}</h2>
         <p style="color: #94a3b8; font-size: 15px; line-height: 1.6;">
-            ${{isEpicWin ? 'Absolutely legendary performance! You have completely crushed this chapter.' : 'Good run! Adjust sidebar filters to run a new round generation simulation!'}}
+            \${isEpicWin ? 'Absolutely legendary performance! You have completely crushed this chapter.' : 'Good run! Adjust sidebar filters to run a new round generation simulation!'}
         </p>
     </div>`;
     
     document.body.innerHTML = finalHTML;
 
-    // Trigger Clapping visual effect engine if score is 9 or higher
     if (isEpicWin) {{
         triggerClaps();
     }}
@@ -286,7 +279,6 @@ function triggerClaps() {{
             particle.style.fontSize = (Math.random() * 20 + 24) + 'px';
             document.body.appendChild(particle);
             
-            // Cleanup memory safely after animation completes
             setTimeout(() => particle.remove(), 3000);
         }}, i * 80);
     }}
@@ -299,4 +291,8 @@ loadQuestion();
 </html>
 """
 
-components.html(html_code, height=650, scrolling=False)
+# ============================================================
+# 🌐 MODERNIZED DEPLOYMENT RENDER ENGINE
+# ============================================================
+# Upgraded from st.components.v1.html to comply with the new framework standard
+st.iframe(html_code, height=650)
