@@ -36,7 +36,7 @@ div[data-testid="stAppViewContainer"], .main {
 
 st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ CYBER ARENA 2D ⚡</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #06b6d4; font-family: monospace; font-size: 14px; margin-top:6px; margin-bottom: 0px; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(6,182,212,0.6);'>🚀 DEVELOPED BY MD DILSHAD</p>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 11px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// ENGINE CORE V3.0 ENGAGED // CBSE K-8 SUITE</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 11px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// ENGINE CORE V3.1 PATCHED // CBSE K-8 SUITE</p>", unsafe_allow_html=True)
 
 # ==============================================================================
 # 🎮 THE MULTI-LEVEL EDTECH ENGINE + WEBGL MATRIX (HTML CORE)
@@ -173,7 +173,7 @@ raw_template_html = """
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     #question-text {
-        font-size: 26px; color: #ffffff; font-weight: 900;
+        font-size: 24px; color: #ffffff; font-weight: 900;
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.3); line-height: 1.4;
     }
 
@@ -186,7 +186,7 @@ raw_template_html = """
         position: absolute; width: 200px; height: 200px;
         border-radius: 50%; border: 2px dashed rgba(6, 182, 212, 0.15);
         display: flex; justify-content: center; align-items: center;
-        animation: spin2D 14s linear infinite !important; /* Forces loop non-stop */
+        animation: spin2D 14s linear infinite !important;
     }
     @keyframes spin2D { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -202,7 +202,6 @@ raw_template_html = """
     }
     @keyframes keepUpright { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
 
-    /* HOVER SYSTEM OVERRIDES - ROTATION REMAINS SECURE WITHOUT PAUSING */
     .option-node-2d:hover {
         color: #ffffff; background: radial-gradient(circle at center, #06b6d4 0%, #0891b2 100%);
         border-color: #22d3ee; box-shadow: 0 0 25px #06b6d4; transform: scale(1.15);
@@ -257,7 +256,7 @@ raw_template_html = """
 
         <div class="screen-panel" id="screen-game">
             <div class="hud-header">
-                <div id="hud-topic-tag">TOPIC: UNKNOWN</div>
+                <div id="hud-topic-tag" style="max-width: 65%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">TOPIC: UNKNOWN</div>
                 <div>PROGRESS: <span id="hud-index-tag" class="score-glow">1/10</span></div>
             </div>
             
@@ -418,7 +417,7 @@ raw_template_html = """
     let currentActiveQuestion = null;
     
     // Smart Memory Tracking Registers
-    let analyticalErrorPool = {}; // Logs problem type formulas failed by user
+    let analyticalErrorPool = {}; 
 
     function navigateScreen(screenId) {
         document.querySelectorAll('.screen-panel').forEach(s => s.classList.remove('screen-active'));
@@ -442,7 +441,7 @@ raw_template_html = """
     }
 
     // ==========================================================================
-    // 🎲 ALGORITHMIC PROCEDURAL PROBLEM MATRIX GENERATORS (LAKHS OF VARIATIONS)
+    // 🎲 ALGORITHMIC PROCEDURAL PROBLEM MATRIX GENERATORS
     // ==========================================================================
     function createProblemToken(typeId) {
         let text = "", answer = 0, variantRange = 15;
@@ -475,12 +474,12 @@ raw_template_html = """
                 let shapes = ["Triangle", "Square", "Pentagon", "Rectangle"];
                 let chosenShape = shapes[Math.floor(Math.random() * shapes.length)];
                 let ansMap = { "Triangle": 3, "Square": 4, "Pentagon": 5, "Rectangle": 4 };
-                text = "How many corners/vertices does a " + chosenShape + " have?"; answer = ansMap[chosenShape];
+                text = "How many corners does a " + chosenShape + " have?"; answer = ansMap[chosenShape];
                 break;
             case "g3_roman":
                 let mapR = { 3:"III", 4:"IV", 5:"V", 6:"VI", 9:"IX", 10:"X", 11:"XI", 15:"XV" };
                 let keys = Object.keys(mapR); let rK = keys[Math.floor(Math.random() * keys.length)];
-                text = "Convert Roman Numeral '" + mapR[rK] + "' to normal number"; answer = parseInt(rK);
+                text = "Convert Roman Numeral '" + mapR[rK] + "' to number"; answer = parseInt(rK);
                 break;
             case "g3_mult":
                 let m1 = Math.floor(Math.random() * 10) + 2; let m2 = Math.floor(Math.random() * 8) + 2;
@@ -497,11 +496,11 @@ raw_template_html = """
             case "g4_lcm":
                 let lcmPairs = [[2,3,6], [3,4,12], [4,6,12], [5,2,10]];
                 let selectPair = lcmPairs[Math.floor(Math.random() * lcmPairs.length)];
-                text = "Find Lowest Common Multiple (LCM) of " + selectPair[0] + " and " + selectPair[1]; answer = selectPair[2];
+                text = "Find LCM of " + selectPair[0] + " and " + selectPair[1]; answer = selectPair[2];
                 break;
             case "g4_perim":
                 let sideL = Math.floor(Math.random() * 12) + 3;
-                text = "Find perimeter of a Square with side length = " + sideL + " cm"; answer = sideL * 4;
+                text = "Find perimeter of a Square with side = " + sideL + " cm"; answer = sideL * 4;
                 break;
             case "g5_dec":
                 let decB = Math.floor(Math.random() * 9) + 1;
@@ -510,24 +509,24 @@ raw_template_html = """
             case "g5_lcm_adv":
                 let hcfPairs = [[12,18,6], [10,15,5], [8,20,4], [14,21,7]];
                 let sH = hcfPairs[Math.floor(Math.random() * hcfPairs.length)];
-                text = "Find Highest Common Factor (HCF) of " + sH[0] + " and " + sH[1]; answer = sH[2];
+                text = "Find HCF of " + sH[0] + " and " + sH[1]; answer = sH[2];
                 break;
             case "g5_angles":
                 let angV = Math.floor(Math.random() * 150) + 15; if(angV === 90) angV = 95;
-                text = "An angle measures " + angV + "°. Is it Acute(1) or Obtuse(2)? Enter matching option number";
+                text = "An angle measures " + angV + "°. Is it Acute(1) or Obtuse(2)?";
                 answer = angV < 90 ? 1 : 2; variantRange = 3;
                 break;
             case "g6_int":
                 let i1 = Math.floor(Math.random() * 20) + 5; let i2 = Math.floor(Math.random() * 20) + 5;
-                text = "Evaluate sign rule logic: (-" + i1 + ") + (" + i2 + ")"; answer = (-i1) + i2;
+                text = "Evaluate sign operation: (-" + i1 + ") + (" + i2 + ")"; answer = (-i1) + i2;
                 break;
             case "g6_alg":
                 let xVal = Math.floor(Math.random() * 15) + 2; let offset = Math.floor(Math.random() * 20) + 2;
-                text = "Solve for x:  x + " + offset + " = " + (xVal + offset); answer = xVal;
+                text = "Solve for x: x + " + offset + " = " + (xVal + offset); answer = xVal;
                 break;
             case "g6_ratio":
                 let rB = Math.floor(Math.random() * 5) + 2;
-                text = "Simplify the ratio " + (rB*3) + ":" + (rB*4) + ". Find the missing term: 3:?"; answer = 4;
+                text = "Simplify ratio " + (rB*3) + ":" + (rB*4) + ". Find missing term: 3:?"; answer = 4;
                 break;
             case "g7_rational":
                 let rf = Math.floor(Math.random() * 4) + 2;
@@ -535,7 +534,7 @@ raw_template_html = """
                 break;
             case "g7_exp":
                 let eB = Math.floor(Math.random() * 3) + 2; let eP = Math.floor(Math.random() * 2) + 2;
-                text = "Evaluate Exponential power value: " + eB + "^" + eP; answer = Math.pow(eB, eP);
+                text = "Evaluate exponent power value: " + eB + "^" + eP; answer = Math.pow(eB, eP);
                 break;
             case "g7_eq":
                 let xV = Math.floor(Math.random() * 8) + 2; let mult = Math.floor(Math.random() * 4) + 2; let addConst = Math.floor(Math.random() * 10) + 1;
@@ -547,14 +546,14 @@ raw_template_html = """
                 break;
             case "g8_roots":
                 let rootB = Math.floor(Math.random() * 11) + 4;
-                text = "Find square root code parameters: √" + (rootB * rootB); answer = rootB;
+                text = "Find square root parameter: √" + (rootB * rootB); answer = rootB;
                 break;
             case "g8_identities":
                 let degV = Math.floor(Math.random() * 3) + 2;
-                text = "Find the degree of algebraic expression: 7x^" + degV + " + 3x - 9"; answer = degV;
+                text = "Find the degree of expression: 7x^" + degV + " + 3x - 9"; answer = degV;
                 break;
             default:
-                text = "Default Verification Link: 10 + 10"; answer = 20;
+                text = "Verification Step: 10 + 10"; answer = 20;
         }
 
         return { text: text, answer: answer, typeId: typeId, variantRange: variantRange };
@@ -562,15 +561,11 @@ raw_template_html = """
 
     function buildSessionDeck(topicId) {
         let deck = [];
-        
-        // Targeted reinforcement injection logic
         if(analyticalErrorPool[topicId] && analyticalErrorPool[topicId].length > 0) {
             analyticalErrorPool[topicId].forEach(oldType => {
                 if(deck.length < 5) deck.push(createProblemToken(oldType)); 
             });
         }
-        
-        // Fill out remaining allocations up to 10 question limit cap
         while(deck.length < 10) {
             deck.push(createProblemToken(topicId));
         }
@@ -606,8 +601,9 @@ raw_template_html = """
         while(optionsSet.size < 4) {
             let variance = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * currentActiveQuestion.variantRange) + 1);
             let alternate = currentActiveQuestion.answer + variance;
-            // Float precision rounding safety checks
-            if(Number.isFloat(currentActiveQuestion.answer)) {
+            
+            /* 🛠️ ES6 PATCHED REMAINDER FLOAT VERIFICATION MATRIX CHECK */
+            if(currentActiveQuestion.answer % 1 !== 0) {
                 alternate = parseFloat((currentActiveQuestion.answer + (variance*0.1)).toFixed(1));
             }
             if(alternate !== currentActiveQuestion.answer) optionsSet.add(alternate);
@@ -639,7 +635,6 @@ raw_template_html = """
             playFaaCorrect();
             activeFXState = "correct";
         } else {
-            // Log concept key target failure to tracking register array
             if(!analyticalErrorPool[selectedTopicId]) analyticalErrorPool[selectedTopicId] = [];
             analyticalErrorPool[selectedTopicId].push(currentActiveQuestion.typeId);
 
