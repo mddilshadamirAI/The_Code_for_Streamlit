@@ -7,7 +7,7 @@ Developed by **[MD DILSHAD](https://github.com/mddilshadamirAI)** 🚀
 ---
 
 ## 🎮 Live Demo
-Check out the live deployment on Streamlit Sharing here: **[Insert Your Streamlit App Link Here]**
+Check out the live deployment on Streamlit Sharing here: **[https://maths-arena-game-mddilshada.streamlit.app/]**
 
 ---
 
