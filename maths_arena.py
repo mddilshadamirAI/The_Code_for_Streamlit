@@ -23,6 +23,7 @@ def load_local_audio_base64(file_path):
 # Convert your newly uploaded repo files into secure memory strings
 right_answer_audio = load_local_audio_base64("faa.mp3")
 wrong_answer_audio = load_local_audio_base64("haha.mp3")
+bg_music_audio = load_local_audio_base64("newmusic.mp3")
 
 # Dark space layout overrides
 st.markdown("""
@@ -58,7 +59,6 @@ raw_template_html = """
         font-family: 'Courier New', Courier, monospace;
     }
 
-    /* 🌌 ARENA CONTAINER WITH INTENSE EDGE GLOW */
     .arena-viewport {
         position: relative;
         width: 480px;
@@ -69,7 +69,6 @@ raw_template_html = """
         transition: box-shadow 0.3s ease;
     }
 
-    /* WEBG BACKING */
     #three-canvas {
         position: absolute;
         top: 0; left: 0;
@@ -78,7 +77,6 @@ raw_template_html = """
         border-radius: 40px;
     }
 
-    /* 💎 NEXT-LEVEL NEON GLASSMORPHISM CONSOLE */
     .game-console {
         position: relative;
         z-index: 2;
@@ -98,7 +96,6 @@ raw_template_html = """
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* STATE FLASHER MODIFIERS EXECUTED VIA JS */
     .console-correct {
         border-color: #10b981 !important;
         box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
@@ -108,7 +105,6 @@ raw_template_html = """
         box-shadow: inset 0 0 40px rgba(239, 68, 68, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
     }
 
-    /* 📊 EXTREME HUD PANELS */
     .hud-header {
         display: flex; justify-content: space-between;
         color: #94a3b8; font-size: 11px;
@@ -125,7 +121,6 @@ raw_template_html = """
         transition: all 0.2s ease;
     }
 
-    /* 🔮 MATRICES LEVEL QUESTION DECK */
     .question-deck {
         width: 100%;
         background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
@@ -145,7 +140,6 @@ raw_template_html = """
         text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
-    /* 🔄 RE-ENGINEERED 2D ROTATIONAL AXIS SYSTEM */
     .orbit-container {
         position: relative;
         width: 100%;
@@ -173,12 +167,10 @@ raw_template_html = """
         100% { transform: rotate(360deg); }
     }
 
-    /* Visual tracking tint swap on container hover - NEVER PAUSES REVOLUTION */
     .orbit-container:hover .orbit-rotor-2d {
         border-color: rgba(168, 85, 247, 0.4);
     }
 
-    /* 🔮 PLASMA ORB DESIGN OPTION NODES */
     .option-node-2d {
         position: absolute;
         width: 76px;
@@ -195,16 +187,13 @@ raw_template_html = """
         transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    /* GEOMETRIC OFFSETS */
     .opt-0 { top: -38px; left: 77px; }   
     .opt-1 { top: 77px; right: -38px; }  
     .opt-2 { bottom: -38px; left: 77px; }
     .opt-3 { top: 77px; left: -38px; }   
 
-    /* COUNTER-ROTATOR STABILIZATION MATRIX */
     .orbit-rotor-2d .option-node-2d { animation: keepUpright 16s linear infinite; }
 
-    /* EXTREME NEON GLOW HOVER ARCHITECTURE */
     .option-node-2d:hover {
         color: #ffffff;
         background: radial-gradient(circle at center, #06b6d4 0%, #0891b2 100%);
@@ -247,11 +236,20 @@ raw_template_html = """
 </div>
 
 <script>
-    // ==========================================================================
-    // 🎵 TARGET MEMORY STREAMS (REPLACED VIA PYTHON)
-    // ==========================================================================
     const RIGHT_AUDIO_STREAM = "%%RIGHT_AUDIO_REPLACE%%"; 
     const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%";
+    const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
+
+    // BACKGROUND MUSIC ENGINE
+    let bgAudio = new Audio(BG_AUDIO_STREAM);
+    bgAudio.loop = true;
+    bgAudio.volume = 0.25;
+    
+    function startMusic() {
+        bgAudio.play().catch(err => console.log("Audio lock:", err));
+        document.removeEventListener('click', startMusic);
+    }
+    document.addEventListener('click', startMusic);
 
     function playFaaCorrect() {
         if (!RIGHT_AUDIO_STREAM || RIGHT_AUDIO_STREAM.length < 50) return;
@@ -267,9 +265,6 @@ raw_template_html = """
         audioInstance.play().catch(err => console.log("Audio lock:", err));
     }
 
-    // ==========================================================================
-    // 🧬 THREE.JS GRID PARTICLES SYSTEM (RE-CONFIGURED INITIATION)
-    // ==========================================================================
     const canvasElement = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
     
@@ -285,9 +280,9 @@ raw_template_html = """
     const positionArray = new Float32Array(totalParticles * 3);
     
     for(let i=0; i < totalParticles*3; i+=3) {
-        positionArray[i] = (Math.random() - 0.5) * 45;     
-        positionArray[i+1] = (Math.random() - 0.5) * 45;   
-        positionArray[i+2] = (Math.random() - 0.5) * 25;   
+        positionArray[i] = (Math.random() - 0.5) * 45;      
+        positionArray[i+1] = (Math.random() - 0.5) * 45;    
+        positionArray[i+2] = (Math.random() - 0.5) * 25;    
     }
     geometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
 
@@ -332,9 +327,6 @@ raw_template_html = """
     }
     tickGraphicsEngine();
 
-    // ==========================================================================
-    // 🧠 1000+ NON-REPETITIVE MATCH OPERATIONS CONTROLLER
-    // ==========================================================================
     let score = 0;
     let targetAnswer = 0;
     let historyRegister = [];
@@ -454,11 +446,13 @@ raw_template_html = """
 </html>
 """
 
-# Inject audio streams cleanly without using an f-string
+# Inject audio streams cleanly
 sanitized_game_html = raw_template_html.replace(
     "%%RIGHT_AUDIO_REPLACE%%", right_answer_audio
 ).replace(
     "%%WRONG_AUDIO_REPLACE%%", wrong_answer_audio
+).replace(
+    "%%BG_AUDIO_REPLACE%%", bg_music_audio
 )
 
 # Render application matrix into main Streamlit container framework
