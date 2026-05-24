@@ -2221,7 +2221,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Factorize x^2 - 5x + 6.", "answer": "(x-2)(x-3)", "options": ["(x+2)(x+3)", "(x-2)(x-3)", "(x-1)(x-6)", "None"]},
             {"question": "Is x^2 + 9 factorable using real roots?", "answer": "No", "options": ["Yes", "No", "Maybe", "None"]},
             {"question": "Factorize 4x^2 - 9.", "answer": "(2x-3)(2x+3)", "options": ["(2x-3)^2", "(2x+3)^2", "(2x-3)(2x+3)", "None"]},
-            {"question": "HCF of 7x^3, 14x^2, 21x?", "answer": "7x", "options": ["7", "x", "7x", "21x"}
+            {"question": "HCF of 7x^3, 14x^2, 21x?", "answer": "7x", "options": ["7", "x", "7x", "21x"]}
         ],
         "Ch 15: Introduction to Graphs Grid": [
             {"question": "What is the origin coordinate?", "answer": "(0,0)", "options": ["(0,1)", "(1,0)", "(0,0)", "(1,1)"]},
@@ -2254,32 +2254,32 @@ PHASE_6_QUESTIONS = {
 PHASE_7_QUESTIONS = {  
     "Class 1": {
         "Ch 13: How Many Objects": [
-            {"question": "If you have 4 bundles of ten and 5 loose sticks, what is the total?", "answer": 45, "options": [40, 45, 54, 50]},
-            {"question": "How many tens are in the number 82?", "answer": 8, "options": [2, 8, 82, 10]},
-            {"question": "What comes after 99?", "answer": 100, "options": [98, 99, 100, 101]},
-            {"question": "If you have 6 tens and 0 ones, what is the number?", "answer": 60, "options": [6, 60, 66, 0]},
-            {"question": "How many ones are in 74?", "answer": 4, "options": [7, 4, 74, 11]},
-            {"question": "Which number is greater: 56 or 65?", "answer": 65, "options": [56, 65, Equal, None]},
-            {"question": "What is 8 tens + 3 ones?", "answer": 83, "options": [38, 83, 80, 3]},
+            {"question": "If you have 4 bundles of ten and 5 loose sticks, what is the total?", "answer": "45", "options": ["40", "45", "54", "50"]},
+            {"question": "How many tens are in the number 82?", "answer": "8", "options": ["2", "8", "82", "10"]},
+            {"question": "What comes after 99?", "answer": "100", "options": ["98", "99", "100", "101"]},
+            {"question": "If you have 6 tens and 0 ones, what is the number?", "answer": "60", "options": ["6", "60", "66", "0"]},
+            {"question": "How many ones are in 74?", "answer": "4", "options": ["7", "4", "74", "11"]},
+            {"question": "Which number is greater: 56 or 65?", "answer": "65", "options": ["56", "65", "Equal", "None"]},
+            {"question": "What is 8 tens + 3 ones?", "answer": "83", "options": ["38", "83", "80", "3"]},
             {"question": "Write the number name for 55.", "answer": "Fifty-five", "options": ["Fifty-four", "Fifty-five", "Sixty-five", "Fifty"]},
-            {"question": "Which number comes before 40?", "answer": 39, "options": [38, 39, 41, 50]},
-            {"question": "How many tens make 100?", "answer": 10, "options": [5, 10, 20, 100]},
-            {"question": "If you have 9 tens and 9 ones, what is the total?", "answer": 99, "options": [9, 90, 99, 100]},
-            {"question": "Which is the smallest 2-digit number?", "answer": 10, "options": [0, 1, 10, 11]},
-            {"question": "Complete the pattern: 10, 20, 30, __.", "answer": 40, "options": [35, 40, 50, 60]},
-            {"question": "How many tens are in 50?", "answer": 5, "options": [0, 5, 50, 1]},
+            {"question": "Which number comes before 40?", "answer": "39", "options": ["38", "39", "41", "50"]},
+            {"question": "How many tens make 100?", "answer": "10", "options": ["5", "10", "20", "100"]},
+            {"question": "If you have 9 tens and 9 ones, what is the total?", "answer": "99", "options": ["9", "90", "99", "100"]},
+            {"question": "Which is the smallest 2-digit number?", "answer": "10", "options": ["0", "1", "10", "11"]},
+            {"question": "Complete the pattern: 10, 20, 30, __.", "answer": "40", "options": ["35", "40", "50", "60"]},
+            {"question": "How many tens are in 50?", "answer": "5", "options": ["0", "5", "50", "1"]},
             {"question": "Which is larger: 9 tens or 85?", "answer": "9 tens", "options": ["9 tens", "85", "Equal", "None"]},
-            {"question": "What is 3 tens + 7 ones?", "answer": 37, "options": [30, 7, 37, 73]},
-            {"question": "How many tens are in 99?", "answer": 9, "options": [0, 9, 99, 18]},
-            {"question": "What number is between 78 and 80?", "answer": 79, "options": [77, 79, 81, 75]},
+            {"question": "What is 3 tens + 7 ones?", "answer": "37", "options": ["30", "7", "37", "73"]},
+            {"question": "How many tens are in 99?", "answer": "9", "options": ["0", "9", "99", "18"]},
+            {"question": "What number is between 78 and 80?", "answer": "79", "options": ["77", "79", "81", "75"]},
             {"question": "Is 52 > 58?", "answer": "No", "options": ["Yes", "No", "Maybe", "Equal"]},
-            {"question": "Count: 20, 21, 22, __.", "answer": 23, "options": [22, 23, 24, 25]}
+            {"question": "Count: 20, 21, 22, __.", "answer": "23", "options": ["22", "23", "24", "25"]}
         ],
         "Ch 14: Simple Math Review": [
-            {"question": "What is 5 + 5?", "answer": 10, "options": [0, 5, 10, 15]},
-            {"question": "If you have 8 apples and eat 3, how many remain?", "answer": 5, "options": [3, 4, 5, 8]},
-            {"question": "What is 10 - 4?", "answer": 6, "options": [4, 5, 6, 14]},
-            {"question": "Add 7 + 2.", "answer": 9, "options": [7, 8, 9, 10]},
+            {"question": "What is 5 + 5?", "answer": "10", "options": ["0", "5", "10", "15"]},
+            {"question": "If you have 8 apples and eat 3, how many remain?", "answer": "5", "options": ["3", "4", "5", "8"]},
+            {"question": "What is 10 - 4?", "answer": "6", "options": ["4", "5", "6", "14"]},
+            {"question": "Add 7 + 2.", "answer": "9", "options": ["7", "8", "9", "10"]},
             {"question": "If you have 0 toffees and get 6, total?", "answer": 6, "options": [0, 6, 12, 1]},
             {"question": "What is 9 - 9?", "answer": 0, "options": [0, 1, 9, 18]},
             {"question": "Add 4 + 4 + 2.", "answer": 10, "options": [8, 9, 10, 12]},
@@ -2289,13 +2289,13 @@ PHASE_7_QUESTIONS = {
             {"question": "What is 2 + 8?", "answer": 10, "options": [8, 9, 10, 12]},
             {"question": "If you have 3 pens and buy 4 more, total?", "answer": 7, "options": [6, 7, 8, 9]},
             {"question": "What is 9 - 3 - 2?", "answer": 4, "options": [3, 4, 5, 6]},
-            {"question": "Add 5 + 5 + 5.", "answer": 15, "options": [10, 15, 20, 25]},
-            {"question": "If you have 7 pencils and give 7 away, left?", "answer": 0, "options": [0, 1, 7, 14]},
-            {"question": "What is 8 + 2 - 4?", "answer": 6, "options": [4, 5, 6, 7]},
-            {"question": "Subtract 0 from 8.", "answer": 8, "options": [0, 8, 16, None]},
-            {"question": "What is 3 + 3 + 3?", "answer": 9, "options": [6, 9, 12, 15]},
-            {"question": "If you have 10 candies and eat 5, left?", "answer": 5, "options": [4, 5, 6, 7]},
-            {"question": "What is 4 + 6?", "answer": 10, "options": [8, 9, 10, 11]}
+            {"question": "Add 5 + 5 + 5.", "answer": "15", "options": ["10", "15", "20", "25"]},
+            {"question": "If you have 7 pencils and give 7 away, left?", "answer": "0", "options": ["0", "1", "7", "14"]},
+            {"question": "What is 8 + 2 - 4?", "answer": "6", "options": ["4", "5", "6", "7"]},
+            {"question": "Subtract 0 from 8.", "answer": "8", "options": ["0", "8", "16", "None"]},
+            {"question": "What is 3 + 3 + 3?", "answer": "9", "options": ["6", "9", "12", "15"]},
+            {"question": "If you have 10 candies and eat 5, left?", "answer": "5", "options": ["4", "5", "6", "7"]},
+            {"question": "What is 4 + 6?", "answer": "10", "options": ["8", "9", "10", "11"]}
         ]
     },
     "Class 2": {
