@@ -3,12 +3,11 @@ import json
 import random
 import base64
 import os
+from database import TEXTBOOK_DB
 
 # ============================================================
 # 📦 EXTERNAL DATA COUPLING & AUDIO LOADER
 # ============================================================
-from database import TEXTBOOK_DB
-
 def load_audio_as_base64(file_name):
     """Safely converts local MP3 files to base64 for embedding directly inside the HTML iframe."""
     if os.path.exists(file_name):
@@ -50,22 +49,20 @@ chapter_selection = st.sidebar.selectbox(
 # Fetch the specific textbook question list from the database
 active_question_pool = TEXTBOOK_DB[grade_selection][chapter_selection]
 
-# Shuffle and slice based on what the user chooses to play
+# Fixed 10-question engine (or all available if less than 10)
 total_available = len(active_question_pool)
-total_questions_to_play = st.sidebar.slider(
-    "Number of Arena Rounds:", 
-    min_value=1, 
-    max_value=total_available, 
-    value=min(10, total_available)
-)
+total_questions_to_play = min(10, total_available)
 
-compiled_questions = random.sample(active_question_pool, total_questions_to_play)
-question_json = json.dumps(compiled_questions)
+if total_questions_to_play > 0:
+    compiled_questions = random.sample(active_question_pool, total_questions_to_play)
+    question_json = json.dumps(compiled_questions)
+else:
+    st.error("No questions found in this module.")
+    st.stop()
 
 # ============================================================
 # 🎨 EMBEDDED HIGH-PERFORMANCE HTML/JS VIEW ENGINE
 # ============================================================
-# NOTE: Removed the 'f' prefix completely to stop Python from parsing curly braces!
 html_template = """
 <!DOCTYPE html>
 <html>
@@ -250,7 +247,7 @@ function checkAnswer(btn) {
 }
 
 function renderFinalScreen() {
-    let isEpicWin = (score >= 9);
+    let isEpicWin = (score >= (QUESTIONS.length * 0.8));
     let finalHTML = `
     <div class="question-box" style="border-color: ${isEpicWin ? '#10b981' : '#06b6d4'}; box-shadow: 0 0 25px ${isEpicWin ? 'rgba(16,185,129,0.3)' : 'rgba(6,182,212,0.2)'};">
         <h1 style="color: ${isEpicWin ? '#10b981' : '#22d3ee'}; margin-bottom: 5px;">
@@ -295,7 +292,6 @@ loadQuestion();
 # ============================================================
 # ⚙️ SAFE VARIABLE INJECTION ENGINE
 # ============================================================
-# Safely parsing data values without using broken Python f-string parsers
 html_code = html_template.replace("__QUESTION_JSON__", question_json)
 html_code = html_code.replace("__CORRECT_AUDIO_URI__", correct_audio_uri)
 html_code = html_code.replace("__WRONG_AUDIO_URI__", wrong_audio_uri)
