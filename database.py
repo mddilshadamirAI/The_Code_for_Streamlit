@@ -756,9 +756,9 @@ PHASE_2_QUESTIONS = {
 # ============================================================
 # 📚 PHASE 3: MASTER VAULT EXPANSION (NCERT & RS AGGARWAL)
 # ============================================================
-    PHASE_3_QUESTIONS = {
-    "Class 1" : {
-    "Ch 4: Subtraction Drill": [
+PHASE_3_QUESTIONS = {
+   "Class 1" : {
+       "Ch 4: Subtraction Drill": [
         {"question": "6 mangoes on a plate, 2 eaten. How many left?", "answer": 4, "options": [2, 3, 4, 5]},
         {"question": "8 leaves on a branch, 5 fall. How many remain?", "answer": 3, "options": [2, 3, 4, 5]},
         {"question": "9 marbles in a cup, 4 taken away. How many stay?", "answer": 5, "options": [4, 5, 6, 7]},
