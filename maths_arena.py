@@ -20,7 +20,6 @@ def load_local_audio_base64(file_path):
     except Exception as e:
         return ""
 
-# Convert your newly uploaded repo files into secure memory strings
 right_answer_audio = load_local_audio_base64("faa.mp3")
 wrong_answer_audio = load_local_audio_base64("haha.mp3")
 background_music = load_local_audio_base64("newmusic.mp3")
@@ -40,8 +39,9 @@ st.markdown("<p style='text-align: center; color: #06b6d4; font-family: monospac
 st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospace; font-size: 11px; margin-top:4px; margin-bottom: 20px; letter-spacing: 2px;'>// VISUAL CORE V2.0 ENGINE ENGAGED</p>", unsafe_allow_html=True)
 
 # ==============================================================================
-# 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (EXTREME UI EDITION)
+# 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (HTML WRAPPED IN STRING)
 # ==============================================================================
+raw_template_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +95,6 @@ st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospac
     const RIGHT_AUDIO_STREAM = "%%RIGHT_AUDIO_REPLACE%%"; const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%"; const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
     let score = 0, level = 1, correctStreak = 0, wrongStreak = 0, isGameOver = false, targetAnswer = 0, userMode = null, timerInterval = null;
 
-    // Audio/Visual Engine
     const bgAudio = new Audio(BG_AUDIO_STREAM); bgAudio.loop = true; bgAudio.volume = 0.3;
     document.addEventListener('click', () => bgAudio.play().catch(e=>{}));
     function playAudio(src) { if(src.length > 50) new Audio(src).play(); }
@@ -173,6 +172,7 @@ st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospac
 </script>
 </body>
 </html>
+"""
 
 # Inject audio streams cleanly
 sanitized_game_html = raw_template_html.replace(
@@ -183,5 +183,5 @@ sanitized_game_html = raw_template_html.replace(
     "%%BG_AUDIO_REPLACE%%", background_music
 )
 
-# Render application matrix into main Streamlit container framework
+# Render application
 components.html(sanitized_game_html, height=660)
