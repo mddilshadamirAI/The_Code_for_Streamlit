@@ -156,15 +156,18 @@ raw_template_html = """
     }
 
     function checkMilestone(scoreValue) {
+        // Triggered exactly at 100, 200, 300, etc.
         if (scoreValue > 0 && scoreValue % 100 === 0) {
             const overlay = document.getElementById("cinematic-overlay");
             overlay.style.display = "flex";
-            overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${scoreValue} HITS!</div>`;
+            overlay.style.flexDirection = "column";
+            overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${scoreValue} POINTS!</div>`;
             playAudio(LION_ROAR); 
             setTimeout(() => { overlay.style.display = "none"; }, 2000);
         }
     }
 
+    
     function generateUniqueProblem() {
         let range = userMode === 'basic' ? 50 : (userMode === 'medium' ? 100 : 200);
         let pool = userMode === 'basic' ? ['+', '-'] : (userMode === 'medium' ? ['+', '-', '*'] : ['+', '-', '*', '/']);
@@ -194,12 +197,15 @@ raw_template_html = """
         if(isGameOver) return;
         clearInterval(timerInterval);
         if(parseInt(node.innerText) === targetAnswer) {
+            // UPDATED: Now adds exactly 10 points every time
+            score += 10; 
             combo++;
-            score += (10 + (combo * 5)); 
             document.getElementById("score-val").innerText = score;
             document.getElementById("combo-val").innerText = "x" + combo;
+            
             checkMilestone(score); 
-            playAudio(RIGHT_AUDIO); renderMatchStage();
+            playAudio(RIGHT_AUDIO); 
+            renderMatchStage();
         } else {
             lives--;
             document.getElementById("life-val").innerText = lives;
