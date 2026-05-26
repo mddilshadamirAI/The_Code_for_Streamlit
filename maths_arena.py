@@ -26,6 +26,7 @@ def load_local_audio_base64(file_path):
 right_answer_audio = load_local_audio_base64("faa.mp3")
 wrong_answer_audio = load_local_audio_base64("haha.mp3")
 background_music = load_local_audio_base64("newmusic.mp3")
+lion_roar_audio = load_local_audio_base64("roar.mp3") # Ensure you have this file
 
 raw_template_html = """
 <!DOCTYPE html>
@@ -52,19 +53,23 @@ raw_template_html = """
     #ui-overlay { position:absolute; z-index:10; background:rgba(0,0,0,0.95); width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:40px; }
     .mode-btn { margin: 10px; padding: 15px 30px; font-family: monospace; font-weight:900; cursor:pointer; background:#1e293b; color:#38bdf8; border:2px solid #06b6d4; border-radius:10px; transition:0.3s; }
     .mode-btn:hover { background:#06b6d4; color:#fff; }
-    .hit-flash { animation: shake 0.2s linear; border: 2px solid #ef4444 !important; }
-    @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);} 75% {transform: translateX(10px);} }
-    /* Dragon & Lion Animations */
-    #cinematic-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:20; display:none; pointer-events:none; }
-    .dragon-eyes { font-size: 100px; color: red; animation: blink 0.5s infinite; text-shadow: 0 0 50px red; }
+    
+    /* FIX: Centered Cinematic Layers */
+    #cinematic-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:20; display:none; pointer-events:none; flex-direction:column; align-items:center; justify-content:center; border-radius:40px; }
+    .dragon-eyes { font-size: 150px; color: red; animation: blink 0.5s infinite; text-shadow: 0 0 50px red; }
     .lion-roar { font-size: 60px; color: gold; animation: popIn 0.5s ease-out; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+    .hit-flash { animation: shake 0.2s linear; border: 2px solid #ef4444 !important; }
+    @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);} 75% {transform: translateX(10px);} }
 </style>
 </head>
 <body>
 <div class="arena-viewport" id="viewport">
     <canvas id="three-canvas"></canvas>
+    
+    <div id="cinematic-overlay"></div>
+    
     <div id="ui-overlay">
         <h2 style="color:#fff; margin-bottom:20px;">SELECT DIFFICULTY</h2>
         <button class="mode-btn" onclick="selectMode('basic')">BASIC</button>
@@ -88,7 +93,8 @@ raw_template_html = """
     </div>
 </div>
 <script>
-    const RIGHT_AUDIO = "%%RIGHT_AUDIO_REPLACE%%"; const WRONG_AUDIO = "%%WRONG_AUDIO_REPLACE%%"; const BG_AUDIO = "%%BG_AUDIO_REPLACE%%";
+    const RIGHT_AUDIO = "%%RIGHT_AUDIO_REPLACE%%"; const WRONG_AUDIO = "%%WRONG_AUDIO_REPLACE%%"; 
+    const BG_AUDIO = "%%BG_AUDIO_REPLACE%%"; const LION_ROAR = "%%LION_AUDIO_REPLACE%%";
     let score = 0, level = 1, combo = 0, lives = 2, isGameOver = false, targetAnswer = 0, userMode = null, timerInterval = null;
 
     const bgAudio = new Audio(BG_AUDIO); bgAudio.loop = true; bgAudio.volume = 0.3;
@@ -107,7 +113,37 @@ raw_template_html = """
     function animate() { requestAnimationFrame(animate); pts.rotation.y += 0.004; renderer.render(scene, camera); }
     animate();
 
-    function selectMode(mode) { userMode = mode; document.getElementById("ui-overlay").style.display = 'none'; renderMatchStage(); }
+    // Fix: Rededicated function to fully reset state and interface
+    function resetGame() {
+        clearInterval(timerInterval);
+        isGameOver = false;
+        score = 0;
+        level = 1;
+        combo = 0;
+        lives = 2;
+        userMode = null;
+        
+        // Hide overlays
+        document.getElementById("cinematic-overlay").style.display = "none";
+        document.getElementById("ui-overlay").style.display = "flex";
+        
+        // Reset HUD
+        document.getElementById("score-val").innerText = score;
+        document.getElementById("life-val").innerText = lives;
+        document.getElementById("combo-val").innerText = "x" + combo;
+        document.getElementById("lvl-val").innerText = level;
+        document.getElementById("question-text").innerText = "CORE READY";
+        
+        // Re-randomize nodes to hide previous answers
+        const slots = document.getElementsByClassName("option-node-2d");
+        for(let i=0; i<4; i++) slots[i].innerText = "0";
+    }
+
+    function selectMode(mode) { 
+        userMode = mode; 
+        document.getElementById("ui-overlay").style.display = 'none'; 
+        renderMatchStage(); 
+    }
 
     function startTimer(seconds) {
         clearInterval(timerInterval);
@@ -117,6 +153,16 @@ raw_template_html = """
             document.getElementById("timer-val").innerText = seconds;
             if (seconds <= 0) { lives = 0; triggerGameOver("TIME UP!"); }
         }, 1000);
+    }
+
+    function checkMilestone(scoreValue) {
+        if (scoreValue > 0 && scoreValue % 100 === 0) {
+            const overlay = document.getElementById("cinematic-overlay");
+            overlay.style.display = "flex";
+            overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${scoreValue} HITS!</div>`;
+            playAudio(LION_ROAR); 
+            setTimeout(() => { overlay.style.display = "none"; }, 2000);
+        }
     }
 
     function generateUniqueProblem() {
@@ -144,55 +190,57 @@ raw_template_html = """
         for(let i=0; i<4; i++) slots[i].innerText = arr[i];
     }
 
-    function checkMilestone(score) {
-    if (score > 0 && score % 100 === 0) {
-        const overlay = document.getElementById("cinematic-overlay");
-        overlay.style.display = "flex";
-        overlay.style.alignItems = "center";
-        overlay.style.justifyContent = "center";
-        overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${score} HITS!</div>`;
-        playAudio("path_to_lion_roar.mp3"); // Ensure you have this file
-        setTimeout(() => { overlay.style.display = "none"; }, 2000);
-    }
-}
-
-function verifyChoice(node) {
-    if(isGameOver) return;
-    clearInterval(timerInterval);
-    if(parseInt(node.innerText) === targetAnswer) {
-        score += 10; 
-        combo++;
-        document.getElementById("score-val").innerText = score;
-        document.getElementById("combo-val").innerText = "x" + combo;
-        checkMilestone(score); // Check for Lion
-        playAudio(RIGHT_AUDIO); renderMatchStage();
-    } else {
-        lives--;
-        document.getElementById("life-val").innerText = lives;
-        if(lives > 0) {
-            playAudio(WRONG_AUDIO); renderMatchStage();
+    function verifyChoice(node) {
+        if(isGameOver) return;
+        clearInterval(timerInterval);
+        if(parseInt(node.innerText) === targetAnswer) {
+            combo++;
+            score += (10 + (combo * 5)); 
+            document.getElementById("score-val").innerText = score;
+            document.getElementById("combo-val").innerText = "x" + combo;
+            checkMilestone(score); 
+            playAudio(RIGHT_AUDIO); renderMatchStage();
         } else {
-            triggerGameOver("DRAGON DEFEAT");
+            lives--;
+            document.getElementById("life-val").innerText = lives;
+            if(lives > 0) {
+                document.getElementById("viewport").classList.add("hit-flash");
+                setTimeout(()=>document.getElementById("viewport").classList.remove("hit-flash"), 200);
+                playAudio(WRONG_AUDIO);
+                renderMatchStage();
+            } else {
+                triggerGameOver("DRAGON DEFEAT");
+            }
         }
     }
-}
 
-function triggerGameOver(msg) {
-    isGameOver = true; clearInterval(timerInterval);
-    const overlay = document.getElementById("cinematic-overlay");
-    overlay.style.display = "flex";
-    overlay.style.flexDirection = "column";
-    overlay.innerHTML = `
-        <div class="dragon-eyes">👁️👁️</div>
-        <div style="color:white; font-size:30px;">${msg}</div>
-        <button class="mode-btn" onclick="location.reload()">RETRY</button>
-    `;
-}
+    // Fix: Rededicated function to build the game over screen correctly
+    function triggerGameOver(msg) {
+        isGameOver = true; 
+        clearInterval(timerInterval);
+        const overlay = document.getElementById("cinematic-overlay");
+        overlay.style.display = "flex";
+        
+        // Re-inject the centered content and the button linked to resetGame
+        overlay.innerHTML = `
+            <div class="dragon-eyes">👁️👁️</div>
+            <div style="color:white; font-size:30px; margin-top:20px;">${msg}</div>
+            <button class="mode-btn" onclick="resetGame()" style="pointer-events: auto; margin-top:30px;">RETRY</button>
+        `;
+    }
 </script>
-<div id="cinematic-overlay"></div>
 </body>
 </html>
 """
 
-sanitized_html = raw_template_html.replace("%%RIGHT_AUDIO_REPLACE%%", right_answer_audio).replace("%%WRONG_AUDIO_REPLACE%%", wrong_answer_audio).replace("%%BG_AUDIO_REPLACE%%", background_music)
+sanitized_html = raw_template_html.replace(
+    "%%RIGHT_AUDIO_REPLACE%%", right_answer_audio
+).replace(
+    "%%WRONG_AUDIO_REPLACE%%", wrong_answer_audio
+).replace(
+    "%%BG_AUDIO_REPLACE%%", background_music
+).replace(
+    "%%LION_AUDIO_REPLACE%%", lion_roar_audio
+)
+
 components.html(sanitized_html, height=660)
