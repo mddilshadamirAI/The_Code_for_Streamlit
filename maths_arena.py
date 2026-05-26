@@ -5,6 +5,18 @@ import base64
 # Layout configurations
 st.set_page_config(page_title="Dilshad's Cyber Arena 2D", page_icon="👑", layout="centered")
 
+# --- UI STYLING ---
+st.markdown("""
+<style>
+div[data-testid="stAppViewContainer"] { background: radial-gradient(circle at center, #0f172a 0%, #020617 100%) !important; }
+#MainMenu, footer, header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
+# --- NAME CREDIT ---
+st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ CYBER ARENA 2D ⚡</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #06b6d4; font-family: monospace; font-size: 14px; margin-top:6px; margin-bottom: 0px; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(6,182,212,0.6);'>🚀 DEVELOPED BY MD DILSHAD AMIR</p>", unsafe_allow_html=True)
+
 def load_local_audio_base64(file_path):
     try:
         with open(file_path, "rb") as audio_file:
@@ -40,7 +52,7 @@ raw_template_html = """
     #ui-overlay { position:absolute; z-index:10; background:rgba(0,0,0,0.95); width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:40px; }
     .mode-btn { margin: 10px; padding: 15px 30px; font-family: monospace; font-weight:900; cursor:pointer; background:#1e293b; color:#38bdf8; border:2px solid #06b6d4; border-radius:10px; transition:0.3s; }
     .mode-btn:hover { background:#06b6d4; color:#fff; }
-    .hit-flash { animation: shake 0.2s linear; }
+    .hit-flash { animation: shake 0.2s linear; border: 2px solid #ef4444 !important; }
     @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);} 75% {transform: translateX(10px);} }
 </style>
 </head>
@@ -49,14 +61,14 @@ raw_template_html = """
     <canvas id="three-canvas"></canvas>
     <div id="ui-overlay">
         <h2 style="color:#fff; margin-bottom:20px;">SELECT DIFFICULTY</h2>
-        <button class="mode-btn" onclick="selectMode('basic')">BASIC (+, -)</button>
-        <button class="mode-btn" onclick="selectMode('medium')">MEDIUM (+, -, *, /)</button>
-        <button class="mode-btn" onclick="selectMode('pro')">PRO (Harder)</button>
+        <button class="mode-btn" onclick="selectMode('basic')">BASIC</button>
+        <button class="mode-btn" onclick="selectMode('medium')">MEDIUM</button>
+        <button class="mode-btn" onclick="selectMode('pro')">PRO</button>
     </div>
     <div class="game-console" id="console-box">
         <div class="hud-header">
             <div>LVL: <span id="lvl-val">1</span> | T: <span id="timer-val">0</span>s | <span id="combo-val" style="color:#f59e0b">x0</span></div>
-            <div>SCORE: <span id="score-val" class="score-glow">0</span></div>
+            <div>SCORE: <span id="score-val" class="score-glow">0</span> | LIVES: <span id="life-val" style="color:red">2</span></div>
         </div>
         <div class="question-deck"><div id="question-text">CORE READY</div></div>
         <div class="orbit-container">
@@ -71,7 +83,7 @@ raw_template_html = """
 </div>
 <script>
     const RIGHT_AUDIO = "%%RIGHT_AUDIO_REPLACE%%"; const WRONG_AUDIO = "%%WRONG_AUDIO_REPLACE%%"; const BG_AUDIO = "%%BG_AUDIO_REPLACE%%";
-    let score = 0, level = 1, combo = 0, isGameOver = false, targetAnswer = 0, userMode = null, timerInterval = null;
+    let score = 0, level = 1, combo = 0, lives = 2, isGameOver = false, targetAnswer = 0, userMode = null, timerInterval = null;
 
     const bgAudio = new Audio(BG_AUDIO); bgAudio.loop = true; bgAudio.volume = 0.3;
     document.addEventListener('click', () => bgAudio.play().catch(e=>{}));
@@ -97,7 +109,7 @@ raw_template_html = """
         timerInterval = setInterval(() => {
             seconds--;
             document.getElementById("timer-val").innerText = seconds;
-            if (seconds <= 0) { clearInterval(timerInterval); triggerGameOver("TIME UP!"); }
+            if (seconds <= 0) { lives = 0; triggerGameOver("TIME UP!"); }
         }, 1000);
     }
 
@@ -136,12 +148,16 @@ raw_template_html = """
             document.getElementById("combo-val").innerText = "x" + combo;
             playAudio(RIGHT_AUDIO); renderMatchStage();
         } else {
-            combo = 0;
-            document.getElementById("combo-val").innerText = "x0";
-            document.getElementById("viewport").classList.add("hit-flash");
-            setTimeout(()=>document.getElementById("viewport").classList.remove("hit-flash"), 200);
-            playAudio(WRONG_AUDIO);
-            triggerGameOver("GAME OVER");
+            lives--;
+            document.getElementById("life-val").innerText = lives;
+            if(lives > 0) {
+                document.getElementById("viewport").classList.add("hit-flash");
+                setTimeout(()=>document.getElementById("viewport").classList.remove("hit-flash"), 200);
+                playAudio(WRONG_AUDIO);
+                renderMatchStage();
+            } else {
+                triggerGameOver("GAME OVER");
+            }
         }
     }
 
