@@ -54,14 +54,17 @@ raw_template_html = """
     .mode-btn { margin: 10px; padding: 15px 30px; font-family: monospace; font-weight:900; cursor:pointer; background:#1e293b; color:#38bdf8; border:2px solid #06b6d4; border-radius:10px; transition:0.3s; }
     .mode-btn:hover { background:#06b6d4; color:#fff; }
     
-    /* FIX: Centered Cinematic Layers */
-    #cinematic-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:20; display:none; pointer-events:none; flex-direction:column; align-items:center; justify-content:center; border-radius:40px; }
+    /* Fix: Centered Cinematic Layers */
+    #cinematic-overlay { 
+        position:absolute; top:0; left:0; width:100%; height:100%; z-index:20; 
+        display:none; pointer-events:none; 
+        flex-direction:column; align-items:center; justify-content:center; 
+        border-radius:40px; background: rgba(0,0,0,0.7); 
+    }
     .dragon-eyes { font-size: 150px; color: red; animation: blink 0.5s infinite; text-shadow: 0 0 50px red; }
-    .lion-roar { font-size: 60px; color: gold; animation: popIn 0.5s ease-out; }
+    .lion-roar { font-size: 50px; color: gold; text-shadow: 0 0 20px orange; animation: popIn 0.5s ease-out; font-weight: 900; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
-    .hit-flash { animation: shake 0.2s linear; border: 2px solid #ef4444 !important; }
-    @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);} 75% {transform: translateX(10px);} }
 </style>
 </head>
 <body>
@@ -156,16 +159,20 @@ raw_template_html = """
     }
 
     function checkMilestone(scoreValue) {
-        // Triggered exactly at 100, 200, 300, etc.
-        if (scoreValue > 0 && scoreValue % 100 === 0) {
-            const overlay = document.getElementById("cinematic-overlay");
-            overlay.style.display = "flex";
-            overlay.style.flexDirection = "column";
-            overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${scoreValue} POINTS!</div>`;
-            playAudio(LION_ROAR); 
-            setTimeout(() => { overlay.style.display = "none"; }, 2000);
-        }
+    if (scoreValue > 0 && scoreValue % 100 === 0) {
+        const overlay = document.getElementById("cinematic-overlay");
+        // Force Flexbox for centering
+        overlay.style.display = "flex";
+        overlay.style.alignItems = "center";
+        overlay.style.justifyContent = "center";
+        
+        overlay.innerHTML = `<div class="lion-roar">🦁 ROAR!<br>${scoreValue} POINTS!</div>`;
+        playAudio(LION_ROAR); 
+        
+        // Remove after 2 seconds
+        setTimeout(() => { overlay.style.display = "none"; }, 2000);
     }
+}
 
     
     function generateUniqueProblem() {
