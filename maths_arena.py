@@ -42,184 +42,45 @@ st.markdown("<p style='text-align: center; color: #a855f7; font-family: monospac
 # ==============================================================================
 # 🎮 THE THREE.JS FX ENGINE + REPO MEDIA TARGETS (EXTREME UI EDITION)
 # ==============================================================================
-raw_template_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
 <style>
-    body, html {
-        margin: 0; padding: 0;
-        width: 100%; height: 100%;
-        overflow: hidden;
-        display: flex; justify-content: center; align-items: center;
-        background: transparent;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    .arena-viewport {
-        position: relative;
-        width: 480px;
-        height: 640px;
-        display: flex; justify-content: center; align-items: center;
-        border-radius: 40px;
-        box-shadow: 0 0 40px rgba(6, 182, 212, 0.15);
-        transition: box-shadow 0.3s ease;
-    }
-
-    #three-canvas {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 1;
-        border-radius: 40px;
-    }
-
-    .game-console {
-        position: relative;
-        z-index: 2;
-        width: 90%;
-        height: 94%;
-        background: rgba(4, 10, 26, 0.65);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-radius: 36px;
-        padding: 30px;
-        box-sizing: border-box;
-        border: 1px solid rgba(168, 85, 247, 0.25);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.1), 0 25px 60px rgba(0,0,0,0.8);
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .console-correct {
-        border-color: #10b981 !important;
-        box-shadow: inset 0 0 40px rgba(16, 185, 129, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
-    }
-    .console-incorrect {
-        border-color: #ef4444 !important;
-        box-shadow: inset 0 0 40px rgba(239, 68, 68, 0.2), 0 25px 60px rgba(0,0,0,0.8) !important;
-    }
-
-    .hud-header {
-        display: flex; justify-content: space-between;
-        color: #94a3b8; font-size: 11px;
-        letter-spacing: 1px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding-bottom: 10px;
-    }
-    
-    .score-glow { 
-        color: #06b6d4; 
-        font-weight: 900; 
-        font-size: 18px;
-        text-shadow: 0 0 12px #06b6d4, 0 0 25px rgba(6, 182, 212, 0.5);
-        transition: all 0.2s ease;
-    }
-
-    .question-deck {
-        width: 100%;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
-        border-radius: 24px;
-        border: 1px solid rgba(6, 182, 212, 0.25);
-        padding: 25px 10px;
-        text-align: center;
-        box-sizing: border-box;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 2px 10px rgba(6, 182, 212, 0.1);
-    }
-    
-    #question-text {
-        font-size: 46px; 
-        color: #ffffff; 
-        font-weight: 900; 
-        letter-spacing: -1px;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    }
-
-    .orbit-container {
-        position: relative;
-        width: 100%;
-        height: 310px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .orbit-rotor-2d {
-        position: absolute;
-        width: 230px;
-        height: 230px;
-        border-radius: 50%;
-        border: 2px dashed rgba(6, 182, 212, 0.15);
-        box-shadow: 0 0 20px rgba(6, 182, 212, 0.03);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: spin2D 16s linear infinite;
-    }
-
-    @keyframes spin2D {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .orbit-container:hover .orbit-rotor-2d {
-        border-color: rgba(168, 85, 247, 0.4);
-    }
-
-    .option-node-2d {
-        position: absolute;
-        width: 76px;
-        height: 76px;
-        background: radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%);
-        border: 1px solid rgba(6, 182, 212, 0.4);
-        border-radius: 50%;
-        color: #38bdf8;
-        font-size: 24px; font-weight: 900;
-        display: flex; justify-content: center; align-items: center;
-        cursor: pointer;
-        user-select: none;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.1);
-        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .opt-0 { top: -38px; left: 77px; }   
-    .opt-1 { top: 77px; right: -38px; }  
-    .opt-2 { bottom: -38px; left: 77px; }
-    .opt-3 { top: 77px; left: -38px; }   
-
-    .orbit-rotor-2d .option-node-2d { animation: keepUpright 16s linear infinite; }
-
-    .option-node-2d:hover {
-        color: #ffffff;
-        background: radial-gradient(circle at center, #06b6d4 0%, #0891b2 100%);
-        border-color: #22d3ee;
-        box-shadow: 0 0 30px #06b6d4, 0 0 50px rgba(6, 182, 212, 0.4);
-        transform: scale(1.18) !important;
-    }
-    
-    .option-node-2d:active { transform: scale(0.88) !important; }
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; background: transparent; font-family: 'Courier New', Courier, monospace; }
+    .arena-viewport { position: relative; width: 480px; height: 640px; display: flex; justify-content: center; align-items: center; border-radius: 40px; box-shadow: 0 0 40px rgba(6, 182, 212, 0.15); }
+    #three-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; border-radius: 40px; }
+    .game-console { position: relative; z-index: 2; width: 90%; height: 94%; background: rgba(4, 10, 26, 0.65); backdrop-filter: blur(25px); border-radius: 36px; padding: 30px; box-sizing: border-box; border: 1px solid rgba(168, 85, 247, 0.25); display: flex; flex-direction: column; justify-content: space-between; box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.1), 0 25px 60px rgba(0,0,0,0.8); }
+    .hud-header { display: flex; justify-content: space-between; color: #94a3b8; font-size: 11px; letter-spacing: 1px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 10px; }
+    .score-glow { color: #06b6d4; font-weight: 900; font-size: 18px; text-shadow: 0 0 12px #06b6d4; }
+    .question-deck { width: 100%; background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%); border-radius: 24px; border: 1px solid rgba(6, 182, 212, 0.25); padding: 25px 10px; text-align: center; }
+    #question-text { font-size: 46px; color: #ffffff; font-weight: 900; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
+    .orbit-container { position: relative; width: 100%; height: 310px; display: flex; justify-content: center; align-items: center; }
+    .orbit-rotor-2d { position: absolute; width: 230px; height: 230px; border-radius: 50%; border: 2px dashed rgba(6, 182, 212, 0.15); display: flex; justify-content: center; align-items: center; animation: spin2D 16s linear infinite; }
+    @keyframes spin2D { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .option-node-2d { position: absolute; width: 76px; height: 76px; background: radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%); border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 50%; color: #38bdf8; font-size: 24px; font-weight: 900; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.2s; }
+    .opt-0 { top: -38px; left: 77px; } .opt-1 { top: 77px; right: -38px; } .opt-2 { bottom: -38px; left: 77px; } .opt-3 { top: 77px; left: -38px; }
+    #ui-overlay { position:absolute; z-index:10; background:rgba(0,0,0,0.95); width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:40px; }
+    .mode-btn { margin: 10px; padding: 15px 30px; font-family: monospace; font-weight:900; cursor:pointer; background:#1e293b; color:#38bdf8; border:2px solid #06b6d4; border-radius:10px; transition:0.3s; }
+    .mode-btn:hover { background:#06b6d4; color:#fff; }
 </style>
 </head>
 <body>
-
 <div class="arena-viewport" id="viewport-frame">
     <canvas id="three-canvas"></canvas>
-
+    <div id="ui-overlay">
+        <h2 style="color:#fff; margin-bottom:20px;">SELECT DIFFICULTY</h2>
+        <button class="mode-btn" onclick="selectMode('basic')">BASIC (+, -)</button>
+        <button class="mode-btn" onclick="selectMode('medium')">MEDIUM (+, -, *, /)</button>
+        <button class="mode-btn" onclick="selectMode('pro')">PRO (Harder)</button>
+    </div>
     <div class="game-console" id="console-box">
         <div class="hud-header">
-            <div>BY: MD DILSHAD // SYS.ACTIVE</div>
+            <div>LVL: <span id="lvl-val">1</span> // T: <span id="timer-val">0</span>s</div>
             <div>SCORE: <span id="score-val" class="score-glow">0</span></div>
         </div>
-        
-        <div class="question-deck">
-            <div id="question-text">LOADING CORE...</div>
-        </div>
-
+        <div class="question-deck"><div id="question-text">CORE READY</div></div>
         <div class="orbit-container">
             <div class="orbit-rotor-2d" id="wheel-axis">
                 <div class="option-node-2d opt-0" onclick="verifyChoice(this)">0</div>
@@ -228,153 +89,90 @@ raw_template_html = """
                 <div class="option-node-2d opt-3" onclick="verifyChoice(this)">0</div>
             </div>
         </div>
-        
-        <div style="text-align: center; font-size: 10px; color: #475569; letter-spacing: 1px;">
-            🔥 KINETIC ORBIT ACTIVE // VELOCITY LOCK REMOVED
-        </div>
     </div>
 </div>
-
 <script>
-    const RIGHT_AUDIO_STREAM = "%%RIGHT_AUDIO_REPLACE%%"; 
-    const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%";
-    const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
+    const RIGHT_AUDIO_STREAM = "%%RIGHT_AUDIO_REPLACE%%"; const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%"; const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
+    let score = 0, level = 1, correctStreak = 0, wrongStreak = 0, isGameOver = false, targetAnswer = 0, userMode = null, timerInterval = null;
 
-    // --- GAME STATE VARIABLES ---
-    let score = 0;
-    let level = 1;
-    let correctStreak = 0;
-    let wrongStreak = 0;
-    let isGameOver = false;
-    let targetAnswer = 0;
-    let historyRegister = [];
+    // Audio/Visual Engine
+    const bgAudio = new Audio(BG_AUDIO_STREAM); bgAudio.loop = true; bgAudio.volume = 0.3;
+    document.addEventListener('click', () => bgAudio.play().catch(e=>{}));
+    function playAudio(src) { if(src.length > 50) new Audio(src).play(); }
 
-    // BACKGROUND MUSIC SYSTEM
-    const bgAudio = new Audio(BG_AUDIO_STREAM);
-    bgAudio.loop = true;
-    bgAudio.volume = 0.3;
-    function startMusic() {
-        bgAudio.play().catch(e => console.log("Waiting for user interaction"));
-        document.removeEventListener('click', startMusic);
-    }
-    document.addEventListener('click', startMusic);
-
-    function playFaaCorrect() {
-        if (!RIGHT_AUDIO_STREAM || RIGHT_AUDIO_STREAM.length < 50) return;
-        new Audio(RIGHT_AUDIO_STREAM).play().catch(e => {});
-    }
-
-    function playHahaIncorrect() {
-        if (!WRONG_AUDIO_STREAM || WRONG_AUDIO_STREAM.length < 50) return;
-        new Audio(WRONG_AUDIO_STREAM).play().catch(e => {});
-    }
-
-    // --- THREE.JS ENGINE (Keep your existing initialization here) ---
-    const canvasElement = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(65, 480 / 640, 0.1, 1000);
-    camera.position.z = 18;
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, alpha: true });
+    const camera = new THREE.PerspectiveCamera(65, 480/640, 0.1, 1000); camera.position.z = 18;
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true, alpha: true });
     renderer.setSize(480, 640);
-    const totalParticles = 400; 
     const geometry = new THREE.BufferGeometry();
-    const positionArray = new Float32Array(totalParticles * 3);
-    for(let i=0; i < totalParticles*3; i+=3) {
-        positionArray[i] = (Math.random() - 0.5) * 45;      
-        positionArray[i+1] = (Math.random() - 0.5) * 45;   
-        positionArray[i+2] = (Math.random() - 0.5) * 25;   
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
-    const pointMaterial = new THREE.PointsMaterial({ size: 0.4, transparent: true, opacity: 0.65, color: 0xa855f7 });
-    const engineParticles = new THREE.Points(geometry, pointMaterial);
-    scene.add(engineParticles);
-    let activeFXState = "ambient"; 
-    function tickGraphicsEngine() {
-        requestAnimationFrame(tickGraphicsEngine);
-        const positions = geometry.attributes.position.array;
-        if (activeFXState === "ambient") { engineParticles.rotation.y += 0.004; pointMaterial.color.setHex(0xa855f7); }
-        else if (activeFXState === "snow") { pointMaterial.color.setHex(0x10b981); for(let i=1; i < positions.length; i+=3) { positions[i] -= 0.5; if(positions[i] < -22) positions[i] = 22; } geometry.attributes.position.needsUpdate = true; }
-        else if (activeFXState === "fire") { pointMaterial.color.setHex(0xef4444); for(let i=1; i < positions.length; i+=3) { positions[i] += 0.65; if(positions[i] > 22) { positions[i] = -22; positions[i-1] = (Math.random() - 0.5) * 35; } } geometry.attributes.position.needsUpdate = true; }
-        renderer.render(scene, camera);
-    }
-    tickGraphicsEngine();
+    const pos = new Float32Array(1200); for(let i=0; i<1200; i++) pos[i] = (Math.random()-0.5)*45;
+    geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const mat = new THREE.PointsMaterial({ size: 0.4, color: 0xa855f7 });
+    const pts = new THREE.Points(geometry, mat); scene.add(pts);
+    function animate() { requestAnimationFrame(animate); pts.rotation.y += 0.004; renderer.render(scene, camera); }
+    animate();
 
-    // --- GAME LOGIC ---
+    function selectMode(mode) { userMode = mode; document.getElementById("ui-overlay").style.display = 'none'; renderMatchStage(); }
+
+    function startTimer(seconds) {
+        clearInterval(timerInterval);
+        document.getElementById("timer-val").innerText = seconds;
+        timerInterval = setInterval(() => {
+            seconds--;
+            document.getElementById("timer-val").innerText = seconds;
+            if (seconds <= 0) { clearInterval(timerInterval); triggerGameOver("TIME UP!"); }
+        }, 1000);
+    }
+
     function generateUniqueProblem() {
-        let op, n1, n2, equation, value;
-        let range = 89 + (level * 20); // Increase range by level
-        const pool = level > 2 ? ['+', '-', '*', '/'] : ['+', '-'];
-        op = pool[Math.floor(Math.random() * pool.length)];
-        
-        if (op === '+') { n1 = Math.floor(Math.random() * range) + 10; n2 = Math.floor(Math.random() * range) + 10; equation = n1 + " + " + n2; value = n1 + n2; }
-        else if (op === '-') { n1 = Math.floor(Math.random() * range) + 10; n2 = Math.floor(Math.random() * (n1 - 10)) + 10; equation = n1 + " - " + n2; value = n1 - n2; }
-        else if (op === '*') { n1 = Math.floor(Math.random() * (level * 5 + 5)) + 2; n2 = Math.floor(Math.random() * 9) + 2; equation = n1 + " × " + n2; value = n1 * n2; }
-        else { n2 = Math.floor(Math.random() * 8) + 2; value = Math.floor(Math.random() * 20) + 2; n1 = n2 * value; equation = n1 + " ÷ " + n2; }
-        return { text: equation, answer: value };
+        let range = userMode === 'basic' ? 50 : (userMode === 'medium' ? 100 : 200);
+        let pool = userMode === 'basic' ? ['+', '-'] : (userMode === 'medium' ? ['+', '-', '*'] : ['+', '-', '*', '/']);
+        let op = pool[Math.floor(Math.random()*pool.length)];
+        let n1, n2, val, eq;
+        if (op === '+') { n1=Math.floor(Math.random()*range); n2=Math.floor(Math.random()*range); eq=n1+"+"+n2; val=n1+n2; }
+        else if (op === '-') { n1=Math.floor(Math.random()*range)+10; n2=Math.floor(Math.random()*(n1-10)); eq=n1+"-"+n2; val=n1-n2; }
+        else if (op === '*') { n1=Math.floor(Math.random()*20); n2=Math.floor(Math.random()*12); eq=n1+"×"+n2; val=n1*n2; }
+        else { n2=Math.floor(Math.random()*10)+2; val=Math.floor(Math.random()*15)+2; n1=n2*val; eq=n1+"÷"+n2; }
+        startTimer((op === '*' || op === '/') ? 45 : 20);
+        return { text: eq, answer: val };
     }
 
     function renderMatchStage() {
         if(isGameOver) return;
-        const log = generateUniqueProblem();
-        targetAnswer = log.answer;
-        document.getElementById("question-text").innerText = log.text;
-        
-        let optionsSet = new Set([targetAnswer]);
-        while(optionsSet.size < 4) { optionsSet.add(targetAnswer + (Math.floor(Math.random()*20)-10)); }
-        let shuffled = Array.from(optionsSet).sort(() => Math.random() - 0.5);
-        const slots = document.getElementsByClassName("option-node-2d");
-        for(let i=0; i<4; i++) {
-            slots[i].innerText = shuffled[i];
-            slots[i].style.borderColor = "rgba(6, 182, 212, 0.4)";
-            slots[i].style.background = "radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%)";
-        }
+        const prob = generateUniqueProblem();
+        targetAnswer = prob.answer;
+        document.getElementById("question-text").innerText = prob.text;
+        let opts = new Set([targetAnswer]);
+        while(opts.size < 4) opts.add(targetAnswer + Math.floor(Math.random()*20)-10);
+        let arr = Array.from(opts).sort(() => Math.random()-0.5);
+        let slots = document.getElementsByClassName("option-node-2d");
+        for(let i=0; i<4; i++) slots[i].innerText = arr[i];
     }
 
     function verifyChoice(node) {
-        if (isGameOver) return;
-        const input = parseInt(node.innerText);
-        const consoleBox = document.getElementById("console-box");
-        
-        if (input === targetAnswer) {
-            score += 10;
-            correctStreak++;
-            wrongStreak = 0;
-            if (correctStreak >= 3) { level++; correctStreak = 0; }
+        if(isGameOver) return;
+        clearInterval(timerInterval);
+        if(parseInt(node.innerText) === targetAnswer) {
+            score += 10; correctStreak++; wrongStreak = 0;
+            if(correctStreak >= 3) { level++; correctStreak=0; }
             document.getElementById("score-val").innerText = score;
-            node.style.borderColor = "#10b981";
-            consoleBox.classList.add("console-correct");
-            playFaaCorrect();
-            activeFXState = "snow";
-        } else {
-            wrongStreak++;
-            correctStreak = 0;
-            if (wrongStreak >= 2) {
-                triggerGameOver();
-                return;
-            }
-            node.style.borderColor = "#ef4444";
-            consoleBox.classList.add("console-incorrect");
-            playHahaIncorrect();
-            activeFXState = "fire";
-        }
-        setTimeout(() => {
-            consoleBox.classList.remove("console-correct", "console-incorrect");
-            activeFXState = "ambient";
+            document.getElementById("lvl-val").innerText = level;
+            playAudio(RIGHT_AUDIO_STREAM);
             renderMatchStage();
-        }, 1000);
+        } else {
+            wrongStreak++; correctStreak = 0;
+            if(wrongStreak >= 2) triggerGameOver("GAME OVER");
+            else playAudio(WRONG_AUDIO_STREAM);
+        }
     }
 
-    function triggerGameOver() {
-        isGameOver = true;
-        document.getElementById("question-text").innerHTML = "<div style='font-size:30px; color:#ef4444; cursor:pointer;' onclick='location.reload()'>GAME OVER<br>TAP TO RESTART</div>";
+    function triggerGameOver(msg) {
+        isGameOver = true; clearInterval(timerInterval);
+        document.getElementById("question-text").innerHTML = `<div onclick='location.reload()' style='cursor:pointer;'>${msg}<br>TAP TO RESTART</div>`;
     }
-
-    renderMatchStage();
 </script>
-
 </body>
 </html>
-"""
 
 # Inject audio streams cleanly
 sanitized_game_html = raw_template_html.replace(
