@@ -240,11 +240,19 @@ raw_template_html = """
     const WRONG_AUDIO_STREAM = "%%WRONG_AUDIO_REPLACE%%";
     const BG_AUDIO_STREAM = "%%BG_AUDIO_REPLACE%%";
 
+    // --- GAME STATE VARIABLES ---
+    let score = 0;
+    let level = 1;
+    let correctStreak = 0;
+    let wrongStreak = 0;
+    let isGameOver = false;
+    let targetAnswer = 0;
+    let historyRegister = [];
+
     // BACKGROUND MUSIC SYSTEM
     const bgAudio = new Audio(BG_AUDIO_STREAM);
     bgAudio.loop = true;
     bgAudio.volume = 0.3;
-    
     function startMusic() {
         bgAudio.play().catch(e => console.log("Waiting for user interaction"));
         document.removeEventListener('click', startMusic);
@@ -253,190 +261,112 @@ raw_template_html = """
 
     function playFaaCorrect() {
         if (!RIGHT_AUDIO_STREAM || RIGHT_AUDIO_STREAM.length < 50) return;
-        const audioInstance = new Audio(RIGHT_AUDIO_STREAM);
-        audioInstance.volume = 0.85;
-        audioInstance.play().catch(err => console.log("Audio lock:", err));
+        new Audio(RIGHT_AUDIO_STREAM).play().catch(e => {});
     }
 
     function playHahaIncorrect() {
         if (!WRONG_AUDIO_STREAM || WRONG_AUDIO_STREAM.length < 50) return;
-        const audioInstance = new Audio(WRONG_AUDIO_STREAM);
-        audioInstance.volume = 0.85;
-        audioInstance.play().catch(err => console.log("Audio lock:", err));
+        new Audio(WRONG_AUDIO_STREAM).play().catch(e => {});
     }
 
+    // --- THREE.JS ENGINE (Keep your existing initialization here) ---
     const canvasElement = document.getElementById('three-canvas');
     const scene = new THREE.Scene();
-    
     const camera = new THREE.PerspectiveCamera(65, 480 / 640, 0.1, 1000);
     camera.position.z = 18;
-
     const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, alpha: true });
     renderer.setSize(480, 640);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
     const totalParticles = 400; 
     const geometry = new THREE.BufferGeometry();
     const positionArray = new Float32Array(totalParticles * 3);
-    
     for(let i=0; i < totalParticles*3; i+=3) {
         positionArray[i] = (Math.random() - 0.5) * 45;      
-        positionArray[i+1] = (Math.random() - 0.5) * 45;    
-        positionArray[i+2] = (Math.random() - 0.5) * 25;    
+        positionArray[i+1] = (Math.random() - 0.5) * 45;   
+        positionArray[i+2] = (Math.random() - 0.5) * 25;   
     }
     geometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3));
-
-    const pointMaterial = new THREE.PointsMaterial({ size: 0.4, transparent: true, opacity: 0.65 });
-    pointMaterial.color.setHex(0xa855f7); 
-    
+    const pointMaterial = new THREE.PointsMaterial({ size: 0.4, transparent: true, opacity: 0.65, color: 0xa855f7 });
     const engineParticles = new THREE.Points(geometry, pointMaterial);
     scene.add(engineParticles);
-
     let activeFXState = "ambient"; 
-
     function tickGraphicsEngine() {
         requestAnimationFrame(tickGraphicsEngine);
         const positions = geometry.attributes.position.array;
-        
-        if (activeFXState === "ambient") {
-            engineParticles.rotation.y += 0.004;
-            engineParticles.rotation.x += 0.001;
-            pointMaterial.color.setHex(0xa855f7); 
-        } 
-        else if (activeFXState === "snow") {
-            pointMaterial.color.setHex(0x10b981); 
-            for(let i=1; i < positions.length; i+=3) {
-                positions[i] -= 0.5; 
-                if(positions[i] < -22) positions[i] = 22;
-            }
-            geometry.attributes.position.needsUpdate = true;
-        } 
-        else if (activeFXState === "fire") {
-            pointMaterial.color.setHex(0xef4444); 
-            for(let i=1; i < positions.length; i+=3) {
-                positions[i] += 0.65; 
-                if(positions[i] > 22) {
-                    positions[i] = -22;
-                    positions[i-1] = (Math.random() - 0.5) * 35;
-                }
-            }
-            geometry.attributes.position.needsUpdate = true;
-        }
-
+        if (activeFXState === "ambient") { engineParticles.rotation.y += 0.004; pointMaterial.color.setHex(0xa855f7); }
+        else if (activeFXState === "snow") { pointMaterial.color.setHex(0x10b981); for(let i=1; i < positions.length; i+=3) { positions[i] -= 0.5; if(positions[i] < -22) positions[i] = 22; } geometry.attributes.position.needsUpdate = true; }
+        else if (activeFXState === "fire") { pointMaterial.color.setHex(0xef4444); for(let i=1; i < positions.length; i+=3) { positions[i] += 0.65; if(positions[i] > 22) { positions[i] = -22; positions[i-1] = (Math.random() - 0.5) * 35; } } geometry.attributes.position.needsUpdate = true; }
         renderer.render(scene, camera);
     }
     tickGraphicsEngine();
 
-    let score = 0;
-    let targetAnswer = 0;
-    let historyRegister = [];
-
+    // --- GAME LOGIC ---
     function generateUniqueProblem() {
         let op, n1, n2, equation, value;
-        const pool = ['+', '-', '*', '/'];
+        let range = 89 + (level * 20); // Increase range by level
+        const pool = level > 2 ? ['+', '-', '*', '/'] : ['+', '-'];
+        op = pool[Math.floor(Math.random() * pool.length)];
         
-        while (true) {
-            op = pool[Math.floor(Math.random() * pool.length)];
-            
-            if (op === '+') {
-                n1 = Math.floor(Math.random() * 89) + 10;
-                n2 = Math.floor(Math.random() * 89) + 10;
-                equation = n1 + " + " + n2; value = n1 + n2;
-            } 
-            else if (op === '-') {
-                n1 = Math.floor(Math.random() * 89) + 10;
-                n2 = Math.floor(Math.random() * (n1 - 10 + 1)) + 10; 
-                equation = n1 + " - " + n2; value = n1 - n2;
-            } 
-            else if (op === '*') {
-                n1 = Math.floor(Math.random() * 89) + 10;
-                n2 = Math.floor(Math.random() * 9) + 2; 
-                equation = n1 + " × " + n2; value = n1 * n2;
-            } 
-            else if (op === '/') {
-                n2 = Math.floor(Math.random() * 11) + 2; 
-                value = Math.floor(Math.random() * 40) + 5; 
-                n1 = n2 * value; 
-                equation = n1 + " ÷ " + n2;
-            }
-
-            if (!historyRegister.includes(equation)) {
-                historyRegister.push(equation);
-                if (historyRegister.length > 1000) historyRegister.shift(); 
-                break;
-            }
-        }
+        if (op === '+') { n1 = Math.floor(Math.random() * range) + 10; n2 = Math.floor(Math.random() * range) + 10; equation = n1 + " + " + n2; value = n1 + n2; }
+        else if (op === '-') { n1 = Math.floor(Math.random() * range) + 10; n2 = Math.floor(Math.random() * (n1 - 10)) + 10; equation = n1 + " - " + n2; value = n1 - n2; }
+        else if (op === '*') { n1 = Math.floor(Math.random() * (level * 5 + 5)) + 2; n2 = Math.floor(Math.random() * 9) + 2; equation = n1 + " × " + n2; value = n1 * n2; }
+        else { n2 = Math.floor(Math.random() * 8) + 2; value = Math.floor(Math.random() * 20) + 2; n1 = n2 * value; equation = n1 + " ÷ " + n2; }
         return { text: equation, answer: value };
     }
 
     function renderMatchStage() {
+        if(isGameOver) return;
         const log = generateUniqueProblem();
         targetAnswer = log.answer;
         document.getElementById("question-text").innerText = log.text;
-
-        let optionsSet = new Set();
-        optionsSet.add(targetAnswer);
-
-        while(optionsSet.size < 4) {
-            let variance = Math.floor(Math.random() * 20) - 10;
-            if (variance === 0) variance = 4;
-            let alternate = targetAnswer + variance;
-            if(alternate >= 0) optionsSet.add(alternate);
-        }
-
+        
+        let optionsSet = new Set([targetAnswer]);
+        while(optionsSet.size < 4) { optionsSet.add(targetAnswer + (Math.floor(Math.random()*20)-10)); }
         let shuffled = Array.from(optionsSet).sort(() => Math.random() - 0.5);
         const slots = document.getElementsByClassName("option-node-2d");
-        
-        for(let i=0; i < 4; i++) {
+        for(let i=0; i<4; i++) {
             slots[i].innerText = shuffled[i];
             slots[i].style.borderColor = "rgba(6, 182, 212, 0.4)";
             slots[i].style.background = "radial-gradient(circle at 30% 30%, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%)";
-            slots[i].style.color = "#38bdf8";
-            slots[i].style.boxShadow = "0 10px 25px rgba(0,0,0,0.5)";
         }
     }
 
     function verifyChoice(node) {
+        if (isGameOver) return;
         const input = parseInt(node.innerText);
         const consoleBox = document.getElementById("console-box");
         
         if (input === targetAnswer) {
             score += 10;
+            correctStreak++;
+            wrongStreak = 0;
+            if (correctStreak >= 3) { level++; correctStreak = 0; }
             document.getElementById("score-val").innerText = score;
-            
             node.style.borderColor = "#10b981";
-            node.style.background = "radial-gradient(circle at center, #10b981 0%, #059669 100%)";
-            node.style.color = "#ffffff";
-            node.style.boxShadow = "0 0 35px #10b981";
-            
             consoleBox.classList.add("console-correct");
-            
             playFaaCorrect();
             activeFXState = "snow";
-            
-            setTimeout(() => {
-                consoleBox.classList.remove("console-correct");
-                activeFXState = "ambient";
-                renderMatchStage();
-            }, 1200);
-        } 
-        else {
+        } else {
+            wrongStreak++;
+            correctStreak = 0;
+            if (wrongStreak >= 2) {
+                triggerGameOver();
+                return;
+            }
             node.style.borderColor = "#ef4444";
-            node.style.background = "radial-gradient(circle at center, #ef4444 0%, #dc2626 100%)";
-            node.style.color = "#ffffff";
-            node.style.boxShadow = "0 0 35px #ef4444";
-            
             consoleBox.classList.add("console-incorrect");
-            
             playHahaIncorrect();
             activeFXState = "fire";
-            
-            setTimeout(() => {
-                consoleBox.classList.remove("console-incorrect");
-                activeFXState = "ambient";
-                renderMatchStage();
-            }, 1200);
         }
+        setTimeout(() => {
+            consoleBox.classList.remove("console-correct", "console-incorrect");
+            activeFXState = "ambient";
+            renderMatchStage();
+        }, 1000);
+    }
+
+    function triggerGameOver() {
+        isGameOver = true;
+        document.getElementById("question-text").innerHTML = "<div style='font-size:30px; color:#ef4444; cursor:pointer;' onclick='location.reload()'>GAME OVER<br>TAP TO RESTART</div>";
     }
 
     renderMatchStage();
