@@ -176,25 +176,29 @@ raw_template_html = """
 
     
     function generateUniqueProblem() {
-        let op, n1, n2, val, eq;
+        let op, n1, n2, val, eq, timeLimit;
 
         if (userMode === 'basic') {
-            // BASIC: Add/Sub/Mult 1-99
             let pool = ['+', '-', '*'];
             op = pool[Math.floor(Math.random() * pool.length)];
-            n1 = Math.floor(Math.random() * 99) + 1;
-            n2 = Math.floor(Math.random() * 99) + 1;
-            if (op === '+') val = n1 + n2;
-            else if (op === '-') { 
-                // Ensure positive result for subtraction
-                if (n1 < n2) [n1, n2] = [n2, n1];
-                val = n1 - n2; 
+            
+            // Logic for operations and ranges
+            if (op === '*') {
+                n1 = Math.floor(Math.random() * 30) + 1;
+                n2 = Math.floor(Math.random() * 30) + 1;
+                val = n1 * n2;
+            } else {
+                n1 = Math.floor(Math.random() * 99) + 1;
+                n2 = Math.floor(Math.random() * 99) + 1;
+                val = (op === '+') ? (n1 + n2) : (n1 > n2 ? n1 - n2 : n2 - n1);
+                if (op === '-') eq = Math.max(n1, n2) + " - " + Math.min(n1, n2);
             }
-            else val = n1 * n2;
-            eq = n1 + (op === '*' ? " × " : " " + op + " ") + n2;
+            if (op !== '-') eq = n1 + (op === '*' ? " × " : " " + op + " ") + n2;
+            
+            // Time: 45 seconds for all Basic questions
+            timeLimit = 45;
         } 
         else if (userMode === 'medium') {
-            // MEDIUM: Add/Sub 100-499, Mult 20-50, Div (2-digit 11-30)
             let pool = ['+', '-', '*', '/'];
             op = pool[Math.floor(Math.random() * pool.length)];
             
@@ -203,21 +207,23 @@ raw_template_html = """
                 n2 = Math.floor(Math.random() * 400) + 100;
                 val = (op === '+') ? (n1 + n2) : (Math.abs(n1 - n2));
                 eq = Math.max(n1, n2) + " " + op + " " + Math.min(n1, n2);
-            } else if (op === '*') {
-                n1 = Math.floor(Math.random() * 31) + 20;
-                n2 = Math.floor(Math.random() * 31) + 20;
-                val = n1 * n2;
-                eq = n1 + " × " + n2;
+                timeLimit = 35; // Add/Sub time
             } else {
-                // Division: completely divisible by 11-30
-                n2 = Math.floor(Math.random() * 20) + 11;
-                val = Math.floor(Math.random() * 50) + 10;
-                n1 = n2 * val;
-                eq = n1 + " ÷ " + n2;
+                if (op === '*') {
+                    n1 = Math.floor(Math.random() * 31) + 20;
+                    n2 = Math.floor(Math.random() * 31) + 20;
+                    val = n1 * n2;
+                    eq = n1 + " × " + n2;
+                } else {
+                    n2 = Math.floor(Math.random() * 20) + 11;
+                    val = Math.floor(Math.random() * 50) + 10;
+                    n1 = n2 * val;
+                    eq = n1 + " ÷ " + n2;
+                }
+                timeLimit = 45; // Mult/Div time
             }
         } 
         else { // PRO
-            // PRO: Add/Sub 500-999, Mult 50-99, Div (Divisor 31-99)
             let pool = ['+', '-', '*', '/'];
             op = pool[Math.floor(Math.random() * pool.length)];
             
@@ -226,22 +232,23 @@ raw_template_html = """
                 n2 = Math.floor(Math.random() * 500) + 500;
                 val = (op === '+') ? (n1 + n2) : (Math.abs(n1 - n2));
                 eq = Math.max(n1, n2) + " " + op + " " + Math.min(n1, n2);
-            } else if (op === '*') {
-                n1 = Math.floor(Math.random() * 50) + 50;
-                n2 = Math.floor(Math.random() * 50) + 50;
-                val = n1 * n2;
-                eq = n1 + " × " + n2;
+                timeLimit = 25; // Add/Sub time
             } else {
-                // Division: completely divisible by 31-99
-                n2 = Math.floor(Math.random() * 69) + 31;
-                val = Math.floor(Math.random() * 50) + 10;
-                n1 = n2 * val;
-                eq = n1 + " ÷ " + n2;
+                if (op === '*') {
+                    n1 = Math.floor(Math.random() * 50) + 50;
+                    n2 = Math.floor(Math.random() * 50) + 50;
+                    val = n1 * n2;
+                    eq = n1 + " × " + n2;
+                } else {
+                    n2 = Math.floor(Math.random() * 69) + 31;
+                    val = Math.floor(Math.random() * 50) + 10;
+                    n1 = n2 * val;
+                    eq = n1 + " ÷ " + n2;
+                }
+                timeLimit = 40; // Mult/Div time
             }
         }
 
-        // Timer adjustments based on complexity
-        let timeLimit = (userMode === 'pro') ? 20 : (userMode === 'medium' ? 30 : 45);
         startTimer(timeLimit);
         return { text: eq, answer: val };
     }
@@ -294,7 +301,7 @@ raw_template_html = """
         
         // Re-inject the centered content and the button linked to resetGame
         overlay.innerHTML = `
-            <div class="dragon-eyes">👁️👁️</div>
+            <div class="dragon-eyes">🐉🐉</div>
             <div style="color:white; font-size:30px; margin-top:20px;">${msg}</div>
             <button class="mode-btn" onclick="resetGame()" style="pointer-events: auto; margin-top:30px;">RETRY</button>
         `;
