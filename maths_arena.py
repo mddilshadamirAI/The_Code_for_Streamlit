@@ -54,6 +54,12 @@ raw_template_html = """
     .mode-btn:hover { background:#06b6d4; color:#fff; }
     .hit-flash { animation: shake 0.2s linear; border: 2px solid #ef4444 !important; }
     @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);} 75% {transform: translateX(10px);} }
+    /* Dragon & Lion Animations */
+    #cinematic-overlay { position:absolute; top:0; left:0; width:100%; height:100%; z-index:20; display:none; pointer-events:none; }
+    .dragon-eyes { font-size: 100px; color: red; animation: blink 0.5s infinite; text-shadow: 0 0 50px red; }
+    .lion-roar { font-size: 60px; color: gold; animation: popIn 0.5s ease-out; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 </style>
 </head>
 <body>
@@ -138,34 +144,52 @@ raw_template_html = """
         for(let i=0; i<4; i++) slots[i].innerText = arr[i];
     }
 
-    function verifyChoice(node) {
-        if(isGameOver) return;
-        clearInterval(timerInterval);
-        if(parseInt(node.innerText) === targetAnswer) {
-            score += (10 + (combo * 5)); 
-            combo++;
-            document.getElementById("score-val").innerText = score;
-            document.getElementById("combo-val").innerText = "x" + combo;
-            playAudio(RIGHT_AUDIO); renderMatchStage();
+    function checkMilestone(score) {
+    if (score > 0 && score % 100 === 0) {
+        const overlay = document.getElementById("cinematic-overlay");
+        overlay.style.display = "flex";
+        overlay.style.alignItems = "center";
+        overlay.style.justifyContent = "center";
+        overlay.innerHTML = `<div class="lion-roar">🦁 ROAR! ${score} HITS!</div>`;
+        playAudio("path_to_lion_roar.mp3"); // Ensure you have this file
+        setTimeout(() => { overlay.style.display = "none"; }, 2000);
+    }
+}
+
+function verifyChoice(node) {
+    if(isGameOver) return;
+    clearInterval(timerInterval);
+    if(parseInt(node.innerText) === targetAnswer) {
+        score += 10; 
+        combo++;
+        document.getElementById("score-val").innerText = score;
+        document.getElementById("combo-val").innerText = "x" + combo;
+        checkMilestone(score); // Check for Lion
+        playAudio(RIGHT_AUDIO); renderMatchStage();
+    } else {
+        lives--;
+        document.getElementById("life-val").innerText = lives;
+        if(lives > 0) {
+            playAudio(WRONG_AUDIO); renderMatchStage();
         } else {
-            lives--;
-            document.getElementById("life-val").innerText = lives;
-            if(lives > 0) {
-                document.getElementById("viewport").classList.add("hit-flash");
-                setTimeout(()=>document.getElementById("viewport").classList.remove("hit-flash"), 200);
-                playAudio(WRONG_AUDIO);
-                renderMatchStage();
-            } else {
-                triggerGameOver("GAME OVER");
-            }
+            triggerGameOver("DRAGON DEFEAT");
         }
     }
+}
 
-    function triggerGameOver(msg) {
-        isGameOver = true; clearInterval(timerInterval);
-        document.getElementById("question-text").innerHTML = `<div onclick='location.reload()' style='cursor:pointer;'>${msg}<br>TAP TO RESTART</div>`;
-    }
+function triggerGameOver(msg) {
+    isGameOver = true; clearInterval(timerInterval);
+    const overlay = document.getElementById("cinematic-overlay");
+    overlay.style.display = "flex";
+    overlay.style.flexDirection = "column";
+    overlay.innerHTML = `
+        <div class="dragon-eyes">👁️👁️</div>
+        <div style="color:white; font-size:30px;">${msg}</div>
+        <button class="mode-btn" onclick="location.reload()">RETRY</button>
+    `;
+}
 </script>
+<div id="cinematic-overlay"></div>
 </body>
 </html>
 """
