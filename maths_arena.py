@@ -166,7 +166,7 @@ raw_template_html = """
         overlay.style.alignItems = "center";
         overlay.style.justifyContent = "center";
         
-        overlay.innerHTML = `<div class="lion-roar">🦁 ROAR!<br>${scoreValue} POINTS!</div>`;
+        overlay.innerHTML = `<div class="lion-roar">𓆩☠︎︎𓆪 ROAR!<br>${scoreValue} POINTS!</div>`;
         playAudio(LION_ROAR); 
         
         // Remove after 2 seconds
