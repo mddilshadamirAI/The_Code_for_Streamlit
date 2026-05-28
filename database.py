@@ -1885,7 +1885,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Which number comes just before 90?", "answer": 89, "options": [88, 89, 91, 99]},
             {"question": "Count by 5s: 55, 60, 65, __.", "answer": 70, "options": [68, 70, 75, 80]},
             {"question": "How many tens are in 92?", "answer": 9, "options": [2, 9, 92, 11]},
-            {"question": "Which number is greater: 67 or 76?", "answer": "76", "options": ["67", "76", "Equal", "None"]}',
+            {"question": "Which number is greater: 67 or 76?", "answer": "76", "options": ["67", "76", "Equal", "None"]},
             {"question": "Expand 83 as tens and ones.", "answer": "8 tens + 3 ones", "options": ["8T + 3O", "3T + 8O", "80T + 3O", "8T + 30O"]},
             {"question": "What is the successor of 99?", "answer": 100, "options": [98, 100, 101, 99]},
             {"question": "Which number is smaller: 51 or 59?", "answer": "51", "options": ["51", "59", "Equal", "None"]},
