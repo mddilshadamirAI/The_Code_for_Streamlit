@@ -2203,11 +2203,11 @@ PHASE_6_QUESTIONS = {
       "Class 8": {
         "Ch 14: Factorisation Polynomials": [
             {"question": "Factorize x^2 + 5x + 6.", "answer": "(x+2)(x+3)", "options": ["(x+1)(x+6)", "(x+2)(x+3)", "(x-2)(x-3)", "None"]},
-            {"question": "HCF of 4x and 8?", "answer": 4, "options": [2, 4, x, 8]},
+            {"question": "HCF of 4x and 8?", "answer": "4", "options": ["2", "4", "x", "8"]},
             {"question": "Factorize a^2 - b^2.", "answer": "(a-b)(a+b)", "options": ["(a-b)^2", "(a+b)^2", "(a-b)(a+b)", "None"]},
             {"question": "Factorize x^2 + 2x + 1.", "answer": "(x+1)^2", "options": ["(x+1)^2", "(x-1)^2", "x(x+1)", "None"]},
             {"question": "Is x^2 - 1 = (x-1)(x+1)?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
-            {"question": "Common factor in 5x + 10?", "answer": 5, "options": [1, 5, x, 10]},
+            {"question": "Common factor in 5x + 10?", "answer": "5", "options": ["1", "5", "x", "10"]},
             {"question": "Factorize x^2 - 4.", "answer": "(x-2)(x+2)", "options": ["(x-2)^2", "(x+2)^2", "(x-2)(x+2)", "None"]},
             {"question": "HCF of 3x^2 and 6x?", "answer": "3x", "options": ["3", "x", "3x", "6x"]},
             {"question": "Factorize y^2 + 7y + 10.", "answer": "(y+2)(y+5)", "options": ["(y+2)(y+5)", "(y+1)(y+10)", "(y-2)(y-5)", "None"]},
