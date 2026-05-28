@@ -53,7 +53,7 @@ PHASE_1_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 2: Counting in Groups": [
+        "Ch 1: Counting in Groups": [
             {"question": "NCERT Ex 2.1: Radha arranges matching pairs of earrings. If she has 6 complete pairs, how many individual earrings does she possess?", "answer": 12, "options": ["6", "10", "12", "14"]},
             {"question": "RS Aggarwal Ch 3: A bundle contains exactly 10 wooden sticks. If a farmer builds 4 full bundles and has 5 loose sticks left over, what is the net count?", "answer": 45, "options": ["40", "45", "54", "50"]},
             {"question": "NCERT Ex 2.2: There are 3 groups of spoons on a counter, and each group has exactly 4 spoons. What is the total number of spoons?", "answer": 12, "options": ["7", "10", "12", "16"]},
@@ -75,7 +75,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 2.10: If a tray holds 3 rows of cupcakes with 5 cakes in each row, calculate the total quantity.", "answer": 15, "options": ["8", "12", "15", "18"]},
             {"question": "RS Aggarwal Ch 3: A mechanic tracks 8 bundles of 10 steel bolts. Find the aggregate total of bolts.", "answer": 80, "options": ["18", "70", "80", "90"]}
         ],
-        "Ch 7: Jugs and Mugs": [
+        "Ch 2: Jugs and Mugs": [
             {"question": "NCERT Ex 7.2: A large cooking pot can hold exactly 15 mugs of soup fluid. If a small family jug holds 3 mugs, how many full jugs are needed to fill the pot?", "answer": 5, "options": ["3", "4", "5", "6"]},
             {"question": "RS Aggarwal Ch 8: A bucket contains 8 litres of water. If Ram removes 3 litres using a mug container, how many litres of water remain inside the bucket?", "answer": 5, "options": ["4", "5", "6", "11"]},
             {"question": "NCERT Ex 7.3: A small teacup holds 20 ml of liquid. How much tea is contained inside 5 identical full teacups?", "answer": 100, "options": ["25", "80", "100", "120"]},
@@ -99,7 +99,7 @@ PHASE_1_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 2: Fun with Numbers": [
+        "Ch 1: Fun with Numbers": [
             {"question": "NCERT Ex 2.2: Dhoni scored 96 runs in a cricket match. How many more runs did he require to complete a glorious century (100 runs)?", "answer": 4, "options": ["2", "4", "6", "10"]},
             {"question": "RS Aggarwal Ch 2: Read the place parameters: What is the true place value of the digit 6 inside the numeral integer 462?", "answer": 60, "options": ["6", "60", "600", "2"]},
             {"question": "NCERT Ex 2.3: A collection contains 3 Digit coordinates. Solve the number value for: Three Hundred and Seven.", "answer": 307, "options": ["37", "370", "307", "3007"]},
@@ -121,7 +121,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 2.11: Count backwards by 10s: 320, 310, 300, __.", "answer": 290, "options": ["200", "280", "290", "299"]},
             {"question": "RS Aggarwal Ch 2: What is the highest possible 3-digit number formable using all digits 4, 9, 1?", "answer": 941, "options": ["149", "491", "914", "941"]}
         ],
-        "Ch 4: Long and Short": [
+        "Ch 2: Long and Short": [
             {"question": "NCERT Ex 4.1: A tailor uses a measuring tape layout. If a piece of silk cloth measures exactly 3 meters, express this distance metric in centimeters.", "answer": 300, "options": ["30", "100", "300", "3000"]},
             {"question": "RS Aggarwal Ch 9: An athlete ran a sprint distance of 2000 meters during a training camp. Express this track run distance cleanly in kilometers.", "answer": 2, "options": ["2", "20", "200", "1"]},
             {"question": "NCERT Ex 4.2: A standard school desk measures 100 centimeters across. How many meters long is the desk?", "answer": 1, "options": ["1", "10", "100", "2"]},
@@ -167,7 +167,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 1.10: A decorative brick chimney requires 180 red bricks and 120 grey bricks. Find the total combined brick count.", "answer": 300, "options": ["60", "280", "300", "400"]},
             {"question": "RS Aggarwal Ch 1: A masonry helper shifts 25 bricks per wheelbarrow trip. How many trips are required to move a pile of 300 bricks?", "answer": 12, "options": ["10", "12", "15", "25"]}
         ],
-        "Ch 4: Tick-Tick-Tick": [
+        "Ch 2: Tick-Tick-Tick": [
             {"question": "NCERT Ex 4.2: A school sports drill starts at 08:15 AM and concludes at 10:45 AM. Calculate the absolute duration of the sports drill session in minutes.", "answer": 150, "options": ["120", "130", "150", "180"]},
             {"question": "RS Aggarwal Ch 15: An automated manufacturing conveyor belt runs for 3 hours and 20 minutes. Convert this complete operational run time into net minutes.", "answer": 200, "options": ["180", "200", "220", "240"]},
             {"question": "NCERT Ex 4.3: A standard train itinerary lists a departure parameter at 16:30 hours. Convert this timestamp layout to standard 12-hour clock format.", "answer": "04:30 PM", "options": ["04:30 AM", "04:30 PM", "06:30 AM", "06:30 PM"]},
@@ -214,7 +214,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 1.10: If a container holds 15 kg of packaged premium fish fillets, how many matching containers are filled using a factory lot of 135 kg?", "answer": 9, "options": [7, 8, 9, 11]},
             {"question": "RS Aggarwal Ch 4: A commercial deep freezer unit consumes 4 units of electricity per hour. Calculate the net consumption over an entire day cycle (24 hours).", "answer": 96, "options": [24, 48, 84, 96]}
         ],
-        "Ch 11: Area and its Boundary": [
+        "Ch 2: Area and its Boundary": [
             {"question": "NCERT Ex 11.2: A rectangular school patch layout measures 15 meters in length and 10 meters in width. Compute its total square meter area.", "answer": 150, "options": [50, 150, 300, 250]},
             {"question": "RS Aggarwal Ch 18: Find the perimeter boundary line of a perfect square garden plot whose single outer edge fence measures 12 meters.", "answer": 48, "options": [24, 36, 48, 144]},
             {"question": "NCERT Ex 11.3: A square carpet layout has an area calculation of 64 square meters. Find the metric measurement of its single straight edge line.", "answer": 8, "options": [4, 8, 16, 32]},
@@ -260,7 +260,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 1.10: Express the numerical value token of 'Seven million four hundred fifty-two thousand two hundred eighty-three' in standard digits.", "answer": 7452283, "options": [745283, 7452283, 74520283, 74522083]},
             {"question": "RS Aggarwal Ch 1: Round off the large census data string element 98,745 cleanly to its nearest tracking parameter of ten-thousands.", "answer": 100000, "options": [90000, 98000, 99000, 100000]}
         ],
-        "Ch 3: Playing with Numbers": [
+        "Ch 2: Playing with Numbers": [
             {"question": "NCERT Ex 3.7: Three tankers contain 403 litres, 434 litres, and 465 litres of diesel respectively. Find the maximum capacity of a container that can measure the diesel of all three tankers an exact number of times (HCF).", "answer": 31, "options": [21, 31, 41, 51]},
             {"question": "RS Aggarwal Ch 2: Two traffic signals flash every 60 seconds and 90 seconds respectively. If they flash together at 8:00 AM, after how many seconds will they flash together again?", "answer": 180, "options": [120, 150, 180, 240]},
             {"question": "NCERT Ex 3.1: Find the complete summation score of all distinct factors of the integer number 24.", "answer": 60, "options": [24, 48, 54, 60]},
@@ -306,7 +306,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 1.10: A player stands at position 0 on a grid tracker. He steps back 4 units, 3 times consecutively. What is his grid coordinate?", "answer": -12, "options": [-7, 12, -12, -1]},
             {"question": "RS Aggarwal Ch 1: Find the net result parameters: Subtract the integer (-40) from the value of 10.", "answer": 50, "options": [-30, 30, -50, 50]}
         ],
-        "Ch 4: Simple Equations": [
+        "Ch 2: Simple Equations": [
             {"question": "NCERT Ex 4.1: Irfan states that he has 7 marbles more than five times the marbles Parmit has. If Irfan has 37 marbles in his collection, find how many marbles Parmit has.", "answer": 6, "options": [5, 6, 7, 8]},
             {"question": "RS Aggarwal Ch 4: Solve the structural balance expression to find the isolated coordinate matrix value of x: 3x - 8 = 13.", "answer": 7, "options": [5, 6, 7, 8]},
             {"question": "NCERT Ex 4.2: The teacher says that the highest marks obtained by a student in her class is twice the lowest marks plus 7. The highest score is 87. Find lowest score.", "answer": 40, "options": [35, 40, 45, 50]},
@@ -330,7 +330,7 @@ PHASE_1_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 2: Linear Equations": [
+        "Ch 1: Linear Equations": [
             {"question": "NCERT Ex 2.2: The perimeter of a rectangular swimming pool is 154 m. Its length is 2 m more than twice its breadth. Determine the breadth of the pool.", "answer": 25, "options": [20, 25, 30, 35]},
             {"question": "RS Aggarwal Ch 8: Two numbers are in the ratio 5:3. If they differ from each other by exactly 18 units, determine the value of the larger structural number.", "answer": 45, "options": [27, 45, 54, 63]},
             {"question": "NCERT Ex 2.1: Solve the structural baseline algebraic script for x: 8x + 4 = 3(x - 1) + 7.", "answer": 0, "options": [0, 1, 2, -1]},
@@ -352,7 +352,7 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 2.10: Solve the standard cross-multiplication script matrix block: (7y + 4) / (y + 2) = -4/3. Isolate y.", "answer": -4, "options": [-2, -4, 2, 4]},
             {"question": "RS Aggarwal Ch 8: The width of a standard industrial panel is 2/3 of its running length. If the area checks out at 2400 sq cm, calculate length width constraint x payload where 2/3x^2 = 2400. Find length.", "answer": 60, "options": [40, 50, 60, 90]}
         ],
-        "Ch 12: Exponents and Powers": [
+        "Ch 2: Exponents and Powers": [
             {"question": "NCERT Ex 12.1: Simplify the laws of exponents payload calculation string cleanly to find the integer answer token value: (3^-1 + 4^-1 + 5^-1)^0", "answer": 1, "options": [0, 1, 12, 60]},
             {"question": "RS Aggarwal Ch 2: Evaluate the computational component expression parameters to resolve the base power value: (2/3)^-2 multiplied by (2/3)^4. What is the final value over 9?", "answer": 4, "options": [2, 4, 6, 8]},
             {"question": "NCERT Ex 12.2: Express the massive astronomical value calculation measurement 0.0000000000085 in its standard scientific notation layout form.", "answer": "8.5 * 10^-12", "options": ["8.5 * 10^-11", "8.5 * 10^-12", "85 * 10^-13", "0.85 * 10^-10"]},
@@ -407,7 +407,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation P: A baker decorates 4 cupcakes with stars and 5 cupcakes with sprinkles. How many total cupcakes are decorated?", "answer": 9, "options": [8, 9, 10, 11]},
             {"question": "Ex Variation Q: 3 bright stars appear early in the evening sky. Soon, 6 more stars appear. What is the total number of visible stars?", "answer": 9, "options": [8, 9, 11, 12]}
         ],
-        "Ch 5: Numbers 10 to 20": [
+        "Ch 4: Numbers 10 to 20": [
             {"question": "NCERT Ex 5.2: You have a group bundle of 10 chocolates and 3 loose individual chocolates left over. What is the final numeral layout value?", "answer": 13, "options": [10, 12, 13, 31]},
             {"question": "RS Aggarwal Ch 5: Count backward from the number 20. What specific counting integer comes directly before 19?", "answer": 18, "options": [17, 18, 19, 20]},
             {"question": "Ex Variation A: A teacher ties a tight bundle of 10 wooden rulers and leaves 5 single rulers on the desk. What total value is represented?", "answer": 15, "options": [14, 15, 16, 51]},
@@ -431,7 +431,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 4: Counting in Tens": [
+        "Ch 3: Counting in Tens": [
             {"question": "NCERT Ex 4.1: Traki collects 35 chickens on her farm. She places exactly 10 chickens inside each wooden basket. How many baskets are completely filled?", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "RS Aggarwal Ch 4: A woodcutter makes bundles of 10 twigs each. If he completes 6 full bundles, how many twigs has he secured in total?", "answer": 60, "options": [50, 56, 60, 66]},
             {"question": "Ex Variation A: Ramesh has 48 shiny glass marbles. He wants to pack them into bags of 10 marbles each. How many loose marbles will remain outside?", "answer": 8, "options": [4, 6, 8, 10]},
@@ -453,7 +453,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: A warehouse receives 68 rubber tires. Workers build vertical stacks of 10 tires each. How many stacks are completely built?", "answer": 6, "options": [5, 6, 7, 8]},
             {"question": "Ex Variation R: A tailor buys 30 large decorative buttons. If he stitches exactly 10 buttons onto each custom coat, how many coats can he finish?", "answer": 3, "options": [2, 3, 4, 5]}
         ],
-        "Ch 10: Add Our Points": [
+        "Ch 4: Add Our Points": [
             {"question": "NCERT Ex 10.2: In a boarding game, a smart lizard moves along a wall to eat insects. To score exactly 12 points, it takes a path through three nodes: 5, 4, and what missing number?", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "RS Aggarwal Ch 12: In a cricket match overview, Sachin scores 14 runs in his first over and 11 runs in his second over. Calculate his total combined score.", "answer": 25, "options": [23, 24, 25, 26]},
             {"question": "Ex Variation A: During a ring toss game, Simran scores 7 points on her first throw, 5 points on her second, and 3 points on her third. What is her total score?", "answer": 15, "options": [12, 14, 15, 17]},
@@ -499,7 +499,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: A toy factory stores 730 plastic cars. A verification audit detects 130 damaged units and isolates them. How many sound units remain?", "answer": 600, "options": [500, 580, 600, 630]},
             {"question": "Ex Variation R: A local marathon registers 470 male runners and 230 female runners. Compute the total runner pool size for the main event.", "answer": 700, "options": [650, 680, 700, 720]}
         ],
-        "Ch 7: Time Goes On": [
+        "Ch 4: Time Goes On": [
             {"question": "NCERT Ex 7.1: If today's calendar date tracking falls exactly on a Monday, what specific day of the week was it precisely 2 days ago?", "answer": 6, "options": [5, 6, 7, 1]},
             {"question": "RS Aggarwal Ch 14: A clock hand points precisely to the number 3 for hours and number 12 for minutes. What exact time does this system configure?", "answer": 3, "options": [3, 6, 9, 12]},
             {"question": "Ex Variation A: If a calendar framework marks today as Thursday, what exact day index was it 3 days ago? (Assume Mon=1, Tue=2, Wed=3, Thu=4)", "answer": 1, "options": [1, 2, 3, 7]},
@@ -523,7 +523,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 2: Long and Short": [
+        "Ch 3: Long and Short": [
             {"question": "NCERT Ex 2.3: A fitness coach tells Devi Prasad to run 2 kilometers every morning. He completes one full round around a square field with a side length of 500 meters. How many total meters did he run?", "answer": 2000, "options": [1000, 1500, 2000, 2500]},
             {"question": "RS Aggarwal Ch 8: The height of a classroom door is 2 meters and 15 centimeters. Express this complete architectural layout parameter in total centimeters.", "answer": 215, "options": [200, 215, 250, 2150]},
             {"question": "Ex Variation A: A long-distance runner completes a track segment measuring 3 kilometers. Convert this distance into standard meters.", "answer": 3000, "options": [300, 3000, 30000, 3300]},
@@ -545,7 +545,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: A school running track length boundary equals 10,000 meters. What is this distance footprint in clean kilometers?", "answer": 10, "options": [1, 10, 100, 1000]},
             {"question": "Ex Variation R: A carpet roll layout spans 11 meters and 80 centimeters. What is this comprehensive value in total centimeters?", "answer": 1180, "options": [1108, 1180, 11800, 118]}
         ],
-        "Ch 11: Tables and Shares": [
+        "Ch 4: Tables and Shares": [
             {"question": "NCERT Ex 11.1: Ganu needs to pack 48 fragile glasses into shipping boxes. If each box can safely hold exactly 6 glasses, how many boxes does he require?", "answer": 8, "options": [6, 7, 8, 9]},
             {"question": "RS Aggarwal Ch 10: A group of 5 friends go out for lunch. The total bill amounts to Rs. 450. If they decide to split the share completely evenly, how much does each person pay?", "answer": 90, "options": [80, 85, 90, 95]},
             {"question": "Ex Variation A: A market vendor has 72 crisp apples. She bundles them into bags containing 8 apples each. How many bags can she fill?", "answer": 9, "options": [7, 8, 9, 10]},
@@ -569,7 +569,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 5": {
-        "Ch 2: Shapes and Angles": [
+        "Ch 3: Shapes and Angles": [
             {"question": "NCERT Ex 2.1: Look closely at the standard capital alphabet letter 'H'. How many perfect right angles (90 degrees) are formed inside its structural design lines?", "answer": 4, "options": [2, 4, 6, 8]},
             {"question": "RS Aggarwal Ch 13: An angle measures exactly 45 degrees on a protractor layout. How do you classify this specific angle archetype? Acute (1), Obtuse (2), Right (3)?", "answer": 1, "options": [1, 2, 3, 4]},
             {"question": "Ex Variation A: Examine a standard rectangle layout closely. How many internal right angles are formed within its four corners?", "answer": 4, "options": [2, 3, 4, 6]},
@@ -591,7 +591,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: An angle is measured to be precisely 15 degrees. What structural profile classification applies? Acute (1), Obtuse (2), Right (3).", "answer": 1, "options": [1, 2, 3, 4]},
             {"question": "Ex Variation R: A regular octagon is a polygon boundary frame. How many straight side segments are locked together to form it?", "answer": 8, "options": [6, 8, 10, 12]}
         ],
-        "Ch 7: Can You See the Pattern?": [
+        "Ch 4: Can You See the Pattern?": [
             {"question": "NCERT Ex 7.2: Analyze the geometric sequence progression blueprint safely: 7, 14, 21, 28, __. Find the missing value coordinate.", "answer": 35, "options": [32, 34, 35, 42]},
             {"question": "RS Aggarwal Ch 20: A number pattern loops by multiplying by 2 each step: 3, 6, 12, 24, __. What value completes this sequence array?", "answer": 48, "options": [36, 40, 48, 50]},
             {"question": "Ex Variation A: Identify the next logical value in the arithmetic series sequence blueprint: 5, 10, 15, 20, 25, __.", "answer": 30, "options": [28, 29, 30, 35]},
@@ -615,7 +615,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 6": {
-        "Ch 2: Whole Numbers": [
+        "Ch 3: Whole Numbers": [
             {"question": "NCERT Ex 2.2: Compute the sum using smart rearrangement properties to save system execution time: 234 + 197 + 66.", "answer": 497, "options": [434, 497, 500, 512]},
             {"question": "RS Aggarwal Ch 2: What is the true mathematical product identity element value when any whole number is multiplied by zero?", "answer": 0, "options": [0, 1, 10, -1]},
             {"question": "Ex Variation A: Use associative and commutative layout properties to solve this expression setup efficiently: 456 + 289 + 144.", "answer": 889, "options": [800, 889, 900, 912]},
@@ -637,7 +637,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: Evaluate the structural addition layout using regrouping rules: 789 + 411 + 200.", "answer": 1400, "options": [1200, 1300, 1400, 1500]},
             {"question": "Ex Variation R: Find the exact successor value for the whole number index coordinate 12099.", "answer": 12100, "options": [12098, 12100, 12101, 12200]}
         ],
-        "Ch 12: Ratio and Proportion": [
+        "Ch 4: Ratio and Proportion": [
             {"question": "NCERT Ex 12.1: The cost of a dozen premium pens is Rs. 180, and the cost of 8 standard ball pens is Rs. 56. Find the simplified ratio of the cost of one premium pen to one ball pen.", "answer": 15, "options": [15, 7, 2, 5]},
             {"question": "Ex Variation A: A high school science laboratory has 20 boys and 30 girls. Find the simplified baseline ratio configuration of boys to girls.", "answer": 2, "options": [2, 3, 5, 6]}, # storing leading term 2 for 2:3 system
             {"question": "Ex Variation B: A fast-moving courier vehicle travels 120 km in 2 hours. What is its unitary speed scale in km per hour?", "answer": 60, "options": [40, 50, 60, 120]},
@@ -660,7 +660,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 7": {
-        "Ch 2: Fractions and Decimals": [
+        "Ch 3: Fractions and Decimals": [
             {"question": "NCERT Ex 2.4: Lipika reads an educational textbook for 1.75 hours every day. She completely finishes reading the book in 6 days. Compute the total hours spent.", "answer": 10.5, "options": [9.5, 10.0, 10.5, 12.0]},
             {"question": "RS Aggarwal Ch 3: Convert the structural fraction 7/25 into a clean base-10 decimal format value.", "answer": 0.28, "options": [0.24, 0.28, 0.72, 2.5]},
             {"question": "Ex Variation A: Solve the structural fractional multiplication layout: (3/4) * (8/9). Reduce to lowest form.", "answer": 0.67, "options": [0.5, 0.67, 0.75, 1.2]}, # decimal format approximation 2/3
@@ -682,7 +682,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: If a wire length of 10.5 meters is divided into pieces of 1.5 meters each, how many pieces are extracted?", "answer": 7, "options": [5, 6, 7, 8]},
             {"question": "Ex Variation R: Express 45 millimeters in standard meters using system decimal shifting rules.", "answer": 0.045, "options": [0.45, 0.045, 0.0045, 4.5]}
         ],
-        "Ch 8: Comparing Quantities": [
+        "Ch 4: Comparing Quantities": [
             {"question": "NCERT Ex 8.3: An investor buys an asset property system for Rs. 3,000,000. Next year, its market valuation climbs to Rs. 3,600,000. Find the percentage increase.", "answer": 20, "options": [10, 15, 20, 25]},
             {"question": "RS Aggarwal Ch 9: Out of 40 students in a computer class, 25% pass a programming challenge. Find the absolute number of students who cleared the benchmark.", "answer": 10, "options": [8, 10, 12, 15]},
             {"question": "Ex Variation A: Find the simple interest valuation parameter on a principal layout of Rs. 5000 at 10% per annum for 2 years.", "answer": 1000, "options": [500, 1000, 1500, 2000]},
@@ -706,7 +706,7 @@ PHASE_2_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 1: Rational Numbers": [
+        "Ch 3: Rational Numbers": [
             {"question": "NCERT Ex 1.1: Identify the true multiplicative inverse property token value for the negative rational fraction -13/19.", "answer": -1.46, "options": [-1.46, 1.46, -0.68, 1.0]},
             {"question": "RS Aggarwal Ch 1: Find a rational number exactly halfway between the fraction coordinates 1/4 and 1/2.", "answer": 0.375, "options": [0.35, 0.375, 0.45, 0.5]},
             {"question": "Ex Variation A: Find the additive inverse properties value for the rational expression structure -7/12. (Decimal format)", "answer": 0.58, "options": [-0.58, 0.58, 1.71, 1.0]}, # approx 7/12
@@ -728,7 +728,7 @@ PHASE_2_QUESTIONS = {
             {"question": "Ex Variation Q: What is the additive identity value asset token for any rational calculation system architecture?", "answer": 0.0, "options": [0.0, 1.0, -1.0, "Null"]},
             {"question": "Ex Variation R: Calculate the value of the term mapping: (4/7) * (7/4) - 1. Find the final balance parameter.", "answer": 0.0, "options": [0.0, 1.0, -1.0, 2.0]}
         ],
-        "Ch 9: Algebraic Expressions": [
+        "Ch 4: Algebraic Expressions": [
             {"question": "NCERT Ex 9.3: Multiply the linear binomial expressions completely: (x + 3)(x + 5). What is the value of the resulting coefficient of the middle 'x' term?", "answer": 8, "options": [3, 5, 8, 15]},
             {"question": "RS Aggarwal Ch 12: Evaluate the polynomial expression system mapping for x = 3: 2x^2 - 5x + 4. What value drops out?", "answer": 7, "options": [5, 7, 11, 13]},
             {"question": "Ex Variation A: Expand the algebraic square expression identity: (x + 4)^2. Identify the constant numeric term value.", "answer": 16, "options": [4, 8, 12, 16]},
@@ -758,7 +758,7 @@ PHASE_2_QUESTIONS = {
 # ============================================================
 PHASE_3_QUESTIONS = {
    "Class 1" : {
-       "Ch 4: Subtraction Drill": [
+       "Ch 5: Subtraction Drill": [
         {"question": "6 mangoes on a plate, 2 eaten. How many left?", "answer": 4, "options": [2, 3, 4, 5]},
         {"question": "8 leaves on a branch, 5 fall. How many remain?", "answer": 3, "options": [2, 3, 4, 5]},
         {"question": "9 marbles in a cup, 4 taken away. How many stay?", "answer": 5, "options": [4, 5, 6, 7]},
@@ -826,7 +826,7 @@ PHASE_3_QUESTIONS = {
             {"question": "Sequence: 11, 22, 33, 44, __?", "answer": 55, "options": [50, 55, 60, 65]},
             {"question": "Pattern: Happy, Sad, Happy, Sad, __?", "answer": "Happy", "options": ["Happy", "Sad", "Angry", "Calm"]}
         ],
-        "Ch 11: Lines and Lines": [
+        "Ch 6: Lines and Lines": [
             {"question": "A straight line drawn with a scale is called a __?", "answer": "Straight line", "options": ["Straight line", "Curved line", "Zigzag", "Circle"]},
             {"question": "How many sides does a triangle have?", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "Is a circle made of straight lines?", "answer": "No", "options": ["Yes", "No", "Maybe", "Sometimes"]},
@@ -872,7 +872,7 @@ PHASE_3_QUESTIONS = {
             {"question": "How many corners in a circle?", "answer": 0, "options": [0, 1, 2, 3]},
             {"question": "Which shape is used in a stop sign?", "answer": "Octagon", "options": ["Triangle", "Square", "Octagon", "Circle"]}
         ],
-        "Ch 11: Jugs and Mugs": [
+        "Ch 6: Jugs and Mugs": [
             {"question": "1 Litre is equal to how many millilitres?", "answer": 1000, "options": [100, 500, 1000, 10000]},
             {"question": "If a bottle holds 500ml, how many bottles make 1 Litre?", "answer": 2, "options": [1, 2, 3, 4]},
             {"question": "Which is more: 500ml or 1 Litre?", "answer": "1 Litre", "options": ["500ml", "1 Litre", "Equal", "Cannot say"]},
@@ -896,7 +896,7 @@ PHASE_3_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 3: A Trip to Bhopal": [
+        "Ch 5: A Trip to Bhopal": [
             {"question": "NCERT Ex 3.1: A school trip requires transport. Each school bus can carry 50 children. If 210 children register, minimum buses needed?", "answer": 5, "options": [4, 5, 6, 7]},
             {"question": "RS Aggarwal Ch 4: 1 dozen bananas cost Rs 36. Cost of 5 bananas?", "answer": 15, "options": [12, 15, 18, 20]},
             {"question": "Each bus seats 50 kids. How many buses for 100 kids?", "answer": 2, "options": [1, 2, 3, 4]},
@@ -918,7 +918,7 @@ PHASE_3_QUESTIONS = {
             {"question": "If 3 buses hold 150, capacity of 1 bus?", "answer": 50, "options": [40, 50, 60, 70]},
             {"question": "Total kids 300, bus capacity 50. How many buses?", "answer": 6, "options": [5, 6, 7, 8]}
          ],
-        "Ch 13: Fields and Fences": [
+        "Ch 6: Fields and Fences": [
             {"question": "NCERT Ex 13.1: Side of square field is 21m. Total length of fence?", "answer": 84, "options": [42, 63, 84, 441]},
             {"question": "RS Aggarwal Ch 17: Track 40m long, 30m wide. Perimeter for 1 lap?", "answer": 140, "options": [70, 120, 140, 200]},
             {"question": "Square side 5cm. Perimeter?", "answer": 20, "options": [15, 20, 25, 30]},
@@ -942,7 +942,7 @@ PHASE_3_QUESTIONS = {
         ]
     },
     "Class 5": {
-        "Ch 3: How Many Squares?": [
+        "Ch 5: How Many Squares?": [
             {"question": "Area of square with side 5cm?", "answer": 25, "options": [10, 20, 25, 30]},
             {"question": "Rectangle 4cm x 3cm area?", "answer": 12, "options": [7, 10, 12, 14]},
             {"question": "How many 1x1 squares in a 3x3 square?", "answer": 9, "options": [3, 6, 9, 12]},
@@ -964,7 +964,7 @@ PHASE_3_QUESTIONS = {
             {"question": "Rectangle perimeter 20cm, width 2cm, length?", "answer": 8, "options": [6, 8, 10, 12]},
             {"question": "Square side 1cm, area?", "answer": 1, "options": [1, 2, 3, 4]}
          ],
-        "Ch 13: Multiply & Divide Ways": [
+        "Ch 6: Multiply & Divide Ways": [
             {"question": "245 x 30?", "answer": 7350, "options": [7000, 7350, 7500, 8000]},
             {"question": "576 / 24?", "answer": 24, "options": [20, 22, 24, 26]},
             {"question": "12 x 12?", "answer": 144, "options": [120, 132, 144, 156]},
@@ -988,7 +988,7 @@ PHASE_3_QUESTIONS = {
         ]
     },
     "Class 6": {
-        "Ch 4: Basic Geometrical Ideas": [
+        "Ch 5: Basic Geometrical Ideas": [
             {"question": "Min sides for a polygon?", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "Radius 7cm, diameter?", "answer": 14, "options": [7, 10, 14, 21]},
             {"question": "Shape with 3 sides?", "answer": "Triangle", "options": ["Square", "Triangle", "Circle", "Pentagon"]},
@@ -1010,7 +1010,7 @@ PHASE_3_QUESTIONS = {
             {"question": "Intersection point of two lines?", "answer": "Point", "options": ["Line", "Ray", "Point", "None"]},
             {"question": "A flat surface is?", "answer": "Plane", "options": ["Line", "Point", "Plane", "Solid"]}
         ],
-        "Ch 7: Fractions Operations": [
+        "Ch 6: Fractions Operations": [
             {"question": "17/5 as mixed fraction whole number?", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "Simplify 48/72?", "answer": 2/3, "options": [1/2, 2/3, 3/4, 4/5]},
             {"question": "1/2 + 1/2?", "answer": 1, "options": [0, 1, 1/2, 2]},
@@ -1034,7 +1034,7 @@ PHASE_3_QUESTIONS = {
         ]
     },
     "Class 7": {
-        "Ch 3: Data Handling Matrix": [
+        "Ch 5: Data Handling Matrix": [
             {"question": "Mean of 40, 35, 61, 22, 52?", "answer": 42, "options": [38, 40, 42, 45]},
             {"question": "Range of 12, 25, 45, 67, 8, 33, 19 (Max-Min)?", "answer": 59, "options": [55, 57, 59, 67]},
             {"question": "Median of 1, 3, 3, 6, 7, 8, 9?", "answer": 6, "options": [3, 6, 7, 8]},
@@ -1056,7 +1056,7 @@ PHASE_3_QUESTIONS = {
             {"question": "Range of 1, 9?", "answer": 8, "options": [7, 8, 9, 10]},
             {"question": "Median of 3, 1, 2?", "answer": 2, "options": [1, 2, 3, 4]}
         ],
-        "Ch 12: Algebraic Expressions": [
+        "Ch 6: Algebraic Expressions": [
             {"question": "Simplify: 12m^2 - 9m + 5m - 4m^2. Coeff of m^2?", "answer": 8, "options": [4, 6, 8, 16]},
             {"question": "Subtract (3x - 4y) from (7x + 2y). Coeff of y?", "answer": 6, "options": [2, 4, 6, 8]},
             {"question": "If x=2, find 3x+5?", "answer": 11, "options": [8, 10, 11, 12]},
@@ -1080,7 +1080,7 @@ PHASE_3_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 3: Quadrilaterals Geometry": [
+        "Ch 5: Quadrilaterals Geometry": [
             {"question": "Sum of interior angles of a quadrilateral?", "answer": 360, "options": [180, 360, 540, 720]},
             {"question": "Missing angle if others are 80, 110, 75?", "answer": 95, "options": [85, 90, 95, 100]},
             {"question": "How many sides in a quadrilateral?", "answer": 4, "options": [3, 4, 5, 6]},
@@ -1177,7 +1177,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 8: Tens and Ones Currency": [
+        "Ch 7: Tens and Ones Currency": [
             {"question": "Rs 25: How many Rs 10 notes?", "answer": 2, "options": [2, 3, 5, 25]},
             {"question": "5 notes of Rs 10?", "answer": 50, "options": [15, 45, 50, 55]},
             {"question": "Rs 36: How many Rs 10 notes?", "answer": 3, "options": [2, 3, 4, 36]},
@@ -1199,7 +1199,7 @@ PHASE_4_QUESTIONS = {
             {"question": "Rs 88: How many 1s?", "answer": 8, "options": [80, 8, 88, 0]},
             {"question": "Rs 5 - Rs 2?", "answer": 3, "options": [2, 3, 5, 7]}
         ],
-        "Ch 12: Give and Take": [
+        "Ch 8: Give and Take": [
             {"question": "16 + 24?", "answer": 40, "options": [30, 38, 40, 42]},
             {"question": "45 - 18?", "answer": 27, "options": [23, 27, 33, 63]},
             {"question": "30 + 20?", "answer": 50, "options": [40, 50, 60, 70]},
@@ -1223,7 +1223,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 6: Fun with Give & Take": [
+        "Ch 7: Fun with Give & Take": [
             {"question": "324 - 115?", "answer": 209, "options": [200, 209, 210, 215]},
             {"question": "753 - 421?", "answer": 332, "options": [322, 332, 342, 1174]},
             {"question": "500 - 250?", "answer": 250, "options": [200, 250, 300, 350]},
@@ -1245,7 +1245,7 @@ PHASE_4_QUESTIONS = {
             {"question": "700 - 200?", "answer": 500, "options": [400, 500, 600, 700]},
             {"question": "50 + 50?", "answer": 100, "options": [50, 100, 150, 200]}
         ],
-        "Ch 9: How Many Times?": [
+        "Ch 8: How Many Times?": [
             {"question": "5 motorbikes, 2 wheels each. Total?", "answer": 10, "options": [7, 8, 10, 12]},
             {"question": "6 rows, 10 chocolates each. Total?", "answer": 60, "options": [16, 50, 60, 70]},
             {"question": "4 spiders, 8 legs each. Total?", "answer": 32, "options": [24, 32, 40, 48]},
@@ -1269,7 +1269,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 5: The Way World Looks": [
+        "Ch 7: The Way World Looks": [
             {"question": "Top view of a cylinder?", "answer": "Circle", "options": ["Circle", "Square", "Triangle", "Oval"]},
             {"question": "Top view of a brick?", "answer": "Rectangle", "options": ["Square", "Rectangle", "Circle", "Cube"]},
             {"question": "Side view of a cone?", "answer": "Triangle", "options": ["Circle", "Triangle", "Square", "Rectangle"]},
@@ -1291,7 +1291,7 @@ PHASE_4_QUESTIONS = {
             {"question": "Shape of a CD (top view)?", "answer": "Circle", "options": ["Square", "Rectangle", "Circle", "Triangle"]},
             {"question": "Which view of a house shows windows?", "answer": "Front view", "options": ["Top view", "Front view", "Bottom view", "Inside view"]}
         ],
-        "Ch 12: How Heavy? How Light?": [
+        "Ch 8: How Heavy? How Light?": [
             {"question": "2kg + 3kg + 500g in grams?", "answer": 5500, "options": [5000, 5500, 6000, 2500]},
             {"question": "4500 kg in tonnes?", "answer": 4.5, "options": [4.0, 4.5, 5.0, 45.0]},
             {"question": "1kg = ? grams", "answer": 1000, "options": [100, 500, 1000, 10000]},
@@ -1315,7 +1315,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 5": {
-        "Ch 4: Parts and Wholes": [
+        "Ch 7: Parts and Wholes": [
             {"question": "Flag divided into 3, one part saffron?", "answer": 0.33, "options": [0.25, 0.33, 0.50, 0.66]},
             {"question": "15 out of 20 assignments?", "answer": 0.75, "options": [0.50, 0.60, 0.75, 0.80]},
             {"question": "Half of 100?", "answer": 50, "options": [25, 50, 75, 100]},
@@ -1337,7 +1337,7 @@ PHASE_4_QUESTIONS = {
             {"question": "8/8?", "answer": 1, "options": [0, 1, 8, 64]},
             {"question": "Three-quarters of 40?", "answer": 30, "options": [10, 20, 30, 40]}
         ],
-        "Ch 12: Smart Charts Matrix": [
+        "Ch 8: Smart Charts Matrix": [
             {"question": "Tally: 4 blocks of 5 cars?", "answer": 20, "options": [15, 20, 24, 25]},
             {"question": "Bar: 1cm=20 families, 6cm?", "answer": 120, "options": [100, 110, 120, 140]},
             {"question": "Tally for 10?", "answer": 2, "options": [1, 2, 5, 10]},
@@ -1361,7 +1361,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 6": {
-        "Ch 6: Integers Grid": [
+        "Ch 7: Integers Grid": [
             {"question": "Loss of Rs 700?", "answer": -700, "options": [700, -700, 0, -70]},
             {"question": "(-12) + 5 - (-3)?", "answer": -4, "options": [-14, -10, -4, 4]},
             {"question": "-5 + 5?", "answer": 0, "options": [-10, 0, 5, 10]},
@@ -1407,7 +1407,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 7": {
-        "Ch 5: Lines and Angles Blueprint": [
+        "Ch 7: Lines and Angles Blueprint": [
             {"question": "Complement of 35 degrees?", "answer": 55, "options": [45, 55, 65, 145]},
             {"question": "Supplement of 110 degrees?", "answer": 70, "options": [70, 80, 90, 180]},
             {"question": "Right angle?", "answer": 90, "options": [45, 90, 180, 360]},
@@ -1429,7 +1429,7 @@ PHASE_4_QUESTIONS = {
             {"question": "Ray has?", "answer": "1 end", "options": ["1 end", "2 ends", "0 ends", "None"]},
             {"question": "Intersection of 2 lines?", "answer": "Point", "options": ["Line", "Ray", "Point", "None"]}
         ],
-        "Ch 9: Rational Numbers Calculus": [
+        "Ch 8: Rational Numbers Calculus": [
             {"question": "-36/54 reduced?", "answer": 3, "options": [2, 3, 4, 6]},
             {"question": "5/4 + (-11/4)?", "answer": -1.5, "options": [-1.5, -2.0, 1.5, -0.75]},
             {"question": "Additive inverse of -5?", "answer": 5, "options": [-5, 0, 5, 25]},
@@ -1453,7 +1453,7 @@ PHASE_4_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 5: Data Handling & Probabilities": [
+        "Ch 7: Data Handling & Probabilities": [
             {"question": "Prob of rolling prime on a die?", "answer": 50, "options": [16, 33, 50, 66]},
             {"question": "90 degrees in a pie chart percentage?", "answer": 25, "options": [20, 25, 30, 33]},
             {"question": "Total probability is?", "answer": 1, "options": [0, 0.5, 1, 100]},
@@ -1475,7 +1475,7 @@ PHASE_4_QUESTIONS = {
             {"question": "Upper limit of 10-20?", "answer": 20, "options": [10, 20, 15, 30]},
             {"question": "Lower limit of 10-20?", "answer": 10, "options": [10, 20, 15, 5]}
         ],
-        "Ch 7: Cubes and Cube Roots": [
+        "Ch 8: Cubes and Cube Roots": [
             {"question": "Cube root of 512?", "answer": 8, "options": [6, 8, 12, 16]},
             {"question": "Smallest factor to make 256 a cube?", "answer": 2, "options": [2, 3, 4, 6]},
             {"question": "2 cubed?", "answer": 8, "options": [4, 6, 8, 16]},
@@ -1551,7 +1551,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 13: Longest Step Units": [
+        "Ch 9: Longest Step Units": [
             {"question": "How many 10cm pencils equal 1 meter?", "answer": 10, "options": [5, 10, 20, 100]},
             {"question": "Is 50cm longer or shorter than 1m?", "answer": "Shorter", "options": ["Longer", "Shorter", "Equal", "None"]},
             {"question": "A table is 4 handspans. If your friend measures it, will it be roughly the same?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Impossible"]},
@@ -1573,7 +1573,7 @@ PHASE_5_QUESTIONS = {
             {"question": "If you walk 10 steps, is it about 5 meters?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "A desk is 1m wide. How many cm is that?", "answer": 100, "options": [10, 50, 100, 1000]}
         ],
-        "Ch 14: Birds Come, Birds Go": [
+        "Ch 10: Birds Come, Birds Go": [
             {"question": "45 birds on a tree. 15 fly away. Left?", "answer": 30, "options": [20, 25, 30, 35]},
             {"question": "12 ducks in a pond, 8 more join. Total?", "answer": 20, "options": [18, 19, 20, 21]},
             {"question": "50 birds total, 20 leave. How many remain?", "answer": 30, "options": [20, 30, 40, 50]},
@@ -1597,7 +1597,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 10: Play with Patterns": [
+        "Ch 9: Play with Patterns": [
             {"question": "Pattern: 1, 3, 5, 7, __.", "answer": 9, "options": [8, 9, 10, 11]},
             {"question": "Complete: A, B, C, A, B, C, __.", "answer": "A", "options": ["A", "B", "C", "D"]},
             {"question": "Pattern: 2, 4, 8, 16, __.", "answer": 32, "options": [24, 30, 32, 36]},
@@ -1619,7 +1619,7 @@ PHASE_5_QUESTIONS = {
             {"question": "Pattern: 1, 1, 2, 3, 5, __.", "answer": 8, "options": [6, 7, 8, 9]},
             {"question": "Complete: 3, 6, 9, 12, __.", "answer": 15, "options": [13, 14, 15, 16]}
         ],
-        "Ch 12: Can We Share?": [
+        "Ch 10: Can We Share?": [
             {"question": "Divide 30 chocolates among 5 friends. How many each?", "answer": 6, "options": [4, 5, 6, 7]},
             {"question": "16 wheels for 4 cars. Wheels per car?", "answer": 4, "options": [2, 3, 4, 5]},
             {"question": "20 apples in 5 baskets. How many per basket?", "answer": 4, "options": [2, 4, 5, 6]},
@@ -1643,7 +1643,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 6: The Junk Seller Matrix": [
+        "Ch 9: The Junk Seller Matrix": [
             {"question": "Kiran buys 1kg plastic for 12, sells for 15. Profit on 10kg?", "answer": 30, "options": [20, 30, 40, 150]},
             {"question": "If 1kg newspaper costs 8, profit on 5kg sold at 10 each?", "answer": 10, "options": [5, 10, 15, 20]},
             {"question": "Shopkeeper buys bundle for 180, sells for 220. Profit?", "answer": 40, "options": [20, 30, 40, 50]},
@@ -1665,7 +1665,7 @@ PHASE_5_QUESTIONS = {
             {"question": "Buy for 1000, sell for 1050. Gain?", "answer": 50, "options": [25, 50, 75, 100]},
             {"question": "Profit 10 on 1 unit. Profit on 100 units?", "answer": 1000, "options": [100, 500, 1000, 1500]}
         ],
-        "Ch 7: Jugs and Mugs Math": [
+        "Ch 10: Jugs and Mugs Math": [
             {"question": "Tea vendor uses 250ml per pot. Milk for 4 pots?", "answer": 1000, "options": [500, 750, 1000, 1250]},
             {"question": "Tank holds 12L 500ml. Use 3L 200ml. Left?", "answer": 9300, "options": [9000, 9300, 9500, 15700]},
             {"question": "500ml + 500ml = ?", "answer": 1000, "options": [500, 1000, 1500, 2000]},
@@ -1689,7 +1689,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 5": {
-        "Ch 5: Does it Look Same?": [
+        "Ch 9: Does it Look Same?": [
             {"question": "How many lines of symmetry does a rectangle have?", "answer": 2, "options": [1, 2, 3, 4]},
             {"question": "Does the letter 'A' have line symmetry?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "How many lines of symmetry for a square?", "answer": 4, "options": [2, 3, 4, 0]},
@@ -1711,7 +1711,7 @@ PHASE_5_QUESTIONS = {
             {"question": "How many lines of symmetry for a semi-circle?", "answer": 1, "options": [0, 1, 2, 3]},
             {"question": "Does 'S' have rotational symmetry?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]}
         ],
-        "Ch 6: Multiples & Factors Grid": [
+        "Ch 10: Multiples & Factors Grid": [
             {"question": "Smallest prime number?", "answer": 2, "options": [0, 1, 2, 3]},
             {"question": "LCM of 4 and 6?", "answer": 12, "options": [4, 6, 12, 24]},
             {"question": "HCF of 12 and 18?", "answer": 6, "options": [3, 6, 9, 12]},
@@ -1781,7 +1781,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 7": {
-        "Ch 6: Triangles Properties": [
+        "Ch 9: Triangles Properties": [
             {"question": "Sum of angles in a triangle?", "answer": 180, "options": [90, 180, 270, 360]},
             {"question": "Pythagorean theorem (a^2+b^2=c^2)?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
             {"question": "If angles are 60, 60, 60, type?", "answer": "Equilateral", "options": ["Scalene", "Isosceles", "Equilateral", "Right"]},
@@ -1803,7 +1803,7 @@ PHASE_5_QUESTIONS = {
             {"question": "If sides are 3, 3, 3, triangle type?", "answer": "Equilateral", "options": ["Scalene", "Isosceles", "Equilateral", "None"]},
             {"question": "Sum of exterior angles?", "answer": 360, "options": [180, 270, 360, 540]}
         ],
-        "Ch 11: Perimeter & Area Calculus": [
+        "Ch 10: Perimeter & Area Calculus": [
             {"question": "Area of parallelogram (Base=10, H=5)?", "answer": 50, "options": [25, 50, 75, 100]},
             {"question": "Circumference of circle (Radius=7)?", "answer": 44, "options": [22, 44, 154, 88]},
             {"question": "Area of circle (Radius=7)?", "answer": 154, "options": [44, 154, 308, 616]},
@@ -1827,7 +1827,7 @@ PHASE_5_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 8: Comparing Quantities Complex": [
+        "Ch 9: Comparing Quantities Complex": [
             {"question": "15% of 2000?", "answer": 300, "options": [150, 300, 450, 600]},
             {"question": "Profit = Selling - Cost?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
             {"question": "Discount is on?", "answer": "MP", "options": ["CP", "SP", "MP", "None"]},
@@ -1849,7 +1849,7 @@ PHASE_5_QUESTIONS = {
             {"question": "Profit % = (Profit/CP)*100?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "VAT/GST is added to?", "answer": "SP", "options": ["CP", "SP", "Profit", "None"]}
         ],
-        "Ch 11: Direct & Inverse Proportions": [
+        "Ch 10: Direct & Inverse Proportions": [
             {"question": "Direct proportion: x/y = ?", "answer": "k", "options": ["1", "k", "0", "x*y"]},
             {"question": "Inverse proportion: x*y = ?", "answer": "k", "options": ["1", "k", "x/y", "x+y"]},
             {"question": "If 5 pens cost 25, 1 pen cost?", "answer": 5, "options": [2, 5, 10, 25]},
@@ -1925,7 +1925,7 @@ PHASE_6_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 9: My Funday Calendar": [
+        "Ch 11: My Funday Calendar": [
             {"question": "How many days are in a standard week?", "answer": 7, "options": [5, 6, 7, 30]},
             {"question": "Which day comes before Wednesday?", "answer": "Tuesday", "options": ["Monday", "Tuesday", "Thursday", "Friday"]},
             {"question": "How many months have 31 days?", "answer": 7, "options": [4, 6, 7, 12]},
@@ -1947,7 +1947,7 @@ PHASE_6_QUESTIONS = {
             {"question": "How many days in December?", "answer": 31, "options": [29, 30, 31, 32]},
             {"question": "Which month follows August?", "answer": "September", "options": ["August", "September", "October", "November"]}
         ],
-        "Ch 15: How Many Pigtails?": [
+        "Ch 12: How Many Pigtails?": [
             {"question": "Count of 5 sets of 3 apples?", "answer": 15, "options": [10, 15, 20, 25]},
             {"question": "If 4 boys have 2 bags each, total bags?", "answer": 8, "options": [6, 8, 10, 12]},
             {"question": "How many wheels for 3 tricycles (3 wheels each)?", "answer": 9, "options": [6, 8, 9, 12]},
@@ -1971,7 +1971,7 @@ PHASE_6_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 13: Smart Charts Data": [
+        "Ch 11: Smart Charts Data": [
             {"question": "If 10 students like Red, 5 Blue, mode is?", "answer": "Red", "options": ["Red", "Blue", "None", "Equal"]},
             {"question": "How many tallies for 4?", "answer": "||||", "options": ["|||", "||||", "|||||", "||"]},
             {"question": "Data collected is called?", "answer": "Information", "options": ["Math", "Information", "Drawing", "None"]},
@@ -1993,7 +1993,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Are charts used in daily life?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "Most popular data item is called?", "answer": "Mode", "options": ["Mean", "Mode", "Median", "None"]}
         ],
-        "Ch 14: Rupees and Paise Arithmetic": [
+        "Ch 12: Rupees and Paise Arithmetic": [
             {"question": "Rs 1 = ? Paise", "answer": 100, "options": [10, 50, 100, 1000]},
             {"question": "Rs 5.50 = ? Paise", "answer": 550, "options": [500, 550, 600, 1000]},
             {"question": "Rs 2 + Rs 3.50 = ?", "answer": "Rs 5.50", "options": ["Rs 5", "Rs 5.50", "Rs 6", "Rs 6.50"]},
@@ -2017,7 +2017,7 @@ PHASE_6_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 8: Carts and Wheels Geometry": [
+        "Ch 11: Carts and Wheels Geometry": [
             {"question": "Distance from center to edge?", "answer": "Radius", "options": ["Diameter", "Radius", "Chord", "Arc"]},
             {"question": "Is diameter 2 * radius?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "Longest chord of a circle?", "answer": "Diameter", "options": ["Radius", "Diameter", "Arc", "None"]},
@@ -2039,7 +2039,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Is a circle a 2D shape?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "Smallest radius for any circle?", "answer": "Zero", "options": ["1", "0", "Negative", "None"]}
         ],
-        "Ch 9: Halves and Quarters Fractions": [
+        "Ch 12: Halves and Quarters Fractions": [
             {"question": "Half of 100?", "answer": 50, "options": [25, 50, 75, 100]},
             {"question": "Quarter of 100?", "answer": 25, "options": [25, 50, 75, 100]},
             {"question": "What is 1/2 as decimal?", "answer": 0.5, "options": [0.25, 0.5, 0.75, 1]},
@@ -2063,7 +2063,7 @@ PHASE_6_QUESTIONS = {
         ]
     },
       "Class 5": {
-        "Ch 8: Mapping Your Way": [
+        "Ch 11: Mapping Your Way": [
           {"question": "On a map, 1cm = 5km. If two cities are 8cm apart on the map, what is the actual distance?", "answer": 40, "options": [13, 35, 40, 45]},
           {"question": "If a map scale is 1cm = 10km, how many cm on paper represent 100km?", "answer": 10, "options": [5, 10, 15, 20]},
           {"question": "A park measures 20m x 30m. If scaled at 1cm = 5m, what are the map dimensions?", "answer": "4cm x 6cm", "options": ["4cm x 6cm", "2cm x 3cm", "5cm x 10cm", "10cm x 15cm"]},
@@ -2085,7 +2085,7 @@ PHASE_6_QUESTIONS = {
           {"question": "Which instrument helps in finding direction on a map?", "answer": "Compass", "options": ["Scale", "Compass", "Divider", "None"]},
           {"question": "If map distance is 8cm for 40km, find distance for 10cm.", "answer": 50, "options": [40, 50, 60, 80]}
         ],
-        "Ch 9: Boxes and Sketches 3D": [
+        "Ch 12: Boxes and Sketches 3D": [
           {"question": "How many edges does a cube have?", "answer": 12, "options": [6, 8, 10, 12]},
           {"question": "A brick is an example of which shape?", "answer": "Cuboid", "options": ["Cube", "Cuboid", "Sphere", "Cylinder"]},
           {"question": "How many faces does a cuboid have?", "answer": 6, "options": [4, 6, 8, 12]},
@@ -2131,7 +2131,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Which of these is an equation?", "answer": "x+5=10", "options": ["x+5", "x+5=10", "5x", "10"]},
             {"question": "Solve: x+x = 10.", "answer": 5, "options": [5, 10, 2, 20]}
         ],
-        "Ch 13: Symmetry Dimensions": [
+        "Ch 12: Symmetry Dimensions": [
             {"question": "How many lines of symmetry for a square?", "answer": 4, "options": [1, 2, 3, 4]},
             {"question": "Lines of symmetry for a rectangle?", "answer": 2, "options": [1, 2, 3, 4]},
             {"question": "Lines of symmetry for equilateral triangle?", "answer": 3, "options": [1, 2, 3, 0]},
@@ -2155,7 +2155,7 @@ PHASE_6_QUESTIONS = {
         ]
       },
       "Class 7": {
-        "Ch 7: Congruence of Triangles": [
+        "Ch 11: Congruence of Triangles": [
             {"question": "Which criterion means 3 equal sides?", "answer": "SSS", "options": ["SAS", "SSS", "ASA", "RHS"]},
             {"question": "Two shapes are congruent if?", "answer": "Same size and shape", "options": ["Same color", "Same size and shape", "Same area", "None"]},
             {"question": "Criterion for 2 sides and 1 angle?", "answer": "SAS", "options": ["SAS", "SSS", "ASA", "None"]},
@@ -2177,7 +2177,7 @@ PHASE_6_QUESTIONS = {
             {"question": "SAS requires the angle to be?", "answer": "Included", "options": ["Included", "Excluded", "Any", "None"]},
             {"question": "If two triangles are congruent, their areas are?", "answer": "Equal", "options": ["Different", "Equal", "None", "All"]}
         ],
-        "Ch 13: Exponents and Powers Calculus": [
+        "Ch 12: Exponents and Powers Calculus": [
             {"question": "Value of 2^3?", "answer": 8, "options": [4, 6, 8, 9]},
             {"question": "a^m * a^n = ?", "answer": "a^(m+n)", "options": ["a^(m*n)", "a^(m+n)", "a^(m-n)", "None"]},
             {"question": "Value of 5^0?", "answer": 1, "options": [0, 1, 5, 50]},
@@ -2201,7 +2201,7 @@ PHASE_6_QUESTIONS = {
         ]
       },
       "Class 8": {
-        "Ch 14: Factorisation Polynomials": [
+        "Ch 11: Factorisation Polynomials": [
             {"question": "Factorize x^2 + 5x + 6.", "answer": "(x+2)(x+3)", "options": ["(x+1)(x+6)", "(x+2)(x+3)", "(x-2)(x-3)", "None"]},
             {"question": "HCF of 4x and 8?", "answer": "4", "options": ["2", "4", "x", "8"]},
             {"question": "Factorize a^2 - b^2.", "answer": "(a-b)(a+b)", "options": ["(a-b)^2", "(a+b)^2", "(a-b)(a+b)", "None"]},
@@ -2223,7 +2223,7 @@ PHASE_6_QUESTIONS = {
             {"question": "Factorize 4x^2 - 9.", "answer": "(2x-3)(2x+3)", "options": ["(2x-3)^2", "(2x+3)^2", "(2x-3)(2x+3)", "None"]},
             {"question": "HCF of 7x^3, 14x^2, 21x?", "answer": "7x", "options": ["7", "x", "7x", "21x"]}
         ],
-        "Ch 15: Introduction to Graphs Grid": [
+        "Ch 12: Introduction to Graphs Grid": [
             {"question": "What is the origin coordinate?", "answer": "(0,0)", "options": ["(0,1)", "(1,0)", "(0,0)", "(1,1)"]},
             {"question": "Horizontal axis is?", "answer": "X-axis", "options": ["X-axis", "Y-axis", "None", "All"]},
             {"question": "Vertical axis is?", "answer": "Y-axis", "options": ["X-axis", "Y-axis", "None", "All"]},
@@ -2299,7 +2299,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 2": {
-        "Ch 6: Footprints & Tracing": [
+        "Ch 13: Footprints & Tracing": [
             {"question": "Tracing the base of a matchbox gives which shape?", "answer": "Rectangle", "options": ["Square", "Rectangle", "Circle", "Triangle"]},
             {"question": "Which of these objects will trace a circle?", "answer": "Coin", "options": ["Book", "Coin", "Brick", "Eraser"]},
             {"question": "How many corners does a circle have?", "answer": 0, "options": [0, 1, 2, 4]},
@@ -2321,7 +2321,7 @@ PHASE_7_QUESTIONS = {
             {"question": "Tracing a glass base gives?", "answer": "Circle", "options": ["Square", "Rectangle", "Circle", "Oval"]},
             {"question": "Which object traces a triangle?", "answer": "Samosa", "options": ["Coin", "Plate", "Samosa", "Book"]}
         ],
-        "Ch 7: Measuring Capacities": [
+        "Ch 14: Measuring Capacities": [
             {"question": "If 1 jug = 4 cups, how many for 3 jugs?", "answer": 12, "options": [8, 10, 12, 14]},
             {"question": "How many ml in 1 liter?", "answer": 1000, "options": [100, 500, 1000, 2000]},
             {"question": "If a bottle holds 2 liters, how many 1-liter glasses?", "answer": 2, "options": [1, 2, 3, 4]},
@@ -2345,7 +2345,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 8: Who is Heavier?": [
+        "Ch 13: Who is Heavier?": [
             {"question": "What weighs more: 1kg iron or 1kg cotton?", "answer": "Equal", "options": ["Iron", "Cotton", "Equal", "None"]},
             {"question": "How many grams in 1kg?", "answer": 1000, "options": [100, 500, 1000, 2000]},
             {"question": "If an apple is 100g, 10 apples weigh?", "answer": 1000, "options": [500, 1000, 1500, 2000]},
@@ -2367,7 +2367,7 @@ PHASE_7_QUESTIONS = {
             {"question": "If 1kg sugar is Rs 40, 2kg is?", "answer": 80, "options": [40, 60, 80, 100]},
             {"question": "Is 10kg heavier than 100g?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]}
         ],
-        "Ch 15: How Many Ponytails": [
+        "Ch 14: How Many Ponytails": [
             {"question": "If 10 girls like red, 5 blue, total?", "answer": 15, "options": [5, 10, 15, 20]},
             {"question": "A tally mark |||| represents?", "answer": 4, "options": [3, 4, 5, 6]},
             {"question": "Which is data: numbers or feelings?", "answer": "Numbers", "options": ["Numbers", "Feelings", "Dreams", "None"]},
@@ -2391,7 +2391,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 4": {
-        "Ch 10: Play with Patterns": [
+        "Ch 13: Play with Patterns": [
             {"question": "Complete: 2, 4, 6, 8, __.", "answer": 10, "options": [9, 10, 11, 12]},
             {"question": "What is the rule for 5, 10, 15, 20?", "answer": "+5", "options": ["+2", "+5", "+10", "x2"]},
             {"question": "Identify the missing number: 1, 4, 9, 16, __.", "answer": 25, "options": [20, 25, 30, 36]},
@@ -2437,7 +2437,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 5": {
-        "Ch 10: Tenths and Hundredths": [
+        "Ch 13: Tenths and Hundredths": [
             {"question": "0.1 is equal to?", "answer": "1/10", "options": ["1/10", "1/100", "1/1000", "1"]},
             {"question": "0.01 is equal to?", "answer": "1/100", "options": ["1/10", "1/100", "1/1000", "1"]},
             {"question": "Which is bigger: 0.1 or 0.01?", "answer": "0.1", "options": ["0.1", "0.01", "Equal", "None"]},
@@ -2483,7 +2483,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 6": {
-        "Ch 5: Understanding Shapes": [
+        "Ch 13: Understanding Shapes": [
             {"question": "An angle of 90 degrees is?", "answer": "Right", "options": ["Acute", "Right", "Obtuse", "Reflex"]},
             {"question": "Angle < 90?", "answer": "Acute", "options": ["Acute", "Right", "Obtuse", "Reflex"]},
             {"question": "Angle > 90 but < 180?", "answer": "Obtuse", "options": ["Acute", "Right", "Obtuse", "Reflex"]},
@@ -2529,7 +2529,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 7": {
-        "Ch 14: Rotational Symmetry": [
+        "Ch 13: Rotational Symmetry": [
             {"question": "Order of rotation for square?", "answer": 4, "options": [1, 2, 3, 4]},
             {"question": "Order for rectangle?", "answer": 2, "options": [1, 2, 3, 4]},
             {"question": "Order for equilateral triangle?", "answer": 3, "options": [1, 2, 3, 4]},
@@ -2551,7 +2551,7 @@ PHASE_7_QUESTIONS = {
             {"question": "Is rotation same as reflection?", "answer": "No", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "Does 'I' have rotation?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]}
         ],
-        "Ch 15: Visualising Solid Shapes": [
+        "Ch 14: Visualising Solid Shapes": [
             {"question": "Faces of a cube?", "answer": 6, "options": [4, 6, 8, 12]},
             {"question": "Vertices of a cube?", "answer": 8, "options": [6, 8, 10, 12]},
             {"question": "Edges of a cube?", "answer": 12, "options": [8, 10, 12, 16]},
@@ -2575,7 +2575,7 @@ PHASE_7_QUESTIONS = {
         ]
     },
     "Class 8": {
-        "Ch 10: Polyhedrons (Euler)": [
+        "Ch 13: Polyhedrons (Euler)": [
             {"question": "F + V - E = ?", "answer": 2, "options": [0, 1, 2, 3]},
             {"question": "If F=6, V=8, E=?", "answer": 12, "options": [10, 12, 14, 16]},
             {"question": "Is cube a polyhedron?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
@@ -2597,7 +2597,7 @@ PHASE_7_QUESTIONS = {
             {"question": "Is a prism a convex polyhedron?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "Never"]},
             {"question": "Can we have 3 faces?", "answer": "No", "options": ["Yes", "No", "Maybe", "Never"]}
         ],
-        "Ch 16: Number Logic": [
+        "Ch 14: Number Logic": [
             {"question": "Divisibility by 2: last digit?", "answer": "Even", "options": ["Odd", "Even", "Both", "None"]},
             {"question": "Divisibility by 3: sum of digits?", "answer": "Multiple of 3", "options": ["Even", "Multiple of 3", "Odd", "None"]},
             {"question": "Divisibility by 5: last digit?", "answer": "0 or 5", "options": ["1 or 2", "0 or 5", "5 or 7", "None"]},
@@ -2673,7 +2673,7 @@ PHASE_8_QUESTIONS = {
         ]
      },
       "Class 2": {
-        "Ch 10: Weights & Balances": [
+        "Ch 15: Weights & Balances": [
           {"question": "Which is heavier: a 5kg sack of rice or a 2kg sack of sugar?", "answer": "5kg rice", "options": ["5kg rice", "2kg sugar", "Equal", "None"]},
           {"question": "How many 500g weights make 1kg?", "answer": 2, "options": [1, 2, 4, 10]},
           {"question": "A vegetable seller uses what to measure weights?", "answer": "Physical balance", "options": ["Scale", "Physical balance", "Ruler", "Thermometer"]},
@@ -2695,7 +2695,7 @@ PHASE_8_QUESTIONS = {
           {"question": "Which weighs more: a car or a cycle?", "answer": "Car", "options": ["Car", "Cycle", "Equal", "None"]},
           {"question": "If a bag is 1kg and you remove 500g, left?", "answer": "500g", "options": ["200g", "500g", "800g", "1kg"]}
         ],
-        "Ch 11: Adding Mechanics": [
+        "Ch 16: Adding Mechanics": [
           {"question": "What is 25 + 14?", "answer": 39, "options": [38, 39, 40, 41]},
           {"question": "Add 40 + 20.", "answer": 60, "options": [50, 60, 70, 80]},
           {"question": "If you have 12 pens and get 8 more, total?", "answer": 20, "options": [18, 19, 20, 21]},
@@ -2719,7 +2719,7 @@ PHASE_8_QUESTIONS = {
         ]
     },
     "Class 3": {
-        "Ch 6: Basic Array Multiplication": [
+        "Ch 15: Basic Array Multiplication": [
           {"question": "A farmer plants 5 rows of 4 saplings each. How many saplings in total?", "answer": 20, "options": [15, 20, 25, 9]},
           {"question": "A box holds 6 rows of 3 chocolates. Total count?", "answer": 18, "options": [15, 18, 21, 9]},
           {"question": "If a cinema hall has 7 rows of 10 seats, how many seats total?", "answer": 70, "options": [60, 70, 80, 17]},
@@ -2741,7 +2741,7 @@ PHASE_8_QUESTIONS = {
           {"question": "If 7 boxes have 2 pens each, total pens?", "answer": 14, "options": [12, 14, 16, 9]},
           {"question": "A school yard has 3 rows of 8 flags. Total flags?", "answer": 24, "options": [21, 24, 27, 11]}
         ],
-        "Ch 7: Fluid Capacities Metric": [
+        "Ch 16: Fluid Capacities Metric": [
           {"question": "A bottle holds 1000ml. How many liters is this?", "answer": 1, "options": [0.5, 1, 2, 10]},
           {"question": "If you pour 200ml from a 500ml glass, how much remains?", "answer": 300, "options": [200, 300, 400, 700]},
           {"question": "A bucket holds 10 liters. How many 1-liter jugs to fill it?", "answer": 10, "options": [5, 10, 15, 20]},
@@ -2765,7 +2765,7 @@ PHASE_8_QUESTIONS = {
         ]
       },
       "Class 4": {
-        "Ch 4: Tick-Tick-Tick Time": [
+        "Ch 15: Tick-Tick-Tick Time": [
           {"question": "The minute hand points at 6, hour hand between 3 and 4. What is the time?", "answer": "3:30", "options": ["3:00", "3:30", "4:00", "4:30"]},
           {"question": "How many seconds are there in 2 minutes?", "answer": 120, "options": [60, 100, 120, 150]},
           {"question": "A clock shows 09:15. If 30 minutes pass, what is the new time?", "answer": "09:45", "options": ["09:30", "09:45", "10:00", "10:15"]},
@@ -2787,7 +2787,7 @@ PHASE_8_QUESTIONS = {
           {"question": "How many minutes in half an hour?", "answer": 30, "options": [15, 30, 45, 60]},
           {"question": "Which of these months has 31 days?", "answer": "March", "options": ["April", "June", "March", "November"]}
         ],
-        "Ch 10: Building Smart Tables": [
+        "Ch 16: Building Smart Tables": [
           {"question": "If 1 box holds 8 pencils, how many pencils in 12 boxes?", "answer": 96, "options": [80, 88, 96, 104]},
           {"question": "A shopkeeper has 100 candies. He puts 10 in each bag. How many bags?", "answer": 10, "options": [5, 10, 20, 100]},
           {"question": "If 5 students sit on one bench, how many benches for 45 students?", "answer": 9, "options": [7, 8, 9, 10]},
@@ -2811,7 +2811,7 @@ PHASE_8_QUESTIONS = {
         ]
       },
       "Class 5": {
-        "Ch 6: Multiples & Geometry": [
+        "Ch 15: Multiples & Geometry": [
           {"question": "What is the smallest prime number?", "answer": 2, "options": [1, 2, 3, 5]},
           {"question": "Which of these is a multiple of 8?", "answer": 32, "options": [20, 24, 32, 40]},
           {"question": "Find the HCF of 10 and 15.", "answer": 5, "options": [1, 2, 5, 10]},
@@ -2833,7 +2833,7 @@ PHASE_8_QUESTIONS = {
           {"question": "What is the 3rd multiple of 12?", "answer": 36, "options": [24, 36, 48, 60]},
           {"question": "Is 0 divisible by 5?", "answer": "No", "options": ["Yes", "No"]}
         ],
-        "Ch 11: Area Configurations": [
+        "Ch 16: Area Configurations": [
           {"question": "Area of a square with side 6cm?", "answer": 36, "options": [12, 24, 36, 48]},
           {"question": "If length=5m and width=4m, area of rectangle?", "answer": 20, "options": [9, 18, 20, 25]},
           {"question": "What is the perimeter of a square with side 4cm?", "answer": 16, "options": [8, 12, 16, 20]},
@@ -2857,7 +2857,7 @@ PHASE_8_QUESTIONS = {
         ]
       },
       "Class 6": {
-        "Ch 3: Numbers Core": [
+        "Ch 15: Numbers Core": [
           {"question": "What is the smallest 3-digit number divisible by 3?", "answer": 102, "options": [100, 102, 105, 111]},
           {"question": "How many prime numbers are between 1 and 20?", "answer": 8, "options": [7, 8, 9, 10]},
           {"question": "Check divisibility: Is 12345 divisible by 5?", "answer": "Yes", "options": ["Yes", "No"]},
@@ -2879,7 +2879,7 @@ PHASE_8_QUESTIONS = {
           {"question": "What is the LCM of 5, 10, and 15?", "answer": 30, "options": [15, 30, 45, 60]},
           {"question": "Which digit makes 4_2 divisible by 3?", "answer": 0, "options": [0, 1, 3, 5]}
         ],
-        "Ch 7: Decimals & Money": [
+        "Ch 16: Decimals & Money": [
           {"question": "Write 5 rupees 75 paise as a decimal.", "answer": "5.75", "options": [5.075, 5.75, 57.5, 0.575]},
           {"question": "Convert 0.2 into a fraction.", "answer": "1/5", "options": ["1/2", "1/5", "2/100", "2"]},
           {"question": "Which is greater: 0.5 or 0.05?", "answer": "0.5", "options": ["0.5", "0.05", "Equal", "None"]},
@@ -2903,7 +2903,7 @@ PHASE_8_QUESTIONS = {
         ]
       },
       "Class 7": {
-        "Ch 4: Variable Equations": [
+        "Ch 15: Variable Equations": [
           {"question": "Solve x + 5 = 10.", "answer": 5, "options": [2, 5, 10, 15]},
           {"question": "Solve 2x = 14.", "answer": 7, "options": [5, 6, 7, 8]},
           {"question": "If x - 3 = 7, find x.", "answer": 10, "options": [4, 7, 10, 14]},
@@ -2925,7 +2925,7 @@ PHASE_8_QUESTIONS = {
           {"question": "If 4x - 2 = 18, find x.", "answer": 5, "options": [3, 4, 5, 6]},
           {"question": "Solve x/2 + x = 6.", "answer": 4, "options": [2, 4, 6, 8]}
         ],
-        "Ch 10: Percentage Conversion": [
+        "Ch 16: Percentage Conversion": [
           {"question": "What is 50% of 100?", "answer": 50, "options": [25, 50, 75, 100]},
           {"question": "Convert 1/4 into percentage.", "answer": 25, "options": [20, 25, 40, 50]},
           {"question": "What is 10% of 200?", "answer": 20, "options": [10, 20, 30, 40]},
@@ -2949,7 +2949,7 @@ PHASE_8_QUESTIONS = {
         ]
       },
       "Class 8": {
-        "Ch 2: Linear Equations": [
+        "Ch 15: Linear Equations": [
           {"question": "Solve 5x = 20.", "answer": 4, "options": [2, 4, 5, 10]},
           {"question": "Solve 2x + 3 = 7.", "answer": 2, "options": [1, 2, 3, 4]},
           {"question": "If 3x - 5 = 10, find x.", "answer": 5, "options": [3, 4, 5, 6]},
@@ -2971,7 +2971,7 @@ PHASE_8_QUESTIONS = {
           {"question": "If 5x + 10 = 35, find x.", "answer": 5, "options": [3, 4, 5, 6]},
           {"question": "Solve 4x - 8 = 12.", "answer": 5, "options": [3, 4, 5, 6]}
         ],
-        "Ch 12: Solid Mensuration": [
+        "Ch 16: Solid Mensuration": [
           {"question": "Surface area of a cube with side 2cm?", "answer": 24, "options": [12, 16, 24, 32]},
           {"question": "Volume of a cube with side 3cm?", "answer": 27, "options": [9, 18, 27, 81]},
           {"question": "Surface area of a cuboid (l=2, w=3, h=1)?", "answer": 22, "options": [11, 22, 33, 44]},
@@ -3047,7 +3047,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 2": {
-        "Ch 16: Lines Types": [
+        "Ch 17: Lines Types": [
           {"question": "Q1: Is a rainbow a curved line?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
           {"question": "Q2: How many sides does a triangle have?", "answer": 3, "options": [2, 3, 4, 0]},
           {"question": "Q3: A standing line is also called?", "answer": "Vertical", "options": ["Vertical", "Horizontal", "Slanting", "None"]},
@@ -3069,7 +3069,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: Does a rectangle have opposite sides equal?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
           {"question": "Q20: Which line is ' / '?", "answer": "Slanting", "options": ["Vertical", "Horizontal", "Slanting", "None"]}
         ],
-        "Ch 17: Multi-Digit Subtraction": [
+        "Ch 18: Multi-Digit Subtraction": [
           {"question": "Q1: 50 - 10 = ?", "answer": 40, "options": [30, 40, 50, 60]},
           {"question": "Q2: 25 - 5 = ?", "answer": 20, "options": [15, 20, 25, 30]},
           {"question": "Q3: 100 - 50 = ?", "answer": 50, "options": [40, 50, 60, 70]},
@@ -3093,7 +3093,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 3": {
-        "Ch 16: Basic Fraction Shading": [
+        "Ch 17: Basic Fraction Shading": [
           {"question": "Q1: If a bar is cut into 4 equal pieces and 1 is shaded, what fraction is shaded?", "answer": "1/4", "options": ["1/2", "1/4", "3/4", "1"]},
           {"question": "Q2: A pizza has 8 slices. You eat 4. What fraction is left?", "answer": "1/2", "options": ["1/4", "1/2", "3/4", "1/8"]},
           {"question": "Q3: Is 2/4 equal to 1/2?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
@@ -3115,7 +3115,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: If 2/4 of a box is full, is it half full?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
           {"question": "Q20: How many thirds make a whole?", "answer": 3, "options": [2, 3, 4, 6]}
         ],
-        "Ch 17: Length Conversions": [
+        "Ch 18: Length Conversions": [
           {"question": "Q1: How many cm in 1 meter?", "answer": 100, "options": [10, 100, 1000, 10000]},
           {"question": "Q2: Convert 2m to cm.", "answer": 200, "options": [20, 200, 2000, 2]},
           {"question": "Q3: Is 500cm equal to 5m?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
@@ -3139,7 +3139,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 4": {
-        "Ch 15: Perimeter Rules": [
+        "Ch 17: Perimeter Rules": [
           {"question": "Q1: Perimeter of square with side 6cm?", "answer": 24, "options": [12, 18, 24, 30]},
           {"question": "Q2: Perimeter of rectangle (l=8, w=4)?", "answer": 24, "options": [12, 20, 24, 32]},
           {"question": "Q3: If side of square is 10, perimeter?", "answer": 40, "options": [20, 30, 40, 50]},
@@ -3161,7 +3161,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: If perimeter is 24, side of triangle?", "answer": 8, "options": [6, 8, 12, 24]},
           {"question": "Q20: Perimeter of rectangle (l=4, w=2)?", "answer": 12, "options": [6, 8, 10, 12]}
         ],
-        "Ch 16: Division Blocks": [
+        "Ch 18: Division Blocks": [
           {"question": "Q1: 100 / 10 = ?", "answer": 10, "options": [5, 10, 20, 100]},
           {"question": "Q2: 45 / 5 = ?", "answer": 9, "options": [5, 8, 9, 10]},
           {"question": "Q3: 80 / 8 = ?", "answer": 10, "options": [8, 9, 10, 20]},
@@ -3185,7 +3185,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 5": {
-        "Ch 15: Decimal Place Tracking": [
+        "Ch 17: Decimal Place Tracking": [
           {"question": "Q1: What is the hundredths place of 2.58?", "answer": 8, "options": [2, 5, 8, 0]},
           {"question": "Q2: Which is larger: 0.5 or 0.55?", "answer": "0.55", "options": ["0.5", "0.55", "Equal", "None"]},
           {"question": "Q3: Convert 0.5 to fraction.", "answer": "1/2", "options": ["1/5", "1/2", "2/5", "1/10"]},
@@ -3207,7 +3207,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: How many hundredths in 0.1?", "answer": 10, "options": [1, 10, 100, 1000]},
           {"question": "Q20: Is 5.0 the same as 5?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]}
         ],
-        "Ch 16: Volume Tracking": [
+        "Ch 18: Volume Tracking": [
           {"question": "Q1: Volume of box (l=3, w=2, h=1)?", "answer": 6, "options": [3, 5, 6, 9]},
           {"question": "Q2: If V=100, l=5, w=4, h is?", "answer": 5, "options": [4, 5, 10, 20]},
           {"question": "Q3: Volume of cube (side=2)?", "answer": 8, "options": [4, 6, 8, 16]},
@@ -3231,7 +3231,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 6": {
-        "Ch 15: Negative Integers": [
+        "Ch 17: Negative Integers": [
           {"question": "Q1: Which is bigger: -5 or -1?", "answer": -1, "options": [-5, -1, 0, 1]},
           {"question": "Q2: -10 + 5 = ?", "answer": -5, "options": [-15, -5, 5, 15]},
           {"question": "Q3: What is the absolute value of -7?", "answer": 7, "options": [-7, 0, 7, 14]},
@@ -3253,7 +3253,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: -6 / -2 = ?", "answer": 3, "options": [-3, 3, 0, 1]},
           {"question": "Q20: Are all negative numbers < 0?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]}
         ],
-        "Ch 16: Simplified Ratios": [
+        "Ch 18: Simplified Ratios": [
           {"question": "Q1: Ratio of 2 to 4?", "answer": "1:2", "options": ["1:2", "2:1", "1:1", "None"]},
           {"question": "Q2: Ratio of 10 to 5?", "answer": "2:1", "options": ["1:2", "2:1", "1:5", "5:1"]},
           {"question": "Q3: Are 2:4 and 1:2 equal?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
@@ -3277,7 +3277,7 @@ PHASE_9_QUESTIONS = {
         ]
       },
       "Class 7": {
-        "Ch 16: Exponents": [
+        "Ch 17: Exponents": [
           {"question": "Q1: What is 3^3?", "answer": 27, "options": [9, 18, 27, 81]},
           {"question": "Q2: Solve 2^2 x 2^3.", "answer": 32, "options": [16, 32, 64, 128]},
           {"question": "Q3: 5^2 / 5^1 = ?", "answer": 5, "options": [1, 5, 10, 25]},
@@ -3299,7 +3299,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q19: 2^6 / 2^4 = ?", "answer": 4, "options": [2, 4, 8, 16]},
           {"question": "Q20: (10^2)^0 = ?", "answer": 1, "options": [0, 1, 10, 100]}
         ],
-        "Ch 17: Simple Equation Balance": [
+        "Ch 18: Simple Equation Balance": [
           {"question": "Q1: Solve x + 7 = 10.", "answer": 3, "options": [2, 3, 4, 5]},
           {"question": "Q2: Solve 2x = 20.", "answer": 10, "options": [5, 10, 15, 20]},
           {"question": "Q3: Solve 3x - 2 = 10.", "answer": 4, "options": [2, 3, 4, 5]},
@@ -3420,7 +3420,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 2": {
-    "Ch 18: Weight Metrics": [
+    "Ch 19: Weight Metrics": [
       {"question": "Q1: 1kg = 1000g?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
       {"question": "Q2: Which is heavier: 1kg iron or 1kg cotton?", "answer": "Equal", "options": ["Iron", "Cotton", "Equal", "None"]},
       {"question": "Q3: How many 500g make 1kg?", "answer": 2, "options": [1, 2, 3, 4]},
@@ -3442,7 +3442,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: Is 10kg = 10000g?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
       {"question": "Q20: Which is lighter: 10g or 100g?", "answer": "10g", "options": ["10g", "100g", "Equal", "None"]}
     ],
-    "Ch 19: Calendar Logic": [
+    "Ch 20: Calendar Logic": [
       {"question": "Q1: How many days in a week?", "answer": 7, "options": [5, 6, 7, 8]},
       {"question": "Q2: Which day comes after Monday?", "answer": "Tuesday", "options": ["Sunday", "Tuesday", "Wednesday", "None"]},
       {"question": "Q3: How many months in a year?", "answer": 12, "options": [10, 11, 12, 13]},
@@ -3466,7 +3466,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 3": {
-    "Ch 18: Currency Change": [
+    "Ch 19: Currency Change": [
       {"question": "Q1: 50 - 20 = ?", "answer": 30, "options": [20, 30, 40, 50]},
       {"question": "Q2: Cost 10, Paid 20, Change?", "answer": 10, "options": [5, 10, 15, 20]},
       {"question": "Q3: 100 - 45 = ?", "answer": 55, "options": [45, 55, 65, 75]},
@@ -3488,7 +3488,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: 4 x 5 = ?", "answer": 20, "options": [15, 20, 25, 30]},
       {"question": "Q20: Cost 60, Paid 100, Change?", "answer": 40, "options": [30, 40, 50, 60]}
     ],
-    "Ch 19: Distribution Logic": [
+    "Ch 20: Distribution Logic": [
       {"question": "Q1: 12 / 3 = ?", "answer": 4, "options": [3, 4, 5, 6]},
       {"question": "Q2: 20 / 4 = ?", "answer": 5, "options": [4, 5, 6, 7]},
       {"question": "Q3: 18 / 2 = ?", "answer": 9, "options": [8, 9, 10, 11]},
@@ -3512,7 +3512,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 4": {
-    "Ch 17: Pattern String": [
+    "Ch 19: Pattern String": [
       {"question": "Q1: 10, 20, 30, __?", "answer": 40, "options": [35, 40, 45, 50]},
       {"question": "Q2: 2, 4, 6, __?", "answer": 8, "options": [7, 8, 9, 10]},
       {"question": "Q3: 5, 10, 15, __?", "answer": 20, "options": [18, 19, 20, 25]},
@@ -3534,7 +3534,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: 1, 4, 7, __?", "answer": 10, "options": [9, 10, 11, 12]},
       {"question": "Q20: 12, 24, 36, __?", "answer": 48, "options": [40, 42, 48, 50]}
     ],
-    "Ch 18: Time Duration": [
+    "Ch 20: Time Duration": [
       {"question": "Q1: How many minutes in 1 hour?", "answer": 60, "options": [30, 45, 60, 90]},
       {"question": "Q2: Minutes in 2 hours?", "answer": 120, "options": [60, 100, 120, 180]},
       {"question": "Q3: How many hours in a day?", "answer": 24, "options": [12, 24, 36, 48]},
@@ -3558,7 +3558,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 5": {
-    "Ch 17: Border Area": [
+    "Ch 19: Border Area": [
       {"question": "Q1: Area = l x w?", "answer": "Yes", "options": ["Yes", "No", "Maybe", "None"]},
       {"question": "Q2: Rectangle l=5, w=4, Area?", "answer": 20, "options": [10, 20, 30, 40]},
       {"question": "Q3: Square side 5, Area?", "answer": 25, "options": [10, 20, 25, 50]},
@@ -3580,7 +3580,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: Square side 4, Area?", "answer": 16, "options": [8, 16, 24, 32]},
       {"question": "Q20: Rectangle l=20, w=1, Area?", "answer": 20, "options": [10, 20, 30, 40]}
     ],
-    "Ch 18: Mapping Scale": [
+    "Ch 20: Mapping Scale": [
       {"question": "Q1: 1cm = 100m, 2cm = ?", "answer": 200, "options": [100, 200, 300, 400]},
       {"question": "Q2: 1cm = 500m, 4cm = ?", "answer": 2000, "options": [1000, 2000, 3000, 4000]},
       {"question": "Q3: 1cm = 1km, 5cm = ?", "answer": 5, "options": [1, 5, 10, 50]},
@@ -3604,7 +3604,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 6": {
-    "Ch 17: Proportional Ratios": [
+    "Ch 19: Proportional Ratios": [
       {"question": "Q1: Simplify 10:20.", "answer": "1:2", "options": ["1:2", "2:1", "1:10", "10:1"]},
       {"question": "Q2: Simplify 15:5.", "answer": "3:1", "options": ["1:3", "3:1", "1:5", "5:1"]},
       {"question": "Q3: 2 blue, 6 white, Ratio 1:?", "answer": 3, "options": [2, 3, 4, 6]},
@@ -3626,7 +3626,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: 8 cars, 32 bikes, Ratio 1:?", "answer": 4, "options": [1, 2, 4, 8]},
       {"question": "Q20: Simplify 100:50.", "answer": "2:1", "options": ["1:2", "2:1", "1:50", "50:1"]}
     ],
-    "Ch 18: Unitary Cost": [
+    "Ch 20: Unitary Cost": [
       {"question": "Q1: 5 for 100, 1 for?", "answer": 20, "options": [10, 20, 50, 100]},
       {"question": "Q2: 10 for 500, 1 for?", "answer": 50, "options": [25, 50, 100, 500]},
       {"question": "Q3: 3 for 30, 5 for?", "answer": 50, "options": [30, 40, 50, 60]},
@@ -3650,7 +3650,7 @@ PHASE_10_QUESTIONS = {
     ]
   },
   "Class 7": {
-    "Ch 18: Statistical Data": [
+    "Ch 19: Statistical Data": [
       {"question": "Q1: Mean of 2, 4, 6?", "answer": 4, "options": [2, 4, 6, 8]},
       {"question": "Q2: Median of 1, 2, 3?", "answer": 2, "options": [1, 2, 3, 4]},
       {"question": "Q3: Mean of 10, 20, 30?", "answer": 20, "options": [10, 20, 30, 40]},
@@ -3672,7 +3672,7 @@ PHASE_10_QUESTIONS = {
       {"question": "Q19: Mean of 6, 12?", "answer": 9, "options": [6, 9, 12, 18]},
       {"question": "Q20: Median of 100, 200, 300, 400, 500?", "answer": 300, "options": [200, 300, 400, 1500]}
     ],
-    "Ch 19: Geometry Invariance": [
+    "Ch 20: Geometry Invariance": [
       {"question": "Q1: Rotational symmetry of square?", "answer": 4, "options": [2, 3, 4, 8]},
       {"question": "Q2: Rotational symmetry of circle?", "answer": "Infinite", "options": [0, 1, 4, "Infinite"]},
       {"question": "Q3: Rotational symmetry of triangle?", "answer": 3, "options": [1, 2, 3, 6]},
@@ -3793,7 +3793,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 2": {
-    "Ch 20: Advanced Cash": [
+    "Ch 21: Advanced Cash": [
       {"question": "Q1: Bill 38, pay with 10s and 1s, how many 1s?", "answer": 8, "options": [3, 5, 8, 38]},
       {"question": "Q2: 3 notes of 20 = ?", "answer": 60, "options": [20, 40, 50, 60]},
       {"question": "Q3: 100 - 60 = ?", "answer": 40, "options": [30, 40, 50, 60]},
@@ -3815,7 +3815,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: 2 notes of 20 = ?", "answer": 40, "options": [20, 40, 60, 80]},
       {"question": "Q20: Bill 85, pay 100, change?", "answer": 15, "options": [10, 15, 20, 25]}
     ],
-    "Ch 21: Pattern String": [
+    "Ch 22: Pattern String": [
       {"question": "Q1: 2, 4, 6, 8, 10, __?", "answer": 12, "options": [11, 12, 14, 16]},
       {"question": "Q2: 5, 10, 15, 20, __?", "answer": 25, "options": [20, 25, 30, 35]},
       {"question": "Q3: 10, 20, 30, 40, __?", "answer": 50, "options": [45, 50, 55, 60]},
@@ -3839,7 +3839,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 3": {
-    "Ch 20: Addition": [
+    "Ch 21: Addition": [
       {"question": "Q1: 415 + 280 = ?", "answer": 695, "options": [600, 685, 695, 700]},
       {"question": "Q2: 890 - 350 = ?", "answer": 540, "options": [500, 540, 550, 1240]},
       {"question": "Q3: 125 + 125 = ?", "answer": 250, "options": [200, 250, 300, 350]},
@@ -3861,7 +3861,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: 200 + 800 = ?", "answer": 1000, "options": [900, 1000, 1100, 1200]},
       {"question": "Q20: 500 - 1 = ?", "answer": 499, "options": [490, 495, 499, 500]}
     ],
-    "Ch 21: Fluid Tracking": [
+    "Ch 22: Fluid Tracking": [
       {"question": "Q1: 4 mugs of 250ml = ?", "answer": 1000, "options": [500, 750, 1000, 2000]},
       {"question": "Q2: 2 mugs of 500ml = ?", "answer": 1000, "options": [500, 1000, 1500, 2000]},
       {"question": "Q3: 10 mugs of 100ml = ?", "answer": 1000, "options": [500, 1000, 1500, 2000]},
@@ -3885,7 +3885,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 4": {
-    "Ch 19: Mass Conversion": [
+    "Ch 21: Mass Conversion": [
       {"question": "Q1: 4kg 750g = ? grams", "answer": 4750, "options": [4000, 4500, 4750, 5000]},
       {"question": "Q2: 6500kg = ? tonnes", "answer": 6.5, "options": [6.0, 6.5, 7.0, 65.0]},
       {"question": "Q3: 1kg = ? grams", "answer": 1000, "options": [100, 500, 1000, 10000]},
@@ -3907,7 +3907,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: 2500g = ? kg", "answer": 2.5, "options": [2.0, 2.5, 3.0, 25.0]},
       {"question": "Q20: 10kg 10g = ? grams", "answer": 10010, "options": [10000, 10010, 10100, 11000]}
     ],
-    "Ch 20: Chart Processing": [
+    "Ch 22: Chart Processing": [
       {"question": "Q1: 1 icon = 4 students, 32 students = ?", "answer": 8, "options": [6, 8, 12, 16]},
       {"question": "Q2: 1 icon = 5 students, 20 students = ?", "answer": 4, "options": [2, 3, 4, 5]},
       {"question": "Q3: 1 icon = 10 students, 50 students = ?", "answer": 5, "options": [4, 5, 6, 10]},
@@ -3931,7 +3931,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 5": {
-    "Ch 19: Percentage": [
+    "Ch 21: Percentage": [
       {"question": "Q1: 45/50 = ? %", "answer": 90, "options": [80, 85, 90, 95]},
       {"question": "Q2: 12/20 = ?", "answer": 0.6, "options": [0.5, 0.6, 0.75, 0.8]},
       {"question": "Q3: 1/2 = ? %", "answer": 50, "options": [25, 50, 75, 100]},
@@ -3953,7 +3953,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: 100/200 = ? %", "answer": 50, "options": [25, 50, 75, 100]},
       {"question": "Q20: 3/10 = ? %", "answer": 30, "options": [10, 20, 30, 40]}
     ],
-    "Ch 20: Perimeter": [
+    "Ch 22: Perimeter": [
       {"question": "Q1: Square perimeter 36, side?", "answer": 9, "options": [4, 6, 9, 18]},
       {"question": "Q2: Square perimeter 40, side?", "answer": 10, "options": [5, 8, 10, 20]},
       {"question": "Q3: Square perimeter 20, side?", "answer": 5, "options": [2, 4, 5, 10]},
@@ -3977,7 +3977,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 6": {
-    "Ch 19: Ratios": [
+    "Ch 21: Ratios": [
       {"question": "Q1: 15 devs, 12 designers, ratio?", "answer": 1.25, "options": [1.0, 1.2, 1.25, 1.5]},
       {"question": "Q2: A:B = 3:5, A=18, B=?", "answer": 30, "options": [24, 28, 30, 36]},
       {"question": "Q3: 10:20 simplified?", "answer": "1:2", "options": ["1:2", "2:1", "1:10", "10:1"]},
@@ -3999,7 +3999,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: 9:3 simplified?", "answer": "3:1", "options": ["1:3", "3:1", "1:9", "9:1"]},
       {"question": "Q20: A:B = 8:2, A=32, B=?", "answer": 8, "options": [4, 8, 12, 16]}
     ],
-    "Ch 20: Angles": [
+    "Ch 22: Angles": [
       {"question": "Q1: Smallest angle of right isosceles triangle?", "answer": 45, "options": [30, 45, 60, 90]},
       {"question": "Q2: Total degrees in triangle?", "answer": 180, "options": [90, 180, 270, 360]},
       {"question": "Q3: Angle of equilateral triangle?", "answer": 60, "options": [30, 60, 90, 120]},
@@ -4023,7 +4023,7 @@ PHASE_11_QUESTIONS = {
     ]
   },
   "Class 7": {
-    "Ch 20: Algebraic Expansions": [
+    "Ch 21: Algebraic Expansions": [
       {"question": "Q1: 4(x+3)-2x, coeff of x?", "answer": 2, "options": [2, 4, -2, 6]},
       {"question": "Q2: 3a^2-2b, a=3, b=4?", "answer": 19, "options": [10, 14, 19, 25]},
       {"question": "Q3: 2(x+5) = ?", "answer": "2x+10", "options": ["2x+5", "2x+10", "x+10", "None"]},
@@ -4045,7 +4045,7 @@ PHASE_11_QUESTIONS = {
       {"question": "Q19: y + 2y + 3y = ?", "answer": "6y", "options": ["5y", "6y", "7y", "None"]},
       {"question": "Q20: x^3 / x = ?", "answer": "x^2", "options": ["x", "x^2", "x^3", "None"]}
     ],
-    "Ch 21: Probability": [
+    "Ch 22: Probability": [
       {"question": "Q1: 3R, 4B, 5G tokens, Prob(Blue)?", "answer": 33.33, "options": [25.0, 33.33, 41.66, 50.0]},
       {"question": "Q2: Coin toss, Prob(Head)?", "answer": 0.5, "options": [0.25, 0.5, 0.75, 1.0]},
       {"question": "Q3: Die roll, Prob(6)?", "answer": 0.166, "options": [0.1, 0.166, 0.5, 1.0]},
