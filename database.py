@@ -1434,7 +1434,7 @@ PHASE_4_QUESTIONS = {
             {"question": "5/4 + (-11/4)?", "answer": -1.5, "options": [-1.5, -2.0, 1.5, -0.75]},
             {"question": "Additive inverse of -5?", "answer": 5, "options": [-5, 0, 5, 25]},
             {"question": "Multiplicative inverse of 1/2?", "answer": 2, "options": [0.5, 1, 2, 4]},
-            {"question": "0 divided by any rational?", "answer": 0, "options": [0, 1, undefined, -1]},
+            {"question": "0 divided by any rational?", "answer": "0", "options": ["0", "1", "undefined", "-1"]},
             {"question": "Rational number between 0 and 1?", "answer": "0.5", "options": [0.5, 2, -1, 1.5]},
             {"question": "Is 5/0 rational?", "answer": "No", "options": ["Yes", "No", "Maybe", "None"]},
             {"question": "Absolute value of -3/4?", "answer": 0.75, "options": [-0.75, 0.75, 0, 1]},
