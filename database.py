@@ -1070,7 +1070,7 @@ PHASE_3_QUESTIONS = {
             {"question": "Simplify: a + a + b?", "answer": "2a+b", "options": ["2ab", "2a+b", "a^2+b", "ab"]},
             {"question": "If x=10, 2x-5=?", "answer": 15, "options": [5, 10, 15, 20]},
             {"question": "Is 2x and 2y like terms?", "answer": "No", "options": ["Yes", "No", "Sometimes", "Maybe"]},
-            {"question": "Coeff of z in -z?", "answer": -1, "options": [1, -1, 0, z]},
+            {"question": "Coeff of z in -z?", "answer": "-1", "options": ["1", "-1", "0", "z"]},
             {"question": "Evaluate 5(x) where x=2?", "answer": 10, "options": [5, 7, 10, 25]},
             {"question": "Simplify: 3a + 2a - 4a?", "answer": "a", "options": ["0", "a", "5a", "9a"]},
             {"question": "If m=5, 2m-3=?", "answer": 7, "options": [5, 7, 10, 12]},
