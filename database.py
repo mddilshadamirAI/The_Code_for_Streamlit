@@ -1850,8 +1850,8 @@ PHASE_5_QUESTIONS = {
             {"question": "VAT/GST is added to?", "answer": "SP", "options": ["CP", "SP", "Profit", "None"]}
         ],
         "Ch 11: Direct & Inverse Proportions": [
-            {"question": "Direct proportion: x/y = ?", "answer": "k", "options": [1, k, 0, x*y]},
-            {"question": "Inverse proportion: x*y = ?", "answer": "k", "options": [1, k, x/y, x+y]},
+            {"question": "Direct proportion: x/y = ?", "answer": "k", "options": ["1", "k", "0", "x*y"]},
+            {"question": "Inverse proportion: x*y = ?", "answer": "k", "options": ["1", "k", "x/y", "x+y"]},
             {"question": "If 5 pens cost 25, 1 pen cost?", "answer": 5, "options": [2, 5, 10, 25]},
             {"question": "If 10 workers take 5 days, 5 workers take?", "answer": 10, "options": [2, 5, 10, 20]},
             {"question": "Speed and time are?", "answer": "Inverse", "options": ["Direct", "Inverse", "None", "All"]},
