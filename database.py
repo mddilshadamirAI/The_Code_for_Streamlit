@@ -3281,7 +3281,7 @@ PHASE_9_QUESTIONS = {
           {"question": "Q1: What is 3^3?", "answer": 27, "options": [9, 18, 27, 81]},
           {"question": "Q2: Solve 2^2 x 2^3.", "answer": 32, "options": [16, 32, 64, 128]},
           {"question": "Q3: 5^2 / 5^1 = ?", "answer": 5, "options": [1, 5, 10, 25]},
-          {"question": "Q4: Anything to the power of 0 is?", "answer": "1", "options": ["0", "1", "10", "None"`    ]},
+          {"question": "Q4: Anything to the power of 0 is?", "answer": "1", "options": ["0", "1", "10", "None"]},
           {"question": "Q5: What is 4^2?", "answer": 16, "options": [8, 12, 16, 24]},
           {"question": "Q6: 10^3 = ?", "answer": 1000, "options": [100, 1000, 10000, 30]},
           {"question": "Q7: Simplify (2^2)^3.", "answer": 64, "options": [32, 64, 128, 256]},
