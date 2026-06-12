@@ -23,16 +23,19 @@ Check out the live deployment on Streamlit Sharing here: **[https://maths-arena-
 
 ## 🛠️ Tech Stack
 
-* **Backend Engine:** Python 3.x
+* **Backend Engine:** Python
 * **Deployment Dashboard:** Streamlit Framework
 * **Graphics Core:** JavaScript (ES6+), Three.js (r128 WebGL rendering library)
-* **Styling Matrix:** CSS3 Custom Glassmorphism, Neon Glow Architectures, Keyframe Rotators
-
+* **Styling Matrix:** CSS3 Custom Glassmorphism, Neon Glow Architectures, Keyframe Rotators..
 ---
-
+ ## Database of Questions:
+ This Database include qeustions of class 1 to 8 of every chapters separately.
+----
 ## 📂 File Architecture
 
 ```text
 ├── maths_arena.py        # Main Streamlit execution script & HTML injection core
 ├── faa.mp3               # Audio stream asset for correct selections
 └── haha.mp3              # Audio stream asset for incorrect selections
+
+
