@@ -34,9 +34,3 @@
 | **Assets** | Custom Base64 Binary Audio Streams |
 
 ---
-
-### 📂 PROJECT STRUCTURE
-```text
-├── maths_arena.py        # Main execution script & HTML injection core
-├── faa.mp3               # Audio asset: Success feedback
-└── haha.mp3              # Audio asset: Error feedback
