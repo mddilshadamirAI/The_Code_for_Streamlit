@@ -1,41 +1,42 @@
+<div align="center">
+
 # ⚡ CYBER ARENA 2D ⚡
+### High-Stakes Mental Math | Precision Reflex Engine | Web-Matrix Arcade
 
-An extreme-tier, high-stakes mental math reflex game wrapped in a sleek cyberpunk arcade aesthetic. Built using **Python** and **Streamlit**, this application breaches traditional framework limitations by injecting a high-performance **Three.js 3D particle engine** and custom interactive HTML5 canvas components straight into the web matrix.
-
-Developed by **[MD DILSHAD](https://github.com/mddilshadamirAI)** 🚀
-
----
-
-## 🎮 Live Demo
-Check out the live deployment on Streamlit Sharing here: **[https://maths-arena-game-mddilshada.streamlit.app/]**
+[**Play Live Demo**](https://maths-arena-game-mddilshada.streamlit.app/) • [**View Source Code**](https://github.com/mddilshadamirAI)
 
 ---
 
-## 🚀 Key Features
-
-* **3D Spatial Particle Field:** Powered by an integrated **Three.js** loop rendering 400+ independent nodes animating dynamically behind the console layout.
-* **Continuous Kinetic Orbit:** Four floating answer spheres rotate endlessly in a planetary vector configuration. The rotation never stops—even on hover or touch—forcing users to time their selections carefully.
-* **Responsive Visual Shockwaves:** Making an error triggers a crimson warning matrix flash, while a correct answer induces an emerald downstorm acceleration sequence across the spatial particle grid.
-* **Bulletproof Audio Pipeline:** Uses a custom native **Base64 binary memory stream injection system** to safely deliver high-fidelity `.mp3` audio feedback (`faa.mp3` and `haha.mp3`) directly inside the sandboxed component without file-locking lag.
-* **Infinite Non-Repetitive Problem Generation:** An underlying algorithmic lookup ledger shifts arithmetic operators over thousands of unique variations, maintaining a clean progression sequence.
+### 🌐 OVERVIEW
+**Cyber Arena 2D** is an extreme-tier mental reflex game that pushes the boundaries of the Streamlit framework. By merging high-stakes arithmetic with a sleek, cyberpunk aesthetic, this application utilizes custom-injected HTML5/Three.js components to transform a standard web interface into a high-performance gaming environment.
 
 ---
 
-## 🛠️ Tech Stack
+### 🚀 ADVANCED ARCHITECTURE & FEATURES
 
-* **Backend Engine:** Python
-* **Deployment Dashboard:** Streamlit Framework
-* **Graphics Core:** JavaScript (ES6+), Three.js (r128 WebGL rendering library)
-* **Styling Matrix:** CSS3 Custom Glassmorphism, Neon Glow Architectures, Keyframe Rotators..
+*   **3D Spatial Particle Engine:** Powered by a **Three.js** loop rendering 400+ independent, dynamically animating nodes behind the game console.
+*   **Kinetic Orbit Mechanics:** Four answer spheres operate in a planetary vector configuration. The continuous, high-velocity rotation forces users to master precise timing under pressure.
+*   **Dynamic Visual Feedback:** 
+    *   *Correction Sequence:* Triggers an emerald "downstorm" acceleration across the spatial grid.
+    *   *Error Sequence:* Triggers an immediate crimson warning matrix flash.
+*   **Binary Audio Pipeline:** Utilizes a custom **Base64 binary memory stream injection** to deliver high-fidelity audio feedback, bypassing standard file-locking latency.
+*   **Algorithmic Intelligence:** Features an infinite, non-repetitive problem generator covering mathematical curricula from **Class 1 through Class 8**, ensuring progressive difficulty and endless replayability.
+
 ---
- ## Database of Questions:
- This Database include qeustions of class 1 to 8 of every chapters separately.
-----
-## 📂 File Architecture
 
+### 🛠️ TECHNICAL ARSENAL
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Backend Core** | Python, Streamlit Framework |
+| **Graphics Engine** | JavaScript (ES6+), Three.js (r128 WebGL) |
+| **Styling Matrix** | CSS3, Glassmorphism, Neon Glow Architectures |
+| **Assets** | Custom Base64 Binary Audio Streams |
+
+---
+
+### 📂 PROJECT STRUCTURE
 ```text
-├── maths_arena.py        # Main Streamlit execution script & HTML injection core
-├── faa.mp3               # Audio stream asset for correct selections
-└── haha.mp3              # Audio stream asset for incorrect selections
-
-
+├── maths_arena.py        # Main execution script & HTML injection core
+├── faa.mp3               # Audio asset: Success feedback
+└── haha.mp3              # Audio asset: Error feedback
