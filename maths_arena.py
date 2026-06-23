@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import base64
 
 # Layout configurations
-st.set_page_config(page_title="Cyber Arena 2D", page_icon="👑", layout="centered")
+st.set_page_config(page_title="Cyber Arena", page_icon="👑", layout="centered")
 
 # --- UI STYLING ---
 st.markdown("""
@@ -287,7 +287,7 @@ raw_template_html = """
                 playAudio(WRONG_AUDIO);
                 renderMatchStage();
             } else {
-                triggerGameOver("DRAGON DEFEAT");
+                triggerGameOver("DEFEATED");
             }
         }
     }
@@ -301,7 +301,7 @@ raw_template_html = """
         
         // Re-inject the centered content and the button linked to resetGame
         overlay.innerHTML = `
-            <div class="dragon-eyes">🐉🐉</div>
+            <div class="dragon-eyes">🥀🥀</div>
             <div style="color:white; font-size:30px; margin-top:20px;">${msg}</div>
             <button class="mode-btn" onclick="resetGame()" style="pointer-events: auto; margin-top:30px;">RETRY</button>
         `;
