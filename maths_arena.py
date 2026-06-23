@@ -14,7 +14,7 @@ div[data-testid="stAppViewContainer"] { background: radial-gradient(circle at ce
 """, unsafe_allow_html=True)
 
 # --- NAME CREDIT ---
-st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ CYBER ARENA 2D ⚡</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #ffffff; font-family: system-ui, sans-serif; font-weight: 900; letter-spacing: -2px; text-shadow: 0 0 20px rgba(168,85,247,0.4); margin-bottom:0px;'>⚡ MATHS ARENA ⚡</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: #06b6d4; font-family: monospace; font-size: 14px; margin-top:6px; margin-bottom: 0px; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px rgba(6,182,212,0.6);'>🚀 DEVELOPED BY MD DILSHAD AMIR</p>", unsafe_allow_html=True)
 
 def load_local_audio_base64(file_path):
@@ -26,7 +26,7 @@ def load_local_audio_base64(file_path):
 right_answer_audio = load_local_audio_base64("faa.mp3")
 wrong_answer_audio = load_local_audio_base64("haha.mp3")
 background_music = load_local_audio_base64("newmusic.mp3")
-lion_roar_audio = load_local_audio_base64("roar.mp3") # Ensure you have this file
+lion_roar_audio = load_local_audio_base64("roar.mp3") 
 
 raw_template_html = """
 <!DOCTYPE html>
