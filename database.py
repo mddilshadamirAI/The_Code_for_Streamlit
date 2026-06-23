@@ -211,8 +211,8 @@ PHASE_1_QUESTIONS = {
             {"question": "Q100: How many heads do you have? (1) 1 (2) 2", "answer": 1, "options": ["1", "2", "3", "4"]}
         ]
     },
-    "Class 2": {
-        "Ch 1: Counting in Groups": [
+     "Class 2": {
+         "Ch 1: Counting in Groups": [
             {"question": "NCERT Ex 2.1: Radha arranges matching pairs of earrings. If she has 6 complete pairs, how many individual earrings does she possess?", "answer": 12, "options": ["6", "10", "12", "14"]},
             {"question": "RS Aggarwal Ch 3: A bundle contains exactly 10 wooden sticks. If a farmer builds 4 full bundles and has 5 loose sticks left over, what is the net count?", "answer": 45, "options": ["40", "45", "54", "50"]},
             {"question": "NCERT Ex 2.2: There are 3 groups of spoons on a counter, and each group has exactly 4 spoons. What is the total number of spoons?", "answer": 12, "options": ["7", "10", "12", "16"]},
