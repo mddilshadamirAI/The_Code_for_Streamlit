@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import base64
 
 # Layout configurations
-st.set_page_config(page_title="Cyber Arena", page_icon="👑", layout="centered")
+st.set_page_config(page_title="Maths Arena", page_icon="☠️", layout="centered")
 
 # --- UI STYLING ---
 st.markdown("""
