@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ CYBER ARENA 2D ⚡
+# ⚡ CYBER ARENA ⚡
 ### High-Stakes Mental Reflex Engine | Immersive Web-Matrix Arcade
 
 [**Play Live Demo**](https://maths-arena-game-mddilshada.streamlit.app/) • [**View Source Code**](https://github.com/mddilshadamirAI/maths-arena) • [**Report an Issue**](https://github.com/mddilshadamirAI/maths-arena/issues)
