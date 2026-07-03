@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import base64
 
-# Page config
 st.set_page_config(page_title="Maths Arena", layout="centered")
 
 def get_audio(f):
@@ -10,77 +9,82 @@ def get_audio(f):
         with open(f, "rb") as a: return f"data:audio/mp3;base64,{base64.b64encode(a.read()).decode('utf-8')}"
     except: return ""
 
-# Injecting the logic with properly escaped brackets for Python
 raw_html = f"""
 <!DOCTYPE html>
 <html>
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body{{ margin:0; overflow:hidden; font-family:'Courier New', monospace; color:white; background:#000; }}
-        .arena{{ width:480px; height:640px; margin:auto; position:relative; border-radius:40px; }}
-        #ui{{ position:absolute; z-index:20; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:rgba(0,0,0,0.95); }}
-        .hud{{ position:absolute; top:20px; width:100%; display:flex; justify-content:space-around; z-index:5; font-size:18px; font-weight:900; color:#06b6d4; }}
-        .node{{ position:absolute; width:80px; height:80px; border:2px solid #38bdf8; border-radius:50%; display:flex; justify-content:center; align-items:center; cursor:pointer; background:rgba(0,0,0,0.8); }}
-        .q-box{{ font-size:45px; font-weight:900; text-shadow:0 0 20px #fff; margin-top:100px; }}
+        body {{ margin:0; padding:0; background:#020617; font-family:sans-serif; color:white; overflow:hidden; }}
+        #arena {{ width:480px; height:640px; margin:auto; position:relative; background:#000; border:2px solid #38bdf8; }}
+        #ui {{ position:absolute; z-index:50; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#000; }}
+        .game-ui {{ display:none; text-align:center; padding-top:50px; }}
+        .btn {{ padding:15px 30px; margin:10px; cursor:pointer; background:#06b6d4; color:white; border:none; border-radius:10px; font-weight:bold; }}
+        .q-text {{ font-size:40px; margin:20px; }}
+        .node {{ width:70px; height:70px; border:2px solid #06b6d4; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin:10px; cursor:pointer; }}
     </style>
 </head>
 <body>
-<div class="arena">
-    <canvas id="three"></canvas>
-    <div id="ui">
-        <input id="n1" placeholder="Player 1 Name">
-        <input id="n2" placeholder="Player 2 Name">
-        <button onclick="start()">START TOURNAMENT</button>
+    <div id="arena">
+        <canvas id="three" style="position:absolute; top:0; left:0;"></canvas>
+        
+        <div id="ui">
+            <input id="n1" placeholder="Player 1 Name" style="margin:5px;">
+            <input id="n2" placeholder="Player 2 Name" style="margin:5px;">
+            <button class="btn" onclick="startGame()">START TOURNAMENT</button>
+        </div>
+
+        <div id="game" class="game-ui">
+            <div id="hud" style="color:#06b6d4; font-weight:bold;"></div>
+            <div id="q" class="q-text"></div>
+            <div id="options"></div>
+        </div>
     </div>
-    <div id="game" style="display:none;">
-        <div class="hud"><span id="hud1"></span> | <span id="hud2"></span></div>
-        <div id="q" class="q-box" style="text-align:center;"></div>
-        <div id="wheel" style="position:relative; width:200px; height:200px; margin:50px auto;"></div>
-    </div>
-</div>
+
 <script>
     const R_A = "{get_audio('faa.mp3')}";
     const W_A = "{get_audio('haha.mp3')}";
-    let turn = 1, qCount = 0;
-    let p1 = {{n:'P1', s:0, l:3}}, p2 = {{n:'P2', s:0, l:3}};
+    let p1={{n:'P1', s:0, l:3}}, p2={{n:'P2', s:0, l:3}}, turn=1, qCount=0, ans=0;
 
-    function start() {{
+    function startGame() {{
         p1.n = document.getElementById('n1').value || 'P1';
         p2.n = document.getElementById('n2').value || 'P2';
-        document.getElementById('ui').style.display='none';
-        document.getElementById('game').style.display='block';
-        next();
+        document.getElementById('ui').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+        nextQuestion();
     }}
 
-    function next() {{
-        let ops = ['+', '-', '*', '/'], op = ops[Math.floor(Math.random()*4)];
-        let a = Math.floor(Math.random()*80)+10, b = Math.floor(Math.random()*80)+10;
-        if(op==='/') {{ b = Math.floor(Math.random()*9)+1; a = b * (Math.floor(Math.random()*10)+1); }}
-        let ans = eval(a+op+b);
-        document.getElementById('q').innerText = a + " " + op + " " + b;
-        let w = document.getElementById('wheel'); w.innerHTML='';
-        [ans, ans+5, ans-3, ans+12].sort(()=>Math.random()-0.5).forEach(v => {{
-            let d = document.createElement('div'); d.className='node'; d.innerText=v;
-            d.onclick=()=>check(v, ans); w.appendChild(d);
+    function nextQuestion() {{
+        let a = Math.floor(Math.random()*50)+1, b = Math.floor(Math.random()*50)+1;
+        ans = a + b;
+        document.getElementById('q').innerText = a + " + " + b;
+        document.getElementById('hud').innerText = p1.n + ": " + p1.s + " | " + p2.n + ": " + p2.s;
+        
+        let opts = [ans, ans+5, ans-3, ans+10].sort(() => Math.random() - 0.5);
+        let cont = document.getElementById('options'); cont.innerHTML = '';
+        opts.forEach(v => {{
+            let d = document.createElement('div'); d.className = 'node'; d.innerText = v;
+            d.onclick = () => checkAns(v); cont.appendChild(d);
         }});
-        document.getElementById('hud1').innerText = p1.n + ":" + p1.s;
-        document.getElementById('hud2').innerText = p2.n + ":" + p2.s;
     }}
 
-    function check(v, ans) {{
-        let p = (turn==1?p1:p2);
-        if(v===ans) {{ p.s+=10; new Audio(R_A).play(); }} else {{ p.l--; new Audio(W_A).play(); }}
-        if(p.l <= 0) {{ alert(p.n + " Eliminated!"); location.reload(); }}
-        turn = (turn==1?2:1); qCount++;
-        if(qCount >= 20) {{ alert("WINNER: " + (p1.s>p2.s?p1.n:p2.n)); location.reload(); }}
-        else {{ next(); }}
+    function checkAns(v) {{
+        let p = (turn==1 ? p1 : p2);
+        if(v === ans) {{ p.s += 10; new Audio(R_A).play(); }} 
+        else {{ p.l -= 1; new Audio(W_A).play(); }}
+        
+        if(p.l <= 0) {{ alert(p.n + " ELIMINATED!"); location.reload(); }}
+        
+        turn = (turn==1 ? 2 : 1); qCount++;
+        if(qCount >= 20) {{ alert("WINNER: " + (p1.s > p2.s ? p1.n : p2.n)); location.reload(); }}
+        else {{ nextQuestion(); }}
     }}
 
-    const s=new THREE.Scene(), c=new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    const r=new THREE.WebGLRenderer({{canvas:document.getElementById('three'), alpha:true}});
-    r.setSize(480,640); c.position.z=5;
-    function anim() {{ requestAnimationFrame(anim); r.render(s, c); }} anim();
+    // Three.js Background
+    const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(75, 480/640, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({{canvas:document.getElementById('three'), alpha:true}});
+    renderer.setSize(480, 640); cam.position.z = 5;
+    function anim() {{ requestAnimationFrame(anim); renderer.render(scene, cam); }} anim();
 </script>
 </body>
 </html>
