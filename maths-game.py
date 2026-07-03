@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import base64
 
-# --- LAYOUT SETUP ---
 st.set_page_config(page_title="Maths Arena Tournament", layout="centered")
 st.markdown("<style>div[data-testid='stAppViewContainer'] { background: #020617; } #MainMenu {visibility: hidden;}</style>", unsafe_allow_html=True)
 
@@ -11,6 +10,7 @@ def get_audio(f):
         with open(f, "rb") as a: return f"data:audio/mp3;base64,{base64.b64encode(a.read()).decode('utf-8')}"
     except: return ""
 
+# Note the {{ and }} to escape the braces for Python's f-string
 raw_html = f"""
 <!DOCTYPE html>
 <html>
@@ -41,9 +41,10 @@ raw_html = f"""
     </div>
 </div>
 <script>
-    const R_A = "{get_audio('faa.mp3')}", W_A = "{get_audio('haha.mp3')}";
-    let turn=1, qCount=0, mode='medium', gameData={};
-    let p1={{n:'P1', s:0, l:3, t:0}}, p2={{n:'P2', s:0, l:3, t:0}};
+    const R_A = "{get_audio('faa.mp3')}";
+    const W_A = "{get_audio('haha.mp3')}";
+    let turn = 1, qCount = 0;
+    let p1 = {{n:'P1', s:0, l:3}}, p2 = {{n:'P2', s:0, l:3}};
 
     function start(m) {{
         p1.n = document.getElementById('n1').value || 'P1';
@@ -81,9 +82,9 @@ raw_html = f"""
         }} else {{ next(); }}
     }}
 
-    const s=new THREE.Scene(), c=new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    const r=new THREE.WebGLRenderer({{canvas:document.getElementById('three'), alpha:true}});
-    r.setSize(480,640); c.position.z=5;
+    const s = new THREE.Scene(), c = new THREE.PerspectiveCamera(75, 480/640, 0.1, 1000);
+    const r = new THREE.WebGLRenderer({{canvas:document.getElementById('three'), alpha:true}});
+    r.setSize(480,640); c.position.z = 5;
     function anim() {{ requestAnimationFrame(anim); r.render(s, c); }} anim();
 </script>
 </body>
