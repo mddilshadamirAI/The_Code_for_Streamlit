@@ -1,0 +1,5 @@
+streamlit>=1.30.0
+# The following are built-in Python modules, so they don't need 
+# explicit versions, but you can list external ones here:
+# If you eventually add pandas or numpy, add them here:
+# pandas>=2.0.0
