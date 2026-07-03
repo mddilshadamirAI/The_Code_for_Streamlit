@@ -17,14 +17,24 @@ from core_engine import TournamentEngine
 from database_layer import ArenaDatabase
 from render_bridge import RenderBridge, EventDispatcher
 
+# Replace your main() initialization block with this:
 def main():
     st.set_page_config(page_title="Maths Arena Pro", layout="wide")
-
-    # Initialize Engine Components in Session State
-    if 'engine' not in st.session_state:
+    
+    # 1. Initialize Engine properly
+    if 'engine' not in st.session_state or st.session_state.engine is None:
         st.session_state.engine = TournamentEngine()
+        
+    # 2. Initialize Database
+    if 'db' not in st.session_state:
         st.session_state.db = ArenaDatabase()
-        st.session_state.current_q, st.session_state.current_ans = st.session_state.engine.next_round("medium")
+
+    # 3. Initialize Game Variables
+    if 'current_q' not in st.session_state:
+        # Direct access to the method from the imported class
+        q, ans = st.session_state.engine.next_round("medium")
+        st.session_state.current_q = q
+        st.session_state.current_ans = ans
 
     # UI Header
     st.markdown("<h1 style='text-align: center; color: #00f2ff;'>☠️ MATHS ARENA: ENTERPRISE ENGINE ☠️</h1>", unsafe_allow_html=True)
