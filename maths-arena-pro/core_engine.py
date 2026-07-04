@@ -43,9 +43,20 @@ class TournamentEngine:
         self.round_count = 0
         self.bank = MathQuestionBank()
     
+    # ADD THIS METHOD TO YOUR CLASS
+    def next_round(self, tier):
+        """Generates a new question for the tournament."""
+        q, ans = self.bank.generate(tier)
+        return q, ans
+    
     def process_turn(self, player, user_ans, correct_ans):
         """Validates input and updates game state."""
-        is_correct = (int(user_ans) == int(correct_ans))
+        # Ensure correct_ans is treated as int for comparison
+        try:
+            is_correct = (int(user_ans) == int(correct_ans))
+        except ValueError:
+            is_correct = False
+            
         if is_correct:
             if player == "p1": self.p1['score'] += 10
             else: self.p2['score'] += 10
@@ -53,12 +64,10 @@ class TournamentEngine:
             if player == "p1": self.p1['lives'] -= 1
             else: self.p2['lives'] -= 1
         
-        # Toggle turn
         self.active_turn = "p2" if self.active_turn == "p1" else "p1"
         return is_correct
 
     def get_match_stats(self):
         return {"p1": self.p1, "p2": self.p2, "turn": self.active_turn}
-
 # End of Module 1: 100 Lines.
 # Ready for Module 2: The Persistence Layer (Database and Logging).
