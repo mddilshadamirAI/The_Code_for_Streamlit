@@ -42,10 +42,26 @@ def main():
     # Layout: Visual Arena (Left) & Stats (Right)
     col1, col2 = st.columns([3, 1])
 
-    with col1:
-        # Inject the HTML/JS Frontend
-        game_html = RenderBridge.get_html_layout() + f"<script>{RenderBridge.get_javascript_client()}</script>"
-        components.html(game_html, height=550)
+    # In orchestrator.py
+with col1:
+    with st.form("game_form", clear_on_submit=True):
+        # Display current question from Session State
+        st.subheader(f"Current Question: {st.session_state.current_q}")
+        user_input = st.number_input("Enter Answer", key="input_val")
+        submitted = st.form_submit_button("CONFIRM")
+        
+        if submitted:
+            # 1. Process logic
+            correct = st.session_state.engine.process_turn(
+                st.session_state.engine.active_turn, 
+                user_input, 
+                st.session_state.current_ans
+            )
+            # 2. Update question
+            q, ans = st.session_state.engine.next_round("medium")
+            st.session_state.current_q = q
+            st.session_state.current_ans = ans
+            st.rerun()
 
     with col2:
         st.subheader("Match Stats")
