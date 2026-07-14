@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ CYBER ARENA ⚡
+# ⚡ CYBER ARENA WITH MULTIPLAYER GAME MOOD⚡
 ### High-Stakes Mental Reflex Engine | Immersive Web-Matrix Game 
 
 [**Play Live Demo**](https://maths-arena-game-mddilshada.streamlit.app/) • [**View Source Code**](https://github.com/mddilshadamirAI/maths-arena) • [**Report an Issue**](https://github.com/mddilshadamirAI/maths-arena/issues)
@@ -32,9 +32,3 @@
 * **Asset Handling:** Custom Base64 binary memory stream injection.
 
 ---
-
-### 📂 PROJECT STRUCTURE
-```text
-├── maths_arena.py        # Core Streamlit execution script & HTML injection engine
-├── faa.mp3               # Success feedback binary stream
-└── haha.mp3              # Error feedback binary stream
