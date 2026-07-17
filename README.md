@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ CYBER ARENA WITH MULTIPLAYER GAME MOOD⚡
+# ⚡ CYBER ARENA WITH MULTIPLAYER GAME MODE⚡
 ### High-Stakes Mental Reflex Engine | Immersive Web-Matrix Game 
 
 [**Play Live Demo**](https://maths-arena-game-mddilshada.streamlit.app/) • [**View Source Code**](https://github.com/mddilshadamirAI/maths-arena) • [**Report an Issue**](https://github.com/mddilshadamirAI/maths-arena/issues)
