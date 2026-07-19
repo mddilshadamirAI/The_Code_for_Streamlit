@@ -6,7 +6,8 @@
 # PHASE 1: Baseline Questions (From your original app.py)
 # ------------------------------------------------------------
 PHASE_1_QUESTIONS = {
-    "Ch 1: Shapes & Space": [
+    "Class 1": {
+        "Ch 1: Shapes & Space": [
             {"question": "Q1: If a book is lying on the bed, is it on top or under? (1) Top (2) Under", "answer": 1, "options": ["1", "2", "3", "4"]},
             {"question": "Q2: Which of these is a round object? (1) Football (2) Brick", "answer": 1, "options": ["1", "2", "3", "4"]},
             {"question": "Q3: Is a tree taller than a blade of grass? (1) Yes (2) No", "answer": 1, "options": ["1", "2", "3", "4"]},
@@ -211,8 +212,8 @@ PHASE_1_QUESTIONS = {
             {"question": "Q100: How many heads do you have? (1) 1 (2) 2", "answer": 1, "options": ["1", "2", "3", "4"]}
         ]
     },
-     "Class 2": {
-         "Ch 1: Counting in Groups": [
+    "Class 2": {
+        "Ch 1: Counting in Groups": [
             {"question": "NCERT Ex 2.1: Radha arranges matching pairs of earrings. If she has 6 complete pairs, how many individual earrings does she possess?", "answer": 12, "options": ["6", "10", "12", "14"]},
             {"question": "RS Aggarwal Ch 3: A bundle contains exactly 10 wooden sticks. If a farmer builds 4 full bundles and has 5 loose sticks left over, what is the net count?", "answer": 45, "options": ["40", "45", "54", "50"]},
             {"question": "NCERT Ex 2.2: There are 3 groups of spoons on a counter, and each group has exactly 4 spoons. What is the total number of spoons?", "answer": 12, "options": ["7", "10", "12", "16"]},
@@ -416,7 +417,10 @@ PHASE_1_QUESTIONS = {
             {"question": "Q99: A bowl holds 200 ml. How much in 5 bowls?", "answer": 1000, "options": ["800", "900", "1000", "1200"]},
             {"question": "Q100: A pot holds 1 litre. You add 1. Total?", "answer": 2, "options": ["1", "2", "3", "0"]}
         ]
-    },
+    }
+}
+
+PHASE_2_QUESTIONS = {
     "Class 3": {
         "Ch 1: Fun with Numbers": [
             {"question": "NCERT Ex 2.2: Dhoni scored 96 runs in a cricket match. How many more runs did he require to complete a glorious century (100 runs)?", "answer": 4, "options": ["2", "4", "6", "10"]},
@@ -623,6 +627,7 @@ PHASE_1_QUESTIONS = {
             {"question": "Q100: A pen is 15cm. How many mm?", "answer": 150, "options": ["15", "150", "1500", "1.5"]}
         ]
     },
+
     "Class 4": {
         "Ch 1: Building with Bricks": [
             {"question": "NCERT Ex 1.1: A brick merchant charges Rs. 2000 for exactly 1000 bricks. Find the purchasing price of a single structural brick unit.", "answer": 2, "options": ["1", "2", "5", "10"]},
@@ -1118,10 +1123,10 @@ PHASE_1_QUESTIONS = {
             {"question": "NCERT Ex 1.10: Express the numerical value token of 'Seven million four hundred fifty-two thousand two hundred eighty-three' in standard digits.", "answer": 7452283, "options": [745283, 7452283, 74520283, 74522083]},
             {"question": "RS Aggarwal Ch 1: Round off the large census data string element 98,745 cleanly to its nearest tracking parameter of ten-thousands.", "answer": 100000, "options": [90000, 98000, 99000, 100000]}
         ],
-        "Ch 2: Playing with Numbers": [
+        "Ch 2: Playing with Numbers": [ 
             {"question": "NCERT Ex 3.7: Three tankers contain 403 litres, 434 litres, and 465 litres of diesel respectively. Find the maximum capacity of a container that can measure the diesel of all three tankers an exact number of times (HCF).", "answer": 31, "options": [21, 31, 41, 51]},
             {"question": "RS Aggarwal Ch 2: Two traffic signals flash every 60 seconds and 90 seconds respectively. If they flash together at 8:00 AM, after how many seconds will they flash together again?", "answer": 180, "options": [120, 150, 180, 240]},
-            {"question": "NCERT Ex 3.1: Find the complete summation score of all distinct factors of the integer number 24.", "answer": 60, "options": [24, 48, 54, 60]},
+            {"question": "NCERT Ex 3.1: Find[ the complete summation score of all distinct factors of the integer number 24.", "answer": 60, "options": [24, 48, 54, 60]},
             {"question": "RS Aggarwal Ch 2: Identify the characteristic pattern element: Which of these options is a Coprime pair grouping layout?", "answer": "8 and 15", "options": ["4 and 6", "8 and 15", "9 and 12", "6 and 18"]},
             {"question": "NCERT Ex 3.2: Express the value of 42 as the net sum of two distinct prime numbers.", "answer": "5 + 37", "options": ["4 + 38", "5 + 37", "10 + 32", "20 + 22"]},
             {"question": "RS Aggarwal Ch 2: Test the divisibility rule for 11: Which numerical string matches the validation parameters?", "answer": 1331, "options": [1234, 1331, 1451, 5551]},
@@ -1501,14 +1506,14 @@ PHASE_1_QUESTIONS = {
             {"question": "RS Aggarwal Ch 8: Solve this linear matrix system algorithm block: 5x - 2(2x - 7) = 2(3x - 1) + 7/2. Find x.", "answer": 2.5, "options": [1.5, 2.0, 2.5, 3.0]},
             {"question": "NCERT Ex 2.6: Aman's age is three times his son's age. Ten years ago he was five times his son's age. Find the current age of the father.", "answer": 60, "options": [40, 45, 50, 60]},
             {"question": "RS Aggarwal Ch 8: Two complementary angles have a measurement configuration difference of 12 degrees. Find the smaller angle parameter.", "answer": 39, "options": [39, 45, 51, 60]},
-            {"question": "NCERT Ex 2.7: Solve the tracking linear fraction system: m - (m - 1)/2 = 1 - (m - 2)/3. Isolate m.", "answer": 1.4, "options": [1.0, 1.2, 1.4, 2.0]}, # 6m - 3m + 3 = 6 - 2m + 4 => 3m + 3 = 10 - 2m => 5m = 7 => m = 7/5 = 1.4
+            {"question": "NCERT Ex 2.7: Solve the tracking linear fraction system: m - (m - 1)/2 = 1 - (m - 2)/3. Isolate m.", "answer": 1.4, "options": [1.0, 1.2, 1.4, 2.0]},
             {"question": "RS Aggarwal Ch 8: The sum of three consecutive multiples of 8 is exactly 888. Find the smallest multiple structural token.", "answer": 288, "options": [280, 288, 296, 304]},
             {"question": "NCERT Ex 2.8: A currency purse contains a total of Rs. 300 in denominations of Rs. 1, Rs. 2, and Rs. 5 coins. The number of Rs. 2 coins is 3 times Rs. 5. Total coins = 160. Find Rs. 5 coin count.", "answer": 20, "options": [10, 20, 30, 60]},
             {"question": "RS Aggarwal Ch 8: Isolate the algebraic variable target inside this structural layout script: 0.25(4x - 3) = 0.05(10x - 9).", "answer": 0.6, "options": [0.5, 0.6, 0.7, 1.2]},
             {"question": "NCERT Ex 2.9: Hasan buys two kinds of cloth materials for school uniforms. Shirt material costs Rs. 50/m and trousers Rs. 90/m. He sells them at profits. Total sale Rs. 36,600. How many meters of trouser material did he buy?", "answer": 100, "options": [100, 200, 300, 400]},
             {"question": "RS Aggarwal Ch 8: A rectangle's length is 5 cm more than its width. If the perimeter tracks at 50 cm, find the absolute length parameter value.", "answer": 15, "options": [10, 15, 20, 25]},
             {"question": "NCERT Ex 2.10: Solve the standard cross-multiplication script matrix block: (7y + 4) / (y + 2) = -4/3. Isolate y.", "answer": -4, "options": [-2, -4, 2, 4]},
-            {"question": "RS Aggarwal Ch 8: The width of a standard industrial panel is 2/3 of its running length. If the area checks out at 2400 sq cm, calculate length width constraint x payload where 2/3x^2 = 2400. Find length.", "answer": 60, "options": [40, 50, 60, 90]}
+            {"question": "RS Aggarwal Ch 8: The width of a standard industrial panel is 2/3 of its running length. If the area checks out at 2400 sq cm, calculate length width constraint x payload where 2/3x^2 = 2400. Find length.", "answer": 60, "options": [40, 50, 60, 90]},
             {"question": "Solve for x: 3x - 7 = 8", "answer": 5, "options": [3, 4, 5, 6]},
             {"question": "Solve for y: 5y + 3 = 18", "answer": 3, "options": [2, 3, 4, 5]},
             {"question": "Find x if x/2 - 1 = 5", "answer": 12, "options": [8, 10, 12, 14]},
@@ -4709,16 +4714,16 @@ PHASE_3_QUESTIONS = {
             {"question": "Sum of triangle angles?", "answer": 180, "options": [90, 180, 270, 360]},
             {"question": "Intersection point of two lines?", "answer": "Point", "options": ["Line", "Ray", "Point", "None"]},
             {"question": "A flat surface is?", "answer": "Plane", "options": ["Line", "Point", "Plane", "Solid"]},
-            {"question": "How many lines can pass through two distinct points?", "answer": 1, "options": [0, 1, 2, Infinite]},
+            {"question": "How many lines can pass through two distinct points?", "answer": 1, "options": ["0", ""1", "2", "Infinite"]},
             {"question": "What is the measure of a straight angle?", "answer": 180, "options": [90, 180, 270, 360]},
             {"question": "How many vertices does a pentagon have?", "answer": 5, "options": [3, 4, 5, 6]},
-            {"question": "If two lines intersect, they meet at how many points?", "answer": 1, "options": [0, 1, 2, Infinite]},
+            {"question": "If two lines intersect, they meet at how many points?", "answer": 1, "options": ["0", "1", "2", "Infinite"]},
             {"question": "A polygon with 8 sides is called?", "answer": "Octagon", "options": ["Hexagon", "Heptagon", "Octagon", "Nonagon"]},
             {"question": "How many diagonals does a triangle have?", "answer": 0, "options": [0, 1, 2, 3]},
             {"question": "What do you call an angle greater than 90 but less than 180 degrees?", "answer": "Obtuse", "options": ["Acute", "Right", "Obtuse", "Reflex"]},
             {"question": "Two lines are perpendicular if they intersect at?", "answer": 90, "options": [45, 60, 90, 180]},
             {"question": "The region bounded by two radii and an arc is called?", "answer": "Sector", "options": ["Segment", "Sector", "Chord", "Diameter"]},
-            {"question": "How many endpoints does a line segment have?", "answer": 2, "options": [0, 1, 2, Infinite]},
+            {"question": "How many endpoints does a line segment have?", "answer": 2, "options": ["0", "1", "2", "Infinite"]},
             {"question": "A quadrilateral with all sides equal and angles 90 degrees is?", "answer": "Square", "options": ["Rectangle", "Rhombus", "Square", "Parallelogram"]},
             {"question": "How many sides does a heptagon have?", "answer": 7, "options": [6, 7, 8, 9]},
             {"question": "What is the sum of angles in a quadrilateral?", "answer": 360, "options": [180, 270, 360, 540]},
@@ -4747,7 +4752,7 @@ PHASE_3_QUESTIONS = {
             {"question": "What is the complement of 30 degrees?", "answer": 60, "options": [30, 60, 90, 150]},
             {"question": "What is the supplement of 100 degrees?", "answer": 80, "options": [80, 100, 180, 260]},
             {"question": "The distance around a polygon is its?", "answer": "Perimeter", "options": ["Area", "Perimeter", "Volume", "Diagonal"]},
-            {"question": "How many radii can a circle have?", "answer": "Infinite", "options": [1, 2, 10, Infinite]},
+            {"question": "How many radii can a circle have?", "answer": "Infinite", "options": ["1", "2", "10", "Infinite"]},
             {"question": "Is a square a type of rectangle?", "answer": "Yes", "options": ["Yes", "No", "Only if tilted", "Maybe"]},
             {"question": "Which has exactly one endpoint?", "answer": "Ray", "options": ["Line", "Ray", "Line Segment", "None"]},
             {"question": "The region enclosed by a circle is its?", "answer": "Interior", "options": ["Exterior", "Interior", "Circumference", "Chord"]},
@@ -4761,7 +4766,7 @@ PHASE_3_QUESTIONS = {
             {"question": "What kind of angle is 270 degrees?", "answer": "Reflex", "options": ["Obtuse", "Reflex", "Straight", "Right"]},
             {"question": "A polygon where all sides and angles are equal is?", "answer": "Regular", "options": ["Irregular", "Regular", "Convex", "Concave"]},
             {"question": "What is a shape with only 4 sides called?", "answer": "Quadrilateral", "options": ["Triangle", "Quadrilateral", "Pentagon", "Hexagon"]},
-            {"question": "How many endpoints does a ray have?", "answer": 1, "options": [0, 1, 2, Infinite]},
+            {"question": "How many endpoints does a ray have?", "answer": "1", "options": ["0", "1", "2", "Infinite"]},
             {"question": "What is the sum of a linear pair of angles?", "answer": 180, "options": [90, 180, 270, 360]},
             {"question": "Two triangles are congruent if?", "answer": "They have the same size and shape", "options": ["They have the same shape", "They have the same area", "They have the same size and shape", "They have the same angles"]},
             {"question": "A quadrilateral with only one pair of parallel sides is?", "answer": "Trapezium", "options": ["Parallelogram", "Trapezium", "Rhombus", "Rectangle"]},
