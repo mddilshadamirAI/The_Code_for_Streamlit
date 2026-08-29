@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link class="js-meta-icon" rel="icon" type="image/png" href="my_logo.png">
+    <link rel="apple-touch-icon" href="my_logo.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilshad's Calc Pro</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            background: #0d1527;
+            overflow: hidden;
+        }
+
+        .calc-card { 
+            background: rgba(21, 32, 54, 0.6); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 24px; 
+            border-radius: 28px; 
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4); 
+            text-align: center; 
+            width: 340px; 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding: 0 4px;
+        }
+
+        .logo { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+        }
+
+        h2 { 
+            margin: 0; 
+            color: #ffffff; 
+            font-size: 18px; 
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .action-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .action-row button {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-toggle-sci {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.3);
+            color: #c084fc;
+        }
+        .btn-toggle-sci:hover { background: #a855f7; color: #0d1527; }
+
+        .btn-toggle-hist {
+            background: rgba(234, 179, 8, 0.12);
+            border-color: rgba(234, 179, 8, 0.3);
+            color: #facc15;
+        }
+        .btn-toggle-hist:hover { background: #eab308; color: #0d1527; }
+
+        .btn-revise {
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+        }
+        .btn-revise:hover { background: #38bdf8; color: #0d1527; }
+
+        .display-container {
+            background: rgba(9, 15, 29, 0.7);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .calc-display {
+            width: 100%;
+            font-size: 34px;
+            text-align: right;
+            background: transparent;
+            color: #38bdf8;
+            border: none;
+            outline: none;
+            font-family: 'Segoe UI', sans-serif;
+            white-space: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .calc-display::-webkit-scrollbar {
+            display: none;
+        }
+
+        .animate-pop {
+            animation: answerPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+        }
+
+        @keyframes answerPop {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .scientific-panel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-bottom 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .scientific-panel.open {
+            max-height: 240px;
+            margin-bottom: 20px;
+        }
+
+        .btn-sci {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #cbd5e1;
+            font-size: 14px;
+            padding: 10px 0;
+            border-radius: 12px;
+        }
+
+        .history-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-bottom 0.3s ease;
+            margin-bottom: 0;
+            background: rgba(9, 15, 29, 0.6);
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .history-panel.open {
+            max-height: 180px;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .history-header span {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .clear-hist-btn {
+            background: transparent;
+            border: none;
+            color: #f87171;
+            font-size: 11px;
+            cursor: pointer;
+            padding: 2px 6px;
+        }
+
+        .history-list {
+            max-height: 130px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(234, 179, 8, 0.2);
+        }
+
+        .history-formula {
+            color: #94a3b8;
+            font-size: 11px;
+            word-break: break-all;
+        }
+
+        .history-result {
+            color: #facc15;
+            font-weight: 600;
+        }
+
+        .empty-history {
+            color: #475569;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .buttons { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+        }
+
+        button { 
+            padding: 16px 0;
+            font-size: 22px; 
+            font-weight: 600;
+            border: none; 
+            border-radius: 16px; 
+            cursor: pointer; 
+            background: #2b3344; 
+            color: #ffffff;
+            transition: all 0.15s ease; 
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:active { 
+            transform: scale(0.92);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-action {
+            background: #2e3648;
+            color: #ffffff;
+        }
+
+        .operator { 
+            background: #2563eb; 
+            color: #ffffff;
+        }
+
+        .equal { 
+            background: #16a34a; 
+            color: #ffffff;
+        }
+        .equal:active {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+
+        .vault-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(9, 15, 29, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .vault-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .vault-content {
+            background: #152036;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 24px;
+            width: 85%;
+            max-width: 400px;
+            color: white;
+        }
+
+        .vault-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-vault-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            background: rgba(37, 99, 235, 0.2);
+            color: #3b82f6;
+            border: 2px dashed #2563eb;
+            padding: 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        .delete-item-btn {
+            position: absolute;
+            top: 2px; right: 2px;
+            background: #ef4444;
+            border: none; color: white;
+            border-radius: 50%; width: 20px; height: 20px;
+            font-size: 12px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calc-card">
+    <div class="header-section">
+        <h2 id="calc-title">Dilshad's Calc Pro</h2>
+        <img src="my_logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="action-row">
+        <button class="btn-toggle-sci" onclick="toggleScientificPanel()">🔬 Mode</button>
+        <button class="btn-toggle-hist" onclick="toggleHistoryPanel()">📜 History</button>
+        <button class="btn-revise" onclick="reviseCalculation()">🔊 Revise</button>
+    </div>
+    
+    <div class="display-container" id="displayContainer">
+        <div id="display" class="calc-display">0</div>
+    </div>
+
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <span>Previous Logs (Max 100)</span>
+            <button class="clear-hist-btn" onclick="clearHistory()">Clear All</button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+    </div>
+
+    <div class="scientific-panel" id="scientificPanel">
+        <button class="btn-sci" onclick="appendScientific('sin(')">sin</button>
+        <button class="btn-sci" onclick="appendScientific('cos(')">cos</button>
+        <button class="btn-sci" onclick="appendScientific('tan(')">tan</button>
+        <button class="btn-sci" onclick="appendScientific('sqrt(')">√</button>
+        
+        <button class="btn-sci" onclick="appendScientific('log(')">log</button>
+        <button class="btn-sci" onclick="appendScientific('ln(')">ln</button>
+        <button class="btn-sci" onclick="appendScientific('^')">a^x</button>
+        <button class="btn-sci" onclick="appendScientific('fact(')">x!</button>
+        
+        <button class="btn-sci" onclick="appendScientific('e^(')">e^x</button>
+        <button class="btn-sci" onclick="appendScientific('1/(')">inv</button>
+        <button class="btn-sci" onclick="appendScientific('π')">π</button>
+        <button class="btn-sci" onclick="appendScientific('e')">e</button>
+
+        <button class="btn-sci" onclick="appendScientific('(')" style="background: rgba(255,255,255,0.05);">(</button>
+        <button class="btn-sci" onclick="appendScientific(')')" style="background: rgba(255,255,255,0.05);">)</button>
+        <button class="btn-sci" onclick="appendScientific(',')" style="background: rgba(255,255,255,0.05);">,</button>
+        <button class="btn-sci" style="visibility: hidden;"></button>
+    </div>
+
+    <div class="buttons">
+        <button class="btn-action" onclick="clearDisplay()">C</button>
+        <button class="btn-action" onclick="deleteLast()">DEL</button>
+        <button class="btn-action" onclick="appendOperator('%')">%</button>
+        <button class="operator" onclick="appendOperator('/')">÷</button>
+        
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button class="operator" onclick="appendOperator('*')">×</button>
+        
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button class="operator" onclick="appendOperator('-')">-</button>
+        
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button class="operator" onclick="appendOperator('+')">+</button>
+        
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="appendNumber('.')">.</button>
+        <button class="equal" onclick="calculate()" style="grid-column: span 2;">=</button>
+    </div>
+</div>
+
+<div id="vaultOverlay" class="vault-overlay">
+    <div class="vault-content">
+        <div class="vault-header">
+            <h3>🔒 Private Vault</h3>
+            <button class="close-vault-btn" onclick="closeVault()">Lock</button>
+        </div>
+        <label class="file-upload-label">
+            📁 Upload to Hide Media
+            <input type="file" id="vaultInput" accept="image/*,video/*" multiple style="display: none;" onchange="handleFileSelect(event)">
+        </label>
+        <div id="galleryGrid" class="gallery-grid"></div>
+    </div>
+</div>
+
+<script>
+    let display = document.getElementById('display');
+    let calcTitle = document.getElementById('calc-title');
+    let clearOnNextInput = false;
+
+    let lastActiveFormula = ""; 
+    let finalCalculationResult = "";
+
+    let historyLog = JSON.parse(localStorage.getItem('calcHistory')) || [];
+    let vaultCode = localStorage.getItem('vaultCode') || null;
+    let equalClickCount = 0;
+
+    const sin = (deg) => Math.sin(deg * Math.PI / 180);
+    const cos = (deg) => Math.cos(deg * Math.PI / 180);
+    const tan = (deg) => Math.tan(deg * Math.PI / 180);
+    const log = (x) => Math.log10(x);
+    const ln = (x) => Math.log(x);
+    const sqrt = (x) => Math.sqrt(x);
+    const fact = (n) => {
+        if (n < 0 || !Number.isInteger(n)) return NaN;
+        if (n === 0 || n === 1) return 1;
+        let r = 1;
+        for (let i = 2; i <= n; i++) r *= i;
+        return r;
+    };
+
+    if (!vaultCode) {
+        calcTitle.innerText = "Set Passcode & Press =";
+    }
+    renderHistory();
+
+    function updateDisplayValue(newValue) {
+        display.innerText = newValue === '' ? '0' : newValue;
+        display.scrollLeft = display.scrollWidth;
+    }
+
+    function toggleScientificPanel() {
+        document.getElementById('historyPanel').classList.remove('open');
+        document.getElementById('scientificPanel').classList.toggle('open');
+    }
+
+    function toggleHistoryPanel() {
+        document.getElementById('scientificPanel').classList.remove('open');
+        document.getElementById('historyPanel').classList.toggle('open');
+    }
+
+    function appendScientific(val) {
+        display.classList.remove('animate-pop');
+        if (clearOnNextInput) {
+            updateDisplayValue('');
+            clearOnNextInput = false;
+        }
+        let currentText = display.innerText === '0' ? '' : display.innerText;
+        updateDisplayValue(currentText + val);
+        equalClickCount = 0;
+    }
+
+    function appendNumber(value) {
+        display.classList.remove('animate-pop');
+        if (clearOnNextInput) {
+            updateDisplayValue('');
+            clearOnNextInput = false;
+        }
+        let currentText = display.innerText === '0' ? '' : display.innerText;
+        if (value === '.') {
+            const parts = currentText.split(/[\+\-\*\/%^,()]/);
+            const currentPart = parts[parts.length - 1];
+            if (currentPart.includes('.')) return;
+        }
+        updateDisplayValue(currentText + value);
+        equalClickCount = 0;
+    }
+
+    function appendOperator(op) {
+        display.classList.remove('animate-pop');
+        if (clearOnNextInput) clearOnNextInput = false;
+        let currentText = display.innerText === '0' ? '' : display.innerText;
+        if (currentText === '') {
+            if (op === '-') updateDisplayValue(op);
+            return;
+        }
+        let lastChar = currentText.slice(-1);
+        if (['+', '-', '*', '/', '%'].includes(lastChar)) {
+            updateDisplayValue(currentText.slice(0, -1) + op);
+        } else {
+            updateDisplayValue(currentText + op);
+        }
+        equalClickCount = 0;
+    }
+
+    function clearDisplay() {
+        display.classList.remove('animate-pop');
+        updateDisplayValue('');
+        lastActiveFormula = "";
+        finalCalculationResult = "";
+        equalClickCount = 0;
+    }
+
+    function deleteLast() {
+        display.classList.remove('animate-pop');
+        let currentText = display.innerText;
+        updateDisplayValue(currentText.slice(0, -1));
+        equalClickCount = 0;
+    }
+
+    function calculate() {
+        if (display.innerText === '' || display.innerText === '0') return;
+        
+        let currentInput = display.innerText;
+        let lastChar = currentInput.slice(-1);
+        if (['+', '-', '*', '/', '%'].includes(lastChar)) {
+            currentInput = currentInput.slice(0, -1);
+        }
+
+        if (!vaultCode && !isNaN(currentInput)) {
+            vaultCode = currentInput;
+            localStorage.setItem('vaultCode', vaultCode);
+            updateDisplayValue("Code Set!");
+            clearOnNextInput = true;
+            calcTitle.innerText = "Dilshad's Calc Pro";
+            return;
+        }
+
+        if (vaultCode && currentInput === vaultCode) {
+            equalClickCount++;
+            if (equalClickCount === 2) {
+                openVault();
+                clearDisplay();
+                return;
+            }
+        } else {
+            equalClickCount = 1;
+        }
+
+        try {
+            lastActiveFormula = currentInput;
+            
+            let executableExpression = currentInput
+                .replaceAll('×', '*')
+                .replaceAll('÷', '/')
+                .replaceAll('π', 'Math.PI')
+                .replaceAll('e^(', 'Math.exp(')
+                .replaceAll('e', 'Math.E')
+                .replaceAll('^', '**');
+
+            let result = eval(executableExpression);
+            
+            if (result % 1 !== 0) {
+                result = parseFloat(result.toFixed(8));
+            }
+            
+            finalCalculationResult = result;
+            updateDisplayValue(result);
+            clearOnNextInput = true;
+
+            saveToHistory(lastActiveFormula, finalCalculationResult);
+
+            display.classList.remove('animate-pop');
+            void display.offsetWidth; 
+            display.classList.add('animate-pop');
+        } catch (error) {
+            updateDisplayValue("Error");
+            lastActiveFormula = "";
+            finalCalculationResult = "";
+            clearOnNextInput = true;
+            display.classList.add('animate-pop');
+        }
+    }
+
+    function saveToHistory(formula, result) {
+        if(historyLog.length > 0 && historyLog[0].formula === formula) return;
+
+        historyLog.unshift({ formula: formula, result: result });
+        
+        if (historyLog.length > 100) {
+            historyLog.pop();
+        }
+        
+        localStorage.setItem('calcHistory', JSON.stringify(historyLog));
+        renderHistory();
+    }
+
+    function renderHistory() {
+        const listContainer = document.getElementById('historyList');
+        listContainer.innerHTML = '';
+
+        if (historyLog.length === 0) {
+            listContainer.innerHTML = '<div class="empty-history">No history records yet</div>';
+            return;
+        }
+
+        historyLog.forEach((item) => {
+            const row = document.createElement('div');
+            row.className = 'history-item';
+            row.onclick = () => loadHistoryItem(item.result);
+            
+            row.innerHTML = `
+                <div class="history-formula">${item.formula} =</div>
+                <div class="history-result">${item.result}</div>
+            `;
+            listContainer.appendChild(row);
+        });
+    }
+
+    function loadHistoryItem(value) {
+        updateDisplayValue(value);
+        finalCalculationResult = value;
+        lastActiveFormula = "";
+        clearOnNextInput = false;
+    }
+
+    function clearHistory() {
+        historyLog = [];
+        localStorage.removeItem('calcHistory');
+        renderHistory();
+    }
+
+    function reviseCalculation() {
+        window.speechSynthesis.cancel();
+        let contextToSpeak = "";
+
+        if (lastActiveFormula !== "") {
+            contextToSpeak = lastActiveFormula + " equals " + finalCalculationResult;
+        } else if (display.innerText !== "" && display.innerText !== "Error" && display.innerText !== "Code Set!") {
+            contextToSpeak = display.innerText;
+        } else {
+            contextToSpeak = "Zero";
+        }
+
+        let audioString = contextToSpeak
+            .replaceAll('+', ' plus ')
+            .replaceAll('-', ' minus ')
+            .replaceAll('*', ' multiplied by ')
+            .replaceAll('/', ' divided by ')
+            .replaceAll('×', ' multiplied by ')
+            .replaceAll('÷', ' divided by ')
+            .replaceAll('%', ' percent ')
+            .replaceAll('.', ' point ')
+            .replaceAll('sin(', ' sine of ')
+            .replaceAll('cos(', ' cosine of ')
+            .replaceAll('tan(', ' tangent of ')
+            .replaceAll('log(', ' log base ten of ')
+            .replaceAll('ln(', ' natural log of ')
+            .replaceAll('sqrt(', ' square root of ')
+            .replaceAll('fact(', ' factorial of ')
+            .replaceAll('e^(', ' e to the power of ')
+            .replaceAll('1/(', ' inverse of ')
+            .replaceAll('^', ' to the power of ')
+            .replaceAll('π', ' pi ')
+            .replaceAll('(', ' open bracket ')
+            .replaceAll(')', ' close bracket ');
+
+        let voiceUtterance = new SpeechSynthesisUtterance(audioString);
+        voiceUtterance.rate = 0.95; 
+        window.speechSynthesis.speak(voiceUtterance);
+    }
+
+    function openVault() {
+        document.getElementById('vaultOverlay').classList.add('active');
+        renderGallery();
+    }
+
+    function closeVault() {
+        document.getElementById('vaultOverlay').classList.remove('active');
+        equalClickCount = 0;
+    }
+
+    function handleFileSelect(event) {
+        const files = event.target.files;
+        let vaultItems = JSON.parse(localStorage.getItem('vaultItems')) || [];
+
+        for (let file of files) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                vaultItems.push({
+                    type: file.type.startsWith('video') ? 'video' : 'image',
+                    data: e.target.result
+                });
+                localStorage.setItem('vaultItems', JSON.stringify(vaultItems));
+                renderGallery();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = '';
+        let vaultItems = JSON.parse(localStorage.getItem('vaultItems')) || [];
+
+        vaultItems.forEach((item, index) => {
+            const container = document.createElement('div');
+            container.className = 'gallery-item';
+
+            if (item.type === 'video') {
+                const video = document.createElement('video');
+                video.src = item.data;
+                video.controls = true;
+                container.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.data;
+                container.appendChild(img);
+            }
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-item-btn';
+            deleteBtn.innerHTML = '×';
+            deleteBtn.onclick = () => {
+                vaultItems.splice(index, 1);
+                localStorage.setItem('vaultItems', JSON.stringify(vaultItems));
+                renderGallery();
+            };
+            container.appendChild(deleteBtn);
+            grid.appendChild(container);
+        });
+    }
+</script>
+</body>
+</html>
