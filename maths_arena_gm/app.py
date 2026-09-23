@@ -1,46 +1,66 @@
-import random
 import streamlit as st
+import random
+import math
+from datetime import datetime
 
 # ============================================================
 # MATHS ARENA PRO
-# Complete single-file game
-# No database
-# No API
-# No JavaScript
+# Single-file Streamlit game
+# 1 PLAYER + 2 PLAYER LOCAL BATTLE
 # ============================================================
 
 st.set_page_config(
     page_title="Maths Arena Pro",
     page_icon="⚔️",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="collapsed"
 )
 
 # ============================================================
-# CSS - ONLY FOR THEME / VISUAL POLISH
+# PREMIUM CSS
 # ============================================================
 
 st.markdown(
     """
     <style>
 
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap');
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background:
+            radial-gradient(circle at 15% 10%, rgba(99,102,241,.18), transparent 30%),
+            radial-gradient(circle at 85% 20%, rgba(168,85,247,.15), transparent 30%),
+            radial-gradient(circle at 50% 100%, rgba(14,165,233,.10), transparent 35%),
+            #050816;
+    }
 
     .stApp {
         background:
-            radial-gradient(circle at 10% 10%, rgba(87, 45, 255, .16), transparent 28%),
-            radial-gradient(circle at 90% 15%, rgba(0, 210, 255, .10), transparent 25%),
-            radial-gradient(circle at 50% 100%, rgba(255, 0, 120, .08), transparent 35%),
-            #06070c;
-        color: white;
+            radial-gradient(circle at 15% 10%, rgba(99,102,241,.14), transparent 30%),
+            radial-gradient(circle at 85% 20%, rgba(168,85,247,.10), transparent 30%),
+            #050816;
+        color: #f8fafc;
     }
 
     .block-container {
-        max-width: 1250px;
+        max-width: 1400px;
         padding-top: 2rem;
         padding-bottom: 4rem;
     }
 
+    h1, h2, h3 {
+        font-family: 'Orbitron', sans-serif !important;
+    }
+
+    p, div, span, label {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Hide Streamlit default menu/footer */
     #MainMenu {
         visibility: hidden;
     }
@@ -50,133 +70,288 @@ st.markdown(
     }
 
     header {
-        visibility: hidden;
+        background: transparent !important;
     }
 
-    h1, h2, h3 {
-        font-family: 'Orbitron', sans-serif !important;
+    /* Buttons */
+    .stButton > button {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid rgba(148,163,184,.18);
+        background: linear-gradient(
+            135deg,
+            rgba(30,41,59,.95),
+            rgba(15,23,42,.95)
+        );
+        color: white;
+        font-weight: 700;
+        min-height: 48px;
+        transition: all .18s ease;
+        box-shadow: 0 8px 25px rgba(0,0,0,.18);
     }
 
-    .arena-title {
+    .stButton > button:hover {
+        border-color: rgba(129,140,248,.7);
+        transform: translateY(-2px);
+        box-shadow:
+            0 12px 30px rgba(79,70,229,.22),
+            0 0 20px rgba(99,102,241,.10);
+    }
+
+    /* Input */
+    .stTextInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stRadio div[data-baseweb="radio"] {
+        border-radius: 12px !important;
+    }
+
+    /* Progress */
+    .stProgress > div > div > div > div {
+        border-radius: 20px;
+    }
+
+    /* Metric cards */
+    [data-testid="stMetric"] {
+        background: linear-gradient(
+            145deg,
+            rgba(15,23,42,.92),
+            rgba(30,41,59,.72)
+        );
+        border: 1px solid rgba(148,163,184,.13);
+        border-radius: 16px;
+        padding: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    /* Radio */
+    div[role="radiogroup"] {
+        gap: 10px;
+    }
+
+    /* Divider */
+    hr {
+        border-color: rgba(148,163,184,.10) !important;
+    }
+
+    .hero {
+        padding: 45px 20px 30px 20px;
         text-align: center;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        padding: 8px 15px;
+        border-radius: 999px;
+        background: rgba(99,102,241,.12);
+        border: 1px solid rgba(129,140,248,.28);
+        color: #c7d2fe;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        margin-bottom: 16px;
+    }
+
+    .hero-title {
         font-family: 'Orbitron', sans-serif;
-        font-size: clamp(2rem, 6vw, 4.5rem);
+        font-size: clamp(38px, 7vw, 78px);
+        line-height: 1;
         font-weight: 900;
-        letter-spacing: 3px;
-        margin-top: 15px;
+        letter-spacing: -3px;
+        margin: 0;
         background: linear-gradient(
             90deg,
             #ffffff,
-            #66e8ff,
-            #a57cff,
-            #ffffff
+            #a5b4fc,
+            #c084fc,
+            #67e8f9
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
-    .arena-subtitle {
-        text-align: center;
-        color: #8b96a8;
-        letter-spacing: 3px;
-        font-size: .85rem;
-        margin-bottom: 35px;
+    .hero-subtitle {
+        color: #94a3b8;
+        margin-top: 18px;
+        font-size: 15px;
+        letter-spacing: 2px;
     }
 
     .game-card {
         padding: 24px;
         border-radius: 22px;
-        border: 1px solid rgba(255,255,255,.09);
-        background: rgba(255,255,255,.035);
-        box-shadow: 0 18px 50px rgba(0,0,0,.25);
-        margin-bottom: 15px;
+        border: 1px solid rgba(148,163,184,.12);
+        background:
+            linear-gradient(
+                145deg,
+                rgba(15,23,42,.90),
+                rgba(15,23,42,.58)
+            );
+        box-shadow:
+            0 20px 60px rgba(0,0,0,.20),
+            inset 0 1px 0 rgba(255,255,255,.03);
+        margin-bottom: 18px;
     }
 
-    .battle-question {
-        text-align: center;
-        padding: 28px 15px;
+    .player-card {
+        padding: 20px;
         border-radius: 22px;
-        border: 1px solid rgba(0,220,255,.15);
+        background:
+            linear-gradient(
+                145deg,
+                rgba(15,23,42,.98),
+                rgba(30,41,59,.78)
+            );
+        border: 1px solid rgba(129,140,248,.20);
+        box-shadow: 0 20px 50px rgba(0,0,0,.22);
+        min-height: 190px;
+    }
+
+    .enemy-card {
+        padding: 20px;
+        border-radius: 22px;
+        background:
+            linear-gradient(
+                145deg,
+                rgba(40,10,25,.95),
+                rgba(30,15,35,.82)
+            );
+        border: 1px solid rgba(244,63,94,.20);
+        box-shadow: 0 20px 50px rgba(0,0,0,.22);
+        min-height: 190px;
+    }
+
+    .fighter-name {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .fighter-icon {
+        font-size: 45px;
+    }
+
+    .vs {
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 32px;
+        font-weight: 900;
+        color: #a5b4fc;
+        padding-top: 70px;
+    }
+
+    .question-box {
+        margin: 20px 0;
+        padding: 35px 20px;
+        text-align: center;
+        border-radius: 25px;
         background:
             radial-gradient(
-                circle,
-                rgba(0,210,255,.09),
-                rgba(255,255,255,.02)
+                circle at center,
+                rgba(99,102,241,.13),
+                rgba(15,23,42,.90) 65%
             );
-        margin: 18px 0;
+        border: 1px solid rgba(129,140,248,.18);
+        box-shadow:
+            0 20px 60px rgba(0,0,0,.22),
+            inset 0 0 50px rgba(99,102,241,.04);
     }
 
     .question-label {
-        color: #8490a5;
-        font-size: .75rem;
+        color: #818cf8;
+        font-size: 12px;
         font-weight: 800;
         letter-spacing: 3px;
+        margin-bottom: 15px;
     }
 
-    .question-number {
+    .question-text {
         font-family: 'Orbitron', sans-serif;
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-size: clamp(30px, 6vw, 60px);
         font-weight: 900;
+        color: white;
+    }
+
+    .combo-box {
+        text-align: center;
+        padding: 15px;
+        border-radius: 18px;
+        background: rgba(245,158,11,.08);
+        border: 1px solid rgba(245,158,11,.20);
+    }
+
+    .combo-number {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 35px;
+        font-weight: 900;
+        color: #fbbf24;
+    }
+
+    .power-card {
+        padding: 15px;
+        text-align: center;
+        border-radius: 16px;
+        background: rgba(30,41,59,.70);
+        border: 1px solid rgba(148,163,184,.12);
+    }
+
+    .power-icon {
+        font-size: 28px;
+    }
+
+    .result-box {
+        text-align: center;
+        padding: 50px 20px;
+        border-radius: 28px;
+        background:
+            radial-gradient(
+                circle at center,
+                rgba(99,102,241,.14),
+                rgba(15,23,42,.92) 65%
+            );
+        border: 1px solid rgba(129,140,248,.18);
+    }
+
+    .result-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 48px;
+        font-weight: 900;
+    }
+
+    .small-muted {
+        color: #94a3b8;
+        font-size: 13px;
+    }
+
+    .feature-icon {
+        font-size: 34px;
+    }
+
+    .feature-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 17px;
+        font-weight: 800;
         margin-top: 10px;
     }
 
-    .boss-card {
-        border: 1px solid rgba(255,55,80,.35);
-        background:
-            radial-gradient(
-                circle,
-                rgba(255,35,70,.14),
-                rgba(255,255,255,.02)
-            );
-    }
-
-    .win-card {
-        text-align: center;
-        padding: 40px 20px;
-        border-radius: 25px;
-        border: 1px solid rgba(0,255,170,.25);
-        background: rgba(0,255,170,.05);
-    }
-
-    .lose-card {
-        text-align: center;
-        padding: 40px 20px;
-        border-radius: 25px;
-        border: 1px solid rgba(255,40,70,.25);
-        background: rgba(255,40,70,.05);
-    }
-
-    .small-text {
-        color: #818ca0;
-        font-size: .85rem;
-    }
-
-    .big-combo {
-        text-align: center;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 2rem;
-        font-weight: 900;
-    }
-
-    .section-label {
-        font-family: 'Orbitron', sans-serif;
-        font-weight: 800;
-        letter-spacing: 1px;
-        margin-top: 20px;
+    .feature-text {
+        color: #94a3b8;
+        font-size: 13px;
+        margin-top: 7px;
     }
 
     </style>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
+
 # ============================================================
-# CONFIG
+# GAME CONFIG
 # ============================================================
 
-DIFFICULTY = {
+DIFFICULTIES = {
     "Basic": {
-        "hp": 110,
+        "player_hp": 120,
         "enemy_hp": 90,
         "damage": 24,
         "enemy_damage": 12,
@@ -184,567 +359,679 @@ DIFFICULTY = {
         "coins": 2,
     },
     "Medium": {
-        "hp": 105,
-        "enemy_hp": 120,
-        "damage": 26,
+        "player_hp": 110,
+        "enemy_hp": 125,
+        "damage": 27,
         "enemy_damage": 16,
-        "xp": 11,
+        "xp": 12,
         "coins": 3,
     },
     "Pro": {
-        "hp": 100,
-        "enemy_hp": 155,
-        "damage": 29,
+        "player_hp": 100,
+        "enemy_hp": 165,
+        "damage": 30,
         "enemy_damage": 20,
-        "xp": 15,
+        "xp": 16,
         "coins": 4,
     },
     "Master": {
-        "hp": 95,
-        "enemy_hp": 190,
-        "damage": 32,
+        "player_hp": 95,
+        "enemy_hp": 205,
+        "damage": 34,
         "enemy_damage": 25,
-        "xp": 20,
+        "xp": 21,
         "coins": 5,
     },
 }
 
-NORMAL_ENEMIES = {
+
+ENEMIES = {
     "Basic": [
-        "🔢 Number Goblin",
-        "➕ Sum Beast",
-        "🤖 Digit Drone",
-        "⚡ Quick Calculator",
+        ("🟢", "Number Goblin"),
+        ("🤖", "Digit Droid"),
+        ("👾", "Sum Beast"),
+        ("🐲", "Quick Calculator"),
     ],
     "Medium": [
-        "👻 Fraction Phantom",
-        "⚔️ Equation Raider",
-        "🤖 Logic Droid",
-        "🔥 Algebra Hunter",
+        ("👻", "Fraction Phantom"),
+        ("🤖", "Equation Raider"),
+        ("🦂", "Logic Droid"),
+        ("⚔️", "Algebra Hunter"),
     ],
     "Pro": [
-        "💀 Formula Reaper",
-        "⚔️ Algebra Knight",
-        "🔥 Prime Destroyer",
-        "⚡ Matrix Warrior",
+        ("💀", "Formula Reaper"),
+        ("🛡️", "Algebra Knight"),
+        ("👹", "Prime Destroyer"),
+        ("🤖", "Matrix Warrior"),
     ],
     "Master": [
-        "👑 Infinity Lord",
-        "☠️ Zero King",
-        "🌀 Formula Titan",
-        "🌌 Math Overlord",
+        ("👑", "Infinity Lord"),
+        ("☠️", "Zero King"),
+        ("🔥", "Formula Titan"),
+        ("🌌", "Math Overlord"),
     ],
 }
 
+
 BOSSES = [
-    "👑 THE CALCULATOR",
-    "☠️ THE ZERO KING",
-    "🔥 MATH TITAN",
-    "🌌 INFINITY LORD",
+    ("👑", "THE CALCULATOR"),
+    ("☠️", "THE ZERO KING"),
+    ("🔥", "MATH TITAN"),
+    ("🌌", "INFINITY LORD"),
 ]
+
 
 # ============================================================
 # SESSION STATE
 # ============================================================
 
-defaults = {
+DEFAULTS = {
     "screen": "home",
 
-    "name": "Dilshad",
-    "difficulty": "Medium",
-    "mode": "Endless Arena",
+    "mode": "1 Player",
+    "difficulty": "Basic",
+    "battle_type": "Endless Arena",
 
-    "player_hp": 100,
-    "max_hp": 100,
+    "player1_name": "Player 1",
+    "player2_name": "Player 2",
 
-    "enemy_hp": 100,
-    "enemy_max_hp": 100,
-    "enemy_name": "Number Goblin",
-    "boss": False,
+    "current_player": 1,
+
+    "p1_hp": 120,
+    "p2_hp": 120,
+    "enemy_hp": 90,
+
+    "p1_max_hp": 120,
+    "p2_max_hp": 120,
+    "enemy_max_hp": 90,
+
+    "p1_score": 0,
+    "p2_score": 0,
+
+    "p1_combo": 0,
+    "p2_combo": 0,
+
+    "p1_best_combo": 0,
+    "p2_best_combo": 0,
+
+    "p1_xp": 0,
+    "p2_xp": 0,
+
+    "p1_coins": 0,
+    "p2_coins": 0,
+
+    "p1_correct": 0,
+    "p2_correct": 0,
+
+    "p1_attempts": 0,
+    "p2_attempts": 0,
 
     "round": 1,
 
-    "score": 0,
-    "xp": 0,
-    "coins": 0,
-
-    "combo": 0,
-    "best_combo": 0,
-
-    "correct": 0,
-    "attempts": 0,
-
     "question": "",
-    "answer": 0,
+    "correct_answer": None,
     "options": [],
 
-    "shield": 0,
-    "crit": 0,
-    "overdrive": 0,
+    "enemy_icon": "👾",
+    "enemy_name": "Number Goblin",
 
-    "crit_ready": False,
-    "overdrive_ready": False,
+    "shield1": False,
+    "shield2": False,
 
-    "used_questions": [],
+    "crit1": False,
+    "crit2": False,
+
+    "overdrive1": False,
+    "overdrive2": False,
 
     "message": "",
-    "message_kind": "info",
+    "battle_log": [],
+
+    "result": None,
 
     "history": [],
 
-    "wins": 0,
-    "losses": 0,
-
-    "result": "",
+    "total_wins": 0,
+    "total_losses": 0,
 
     "achievements": [],
+
+    "used_questions": [],
+
+    "game_started": False,
 }
 
-for key, value in defaults.items():
 
+for key, value in DEFAULTS.items():
     if key not in st.session_state:
-
         st.session_state[key] = value
 
 
 # ============================================================
-# QUESTION GENERATOR
+# UTILITY FUNCTIONS
+# ============================================================
+
+def reset_session_game():
+    """Reset current game only."""
+
+    config = DIFFICULTIES[st.session_state.difficulty]
+
+    st.session_state.p1_hp = config["player_hp"]
+    st.session_state.p2_hp = config["player_hp"]
+
+    st.session_state.p1_max_hp = config["player_hp"]
+    st.session_state.p2_max_hp = config["player_hp"]
+
+    st.session_state.enemy_hp = config["enemy_hp"]
+    st.session_state.enemy_max_hp = config["enemy_hp"]
+
+    st.session_state.p1_score = 0
+    st.session_state.p2_score = 0
+
+    st.session_state.p1_combo = 0
+    st.session_state.p2_combo = 0
+
+    st.session_state.p1_best_combo = 0
+    st.session_state.p2_best_combo = 0
+
+    st.session_state.p1_xp = 0
+    st.session_state.p2_xp = 0
+
+    st.session_state.p1_coins = 0
+    st.session_state.p2_coins = 0
+
+    st.session_state.p1_correct = 0
+    st.session_state.p2_correct = 0
+
+    st.session_state.p1_attempts = 0
+    st.session_state.p2_attempts = 0
+
+    st.session_state.round = 1
+    st.session_state.current_player = 1
+
+    st.session_state.shield1 = False
+    st.session_state.shield2 = False
+
+    st.session_state.crit1 = False
+    st.session_state.crit2 = False
+
+    st.session_state.overdrive1 = False
+    st.session_state.overdrive2 = False
+
+    st.session_state.message = ""
+    st.session_state.battle_log = []
+
+    st.session_state.result = None
+
+    st.session_state.used_questions = []
+
+    st.session_state.game_started = True
+
+    create_enemy()
+
+    new_question()
+
+
+def combo_multiplier(combo):
+    if combo >= 12:
+        return 2.5
+    if combo >= 8:
+        return 2.0
+    if combo >= 5:
+        return 1.5
+    if combo >= 3:
+        return 1.25
+
+    return 1.0
+
+
+def get_current_player_name():
+    if st.session_state.current_player == 1:
+        return st.session_state.player1_name
+
+    return st.session_state.player2_name
+
+
+def get_current_combo():
+    if st.session_state.current_player == 1:
+        return st.session_state.p1_combo
+
+    return st.session_state.p2_combo
+
+
+def get_current_hp():
+    if st.session_state.current_player == 1:
+        return st.session_state.p1_hp
+
+    return st.session_state.p2_hp
+
+
+def get_current_score():
+    if st.session_state.current_player == 1:
+        return st.session_state.p1_score
+
+    return st.session_state.p2_score
+
+
+def add_log(text):
+    st.session_state.battle_log.insert(0, text)
+
+    if len(st.session_state.battle_log) > 8:
+        st.session_state.battle_log = st.session_state.battle_log[:8]
+
+
+# ============================================================
+# QUESTION ENGINE
 # ============================================================
 
 def make_question(difficulty):
+    """
+    Returns:
+        question_text,
+        correct_answer
 
-    kind = random.choice([
-        "addition",
-        "subtraction",
-        "multiplication",
-        "division",
-        "square",
-        "percentage",
-        "mixed",
-        "equation",
-    ])
+    Correct answer is ALWAYS explicitly returned.
+    """
 
     if difficulty == "Basic":
 
-        if kind == "addition":
+        operation = random.choice([
+            "add",
+            "subtract",
+            "multiply",
+            "division",
+        ])
 
-            a = random.randint(5, 40)
-            b = random.randint(5, 40)
+        if operation == "add":
+            a = random.randint(5, 60)
+            b = random.randint(5, 60)
 
             return f"{a} + {b}", a + b
 
-        if kind == "subtraction":
-
+        if operation == "subtract":
             a = random.randint(20, 80)
             b = random.randint(5, a)
 
             return f"{a} − {b}", a - b
 
-        if kind == "multiplication":
-
+        if operation == "multiply":
             a = random.randint(2, 12)
             b = random.randint(2, 12)
 
             return f"{a} × {b}", a * b
 
-        if kind == "division":
+        a = random.randint(2, 12)
+        answer = random.randint(2, 12)
 
-            b = random.randint(2, 12)
-            answer = random.randint(2, 12)
-            a = b * answer
+        b = a * answer
 
-            return f"{a} ÷ {b}", answer
+        return f"{b} ÷ {a}", answer
 
-        if kind == "square":
-
-            a = random.randint(2, 15)
-
-            return f"{a}²", a * a
-
-        a = random.randint(2, 15)
-        b = random.randint(2, 10)
-        c = random.randint(1, 10)
-
-        return f"{a} × {b} + {c}", a * b + c
 
     if difficulty == "Medium":
 
-        if kind == "addition":
+        operation = random.choice([
+            "add",
+            "subtract",
+            "multiply",
+            "division",
+            "percentage",
+            "square",
+        ])
 
-            a = random.randint(30, 200)
-            b = random.randint(30, 200)
+        if operation == "add":
+            a = random.randint(30, 150)
+            b = random.randint(20, 150)
 
             return f"{a} + {b}", a + b
 
-        if kind == "subtraction":
-
-            a = random.randint(100, 500)
+        if operation == "subtract":
+            a = random.randint(80, 250)
             b = random.randint(20, a)
 
             return f"{a} − {b}", a - b
 
-        if kind == "multiplication":
-
-            a = random.randint(5, 25)
+        if operation == "multiply":
+            a = random.randint(6, 25)
             b = random.randint(5, 20)
 
             return f"{a} × {b}", a * b
 
-        if kind == "division":
-
-            b = random.randint(3, 20)
+        if operation == "division":
+            divisor = random.randint(3, 15)
             answer = random.randint(4, 30)
-            a = b * answer
 
-            return f"{a} ÷ {b}", answer
+            dividend = divisor * answer
 
-        if kind == "square":
+            return f"{dividend} ÷ {divisor}", answer
 
-            a = random.randint(8, 25)
+        if operation == "percentage":
+            percent = random.choice([10, 20, 25, 50])
+            number = random.choice([40, 60, 80, 100, 120, 200])
 
-            return f"{a}²", a * a
+            answer = int(number * percent / 100)
 
-        if kind == "percentage":
+            return f"{percent}% of {number}", answer
 
-            percentage = random.choice(
-                [10, 20, 25, 30, 50]
-            )
+        number = random.randint(3, 18)
 
-            base = random.choice(
-                [40, 60, 80, 100, 120, 200]
-            )
+        return f"{number}²", number ** 2
 
-            answer = base * percentage / 100
-
-            return (
-                f"{percentage}% of {base}",
-                answer,
-            )
-
-        a = random.randint(5, 30)
-        b = random.randint(3, 15)
-        c = random.randint(1, 20)
-
-        return (
-            f"{a} × {b} − {c}",
-            a * b - c,
-        )
 
     if difficulty == "Pro":
 
-        if kind == "addition":
+        operation = random.choice([
+            "mixed",
+            "percentage",
+            "square",
+            "division",
+            "equation",
+        ])
 
-            a = random.randint(100, 700)
-            b = random.randint(100, 700)
+        if operation == "mixed":
+            a = random.randint(5, 30)
+            b = random.randint(2, 15)
+            c = random.randint(2, 20)
 
-            return f"{a} + {b}", a + b
+            answer = a + b * c
 
-        if kind == "subtraction":
+            return f"{a} + {b} × {c}", answer
 
-            a = random.randint(400, 1500)
-            b = random.randint(50, a)
+        if operation == "percentage":
+            percent = random.choice([15, 20, 25, 30, 40])
+            number = random.choice([
+                80,
+                100,
+                120,
+                160,
+                200,
+                240,
+            ])
 
-            return f"{a} − {b}", a - b
+            answer = int(number * percent / 100)
 
-        if kind == "multiplication":
+            return f"{percent}% of {number}", answer
 
-            a = random.randint(12, 40)
-            b = random.randint(10, 35)
+        if operation == "square":
+            number = random.randint(10, 30)
 
-            return f"{a} × {b}", a * b
+            return f"{number}²", number ** 2
 
-        if kind == "division":
+        if operation == "division":
+            divisor = random.randint(4, 18)
+            answer = random.randint(5, 40)
 
-            b = random.randint(5, 30)
-            answer = random.randint(10, 50)
-            a = b * answer
+            dividend = divisor * answer
 
-            return f"{a} ÷ {b}", answer
+            return f"{dividend} ÷ {divisor}", answer
 
-        if kind == "square":
+        x = random.randint(2, 20)
+        b = random.randint(2, 30)
 
-            a = random.randint(15, 40)
+        answer = x
 
-            return f"{a}²", a * a
+        return f"x + {b} = {x + b}", answer
 
-        if kind == "percentage":
-
-            percentage = random.choice(
-                [12.5, 15, 20, 25, 30, 40]
-            )
-
-            base = random.choice(
-                [80, 120, 160, 200, 240, 400]
-            )
-
-            answer = round(
-                base * percentage / 100,
-                2,
-            )
-
-            return (
-                f"{percentage}% of {base}",
-                answer,
-            )
-
-        a = random.randint(10, 40)
-        b = random.randint(5, 20)
-        c = random.randint(5, 30)
-
-        return (
-            f"({a} + {b}) × {c}",
-            (a + b) * c,
-        )
 
     # MASTER
 
-    if kind == "addition":
+    operation = random.choice([
+        "mixed",
+        "equation",
+        "percentage",
+        "power",
+        "fraction",
+    ])
 
-        a = random.randint(300, 1500)
-        b = random.randint(300, 1500)
+    if operation == "mixed":
+        a = random.randint(5, 30)
+        b = random.randint(3, 15)
+        c = random.randint(2, 10)
+        d = random.randint(2, 10)
 
-        return f"{a} + {b}", a + b
+        answer = a + b * c - d
 
-    if kind == "subtraction":
+        return f"{a} + {b} × {c} − {d}", answer
 
-        a = random.randint(800, 3000)
-        b = random.randint(100, a)
+    if operation == "equation":
 
-        return f"{a} − {b}", a - b
+        x = random.randint(3, 30)
+        multiplier = random.randint(2, 8)
+        addition = random.randint(2, 25)
 
-    if kind == "multiplication":
-
-        a = random.randint(20, 60)
-        b = random.randint(15, 50)
-
-        return f"{a} × {b}", a * b
-
-    if kind == "division":
-
-        b = random.randint(8, 40)
-        answer = random.randint(20, 100)
-        a = b * answer
-
-        return f"{a} ÷ {b}", answer
-
-    if kind == "square":
-
-        a = random.randint(25, 70)
-
-        return f"{a}²", a * a
-
-    if kind == "percentage":
-
-        percentage = random.choice(
-            [12.5, 15, 17.5, 22.5, 25, 35]
-        )
-
-        base = random.choice(
-            [160, 240, 320, 400, 480, 800]
-        )
-
-        answer = round(
-            base * percentage / 100,
-            2,
-        )
+        result = multiplier * x + addition
 
         return (
-            f"{percentage}% of {base}",
-            answer,
+            f"{multiplier}x + {addition} = {result}",
+            x
         )
 
-    if kind == "equation":
+    if operation == "percentage":
 
-        x = random.randint(5, 30)
-        a = random.randint(2, 9)
-        b = random.randint(5, 30)
+        percent = random.choice([
+            12,
+            15,
+            18,
+            20,
+            25,
+            30,
+        ])
 
-        total = a * x + b
+        number = random.choice([
+            100,
+            120,
+            150,
+            200,
+            240,
+            300,
+            400,
+        ])
 
-        return (
-            f"{a}x + {b} = {total}",
-            x,
-        )
+        value = number * percent
 
-    a = random.randint(10, 50)
-    b = random.randint(5, 25)
-    c = random.randint(2, 10)
-    d = random.randint(5, 25)
+        answer = value // 100
+
+        return f"{percent}% of {number}", answer
+
+    if operation == "power":
+
+        base = random.randint(2, 9)
+        exponent = random.choice([2, 3])
+
+        answer = base ** exponent
+
+        return f"{base}^{exponent}", answer
+
+    numerator = random.randint(1, 9)
+    denominator = random.randint(2, 10)
+
+    multiplier = random.randint(2, 10)
+
+    actual_numerator = numerator * multiplier
+    actual_denominator = denominator * multiplier
+
+    # Integer-safe fraction question
+    answer = numerator
 
     return (
-        f"({a} + {b}) × {c} − {d}",
-        (a + b) * c - d,
-    )
-
-
-# ============================================================
-# ANSWER OPTIONS
-# ============================================================
-
-def build_options(correct):
-
-    options = [correct]
-
-    if isinstance(correct, float):
-
-        offsets = [
-            .5,
-            -.5,
-            1,
-            -1,
-            2,
-            -2,
-            5,
-            -5,
-        ]
-
-        for offset in offsets:
-
-            value = round(
-                correct + offset,
-                2,
-            )
-
-            if value not in options:
-                options.append(value)
-
-    else:
-
-        magnitude = max(
-            abs(int(correct)),
-            5,
-        )
-
-        offsets = [
-            1,
-            -1,
-            2,
-            -2,
-            3,
-            -3,
-            5,
-            -5,
-            10,
-            -10,
-            max(2, magnitude // 2),
-            -max(2, magnitude // 2),
-        ]
-
-        for offset in offsets:
-
-            value = int(correct) + offset
-
-            if value not in options:
-                options.append(value)
-
-    random.shuffle(options)
-
-    return options[:4]
-
-
-def format_answer(value):
-
-    if isinstance(value, float):
-
-        if value.is_integer():
-
-            return str(int(value))
-
-        return f"{value:.2f}".rstrip("0").rstrip(".")
-
-    return str(value)
-
-
-# ============================================================
-# NEW QUESTION
-# ============================================================
-
-def new_question():
-
-    for _ in range(100):
-
-        question, answer = make_question(
-            st.session_state.difficulty
-        )
-
-        identifier = f"{question}|{answer}"
-
-        if identifier not in st.session_state.used_questions:
-
-            st.session_state.used_questions.append(
-                identifier
-            )
-
-            st.session_state.question = question
-            st.session_state.answer = answer
-            st.session_state.options = build_options(
-                answer
-            )
-
-            return
-
-    question, answer = make_question(
-        st.session_state.difficulty
-    )
-
-    st.session_state.question = question
-    st.session_state.answer = answer
-    st.session_state.options = build_options(
+        f"{actual_numerator} ÷ {actual_denominator} × {denominator}",
         answer
     )
 
 
+def generate_options(correct):
+    """
+    IMPORTANT:
+    The correct answer is inserted FIRST.
+    Then 3 unique distractors are generated.
+
+    This guarantees that the correct answer exists
+    in the final option list.
+    """
+
+    try:
+        correct = int(correct)
+    except Exception:
+        correct = int(float(correct))
+
+    options = [correct]
+
+    attempts = 0
+
+    while len(options) < 4 and attempts < 100:
+
+        attempts += 1
+
+        strategy = random.choice([
+            "near",
+            "near",
+            "random",
+            "offset",
+            "multiply",
+        ])
+
+        if strategy == "near":
+            delta = random.randint(1, 12)
+
+            if random.choice([True, False]):
+                candidate = correct + delta
+            else:
+                candidate = correct - delta
+
+        elif strategy == "offset":
+            candidate = correct + random.choice([
+                -20,
+                -15,
+                -10,
+                -5,
+                5,
+                10,
+                15,
+                20,
+            ])
+
+        elif strategy == "multiply":
+            candidate = correct + random.randint(
+                max(1, abs(correct) // 4),
+                max(2, abs(correct) // 2 + 5)
+            )
+
+            if random.choice([True, False]):
+                candidate = -candidate
+
+        else:
+            if correct >= 0:
+                candidate = random.randint(
+                    max(0, correct - 30),
+                    correct + 30
+                )
+            else:
+                candidate = random.randint(
+                    correct - 30,
+                    correct + 30
+                )
+
+        if candidate != correct and candidate not in options:
+            options.append(candidate)
+
+    # Absolute fallback.
+    # There is no possible situation where fewer than 4
+    # options are returned.
+    fallback = 1
+
+    while len(options) < 4:
+
+        candidate = correct + fallback
+
+        if candidate not in options:
+            options.append(candidate)
+
+        fallback += 1
+
+    random.shuffle(options)
+
+    # FINAL SAFETY CHECK
+    if correct not in options:
+        options[0] = correct
+        random.shuffle(options)
+
+    return options
+
+
+def new_question():
+    difficulty = st.session_state.difficulty
+
+    # Try to avoid immediate duplicate questions.
+    for _ in range(30):
+
+        question, answer = make_question(difficulty)
+
+        signature = f"{question}={answer}"
+
+        if signature not in st.session_state.used_questions:
+            st.session_state.used_questions.append(signature)
+
+            st.session_state.question = question
+            st.session_state.correct_answer = answer
+            st.session_state.options = generate_options(answer)
+
+            # FINAL GUARANTEE
+            if answer not in st.session_state.options:
+                st.session_state.options[0] = answer
+                random.shuffle(st.session_state.options)
+
+            return
+
+    # Fallback if too many questions already used.
+    question, answer = make_question(difficulty)
+
+    st.session_state.question = question
+    st.session_state.correct_answer = answer
+    st.session_state.options = generate_options(answer)
+
+    if answer not in st.session_state.options:
+        st.session_state.options[0] = answer
+        random.shuffle(st.session_state.options)
+
+
 # ============================================================
-# ENEMY
+# ENEMY SYSTEM
 # ============================================================
 
 def create_enemy():
-
     difficulty = st.session_state.difficulty
-    config = DIFFICULTY[difficulty]
-
     round_number = st.session_state.round
 
-    boss = (
-        round_number % 5 == 0
-    )
+    config = DIFFICULTIES[difficulty]
 
-    st.session_state.boss = boss
+    # Boss every 5 rounds
+    if round_number % 5 == 0:
 
-    if boss:
+        icon, name = random.choice(BOSSES)
 
-        st.session_state.enemy_name = random.choice(
-            BOSSES
-        )
+        boss_multiplier = 1 + (round_number // 5) * 0.20
 
-        multiplier = (
-            2.2
-            + ((round_number // 5) - 1) * .25
-        )
+        hp = int(config["enemy_hp"] * boss_multiplier * 1.35)
 
-        hp = int(
-            config["enemy_hp"] * multiplier
-        )
+        st.session_state.enemy_icon = icon
+        st.session_state.enemy_name = name
+        st.session_state.enemy_hp = hp
+        st.session_state.enemy_max_hp = hp
+
+        add_log(f"👑 BOSS ARRIVED: {name}")
 
     else:
 
-        st.session_state.enemy_name = random.choice(
-            NORMAL_ENEMIES[difficulty]
-        )
+        icon, name = random.choice(ENEMIES[difficulty])
 
-        scaling = (
-            1
-            + max(0, round_number - 1) * .08
-        )
+        round_multiplier = 1 + max(0, round_number - 1) * 0.06
 
-        hp = int(
-            config["enemy_hp"] * scaling
-        )
+        hp = int(config["enemy_hp"] * round_multiplier)
 
-    st.session_state.enemy_max_hp = hp
-    st.session_state.enemy_hp = hp
-
-    new_question()
+        st.session_state.enemy_icon = icon
+        st.session_state.enemy_name = name
+        st.session_state.enemy_hp = hp
+        st.session_state.enemy_max_hp = hp
 
 
 # ============================================================
@@ -752,674 +1039,947 @@ def create_enemy():
 # ============================================================
 
 def start_game():
-
-    config = DIFFICULTY[
-        st.session_state.difficulty
-    ]
-
-    st.session_state.player_hp = config["hp"]
-    st.session_state.max_hp = config["hp"]
-
-    st.session_state.round = 1
-
-    st.session_state.score = 0
-    st.session_state.xp = 0
-    st.session_state.coins = 0
-
-    st.session_state.combo = 0
-    st.session_state.best_combo = 0
-
-    st.session_state.correct = 0
-    st.session_state.attempts = 0
-
-    st.session_state.shield = 0
-    st.session_state.crit = 0
-    st.session_state.overdrive = 0
-
-    st.session_state.crit_ready = False
-    st.session_state.overdrive_ready = False
-
-    st.session_state.used_questions = []
-
-    st.session_state.message = (
-        "⚔️ BATTLE START!"
-    )
-
-    st.session_state.message_kind = "success"
-
-    create_enemy()
-
+    reset_session_game()
     st.session_state.screen = "battle"
 
 
 # ============================================================
-# COMBO MULTIPLIER
+# PLAYER STATS HELPERS
 # ============================================================
 
-def get_multiplier():
+def get_player_stat(player, stat):
+    key = f"p{player}_{stat}"
+    return st.session_state[key]
 
-    combo = st.session_state.combo
 
-    if combo >= 12:
-        return 2.5
+def set_player_stat(player, stat, value):
+    key = f"p{player}_{stat}"
+    st.session_state[key] = value
 
-    if combo >= 8:
-        return 2.0
 
-    if combo >= 5:
-        return 1.5
-
-    if combo >= 3:
-        return 1.25
-
-    return 1.0
+def add_player_stat(player, stat, amount):
+    key = f"p{player}_{stat}"
+    st.session_state[key] += amount
 
 
 # ============================================================
 # ACHIEVEMENTS
 # ============================================================
 
-def calculate_achievements():
+def check_achievements():
 
     achievements = []
 
-    if st.session_state.correct >= 1:
-        achievements.append(
-            "🎯 First Hit"
-        )
+    p1_combo = st.session_state.p1_best_combo
+    p2_combo = st.session_state.p2_best_combo
 
-    if st.session_state.best_combo >= 3:
-        achievements.append(
-            "🔥 Combo Starter"
-        )
+    best_combo = max(p1_combo, p2_combo)
 
-    if st.session_state.best_combo >= 5:
-        achievements.append(
-            "🔥 Combo Hunter"
-        )
+    total_score = (
+        st.session_state.p1_score
+        + st.session_state.p2_score
+    )
 
-    if st.session_state.best_combo >= 10:
-        achievements.append(
-            "👑 Combo Master"
-        )
+    total_correct = (
+        st.session_state.p1_correct
+        + st.session_state.p2_correct
+    )
 
-    if st.session_state.score >= 500:
-        achievements.append(
-            "💰 Score Grinder"
-        )
+    if total_correct >= 1:
+        achievements.append("🎯 First Hit")
 
-    if st.session_state.score >= 1500:
-        achievements.append(
-            "⚡ Math Machine"
-        )
+    if best_combo >= 3:
+        achievements.append("🔥 Combo Starter")
+
+    if best_combo >= 5:
+        achievements.append("⚡ Combo Hunter")
+
+    if best_combo >= 10:
+        achievements.append("👑 Combo Master")
+
+    if total_score >= 1000:
+        achievements.append("💰 Score Grinder")
+
+    if total_score >= 5000:
+        achievements.append("🤖 Math Machine")
 
     if st.session_state.round >= 5:
-        achievements.append(
-            "🛡️ Arena Survivor"
-        )
+        achievements.append("🛡️ Arena Survivor")
 
     if st.session_state.round >= 10:
-        achievements.append(
-            "💀 Elite Fighter"
+        achievements.append("💎 Elite Fighter")
+
+    if st.session_state.round >= 15:
+        achievements.append("🌌 Brain Power")
+
+    st.session_state.achievements = achievements
+
+
+# ============================================================
+# ANSWER HANDLING
+# ============================================================
+
+def answer_question(selected_answer):
+
+    player = st.session_state.current_player
+
+    correct = st.session_state.correct_answer
+
+    # --------------------------------------------------------
+    # Safety:
+    # If for ANY reason the selected answer isn't in the
+    # generated options, regenerate instead of crashing.
+    # --------------------------------------------------------
+
+    if correct not in st.session_state.options:
+
+        st.session_state.options = generate_options(correct)
+
+        if correct not in st.session_state.options:
+            st.session_state.options[0] = correct
+
+        st.session_state.message = (
+            "⚠️ Question refreshed — correct answer protected."
         )
 
-    if st.session_state.correct >= 25:
-        achievements.append(
-            "🧠 Brain Power"
+        return
+
+    # --------------------------------------------------------
+    # ATTEMPT
+    # --------------------------------------------------------
+
+    add_player_stat(player, "attempts", 1)
+
+    is_correct = selected_answer == correct
+
+    config = DIFFICULTIES[st.session_state.difficulty]
+
+    player_name = get_current_player_name()
+
+    # ========================================================
+    # CORRECT
+    # ========================================================
+
+    if is_correct:
+
+        add_player_stat(player, "correct", 1)
+
+        combo_key = f"p{player}_combo"
+
+        st.session_state[combo_key] += 1
+
+        combo = st.session_state[combo_key]
+
+        best_key = f"p{player}_best_combo"
+
+        if combo > st.session_state[best_key]:
+            st.session_state[best_key] = combo
+
+        multiplier = combo_multiplier(combo)
+
+        damage = int(config["damage"] * multiplier)
+
+        # ----------------------------------------------------
+        # CRITICAL
+        # ----------------------------------------------------
+
+        crit_key = f"crit{player}"
+
+        if st.session_state[crit_key]:
+
+            damage *= 2
+
+            st.session_state[crit_key] = False
+
+            st.session_state.message = (
+                f"💥 CRITICAL HIT! {player_name} dealt {damage} damage!"
+            )
+
+        # ----------------------------------------------------
+        # OVERDRIVE
+        # ----------------------------------------------------
+
+        elif st.session_state[f"overdrive{player}"]:
+
+            damage *= 3
+
+            st.session_state[f"overdrive{player}"] = False
+
+            st.session_state.message = (
+                f"⚡ OVERDRIVE! {player_name} dealt {damage} damage!"
+            )
+
+        else:
+
+            st.session_state.message = (
+                f"⚔️ {player_name} attacked for {damage} damage!"
+            )
+
+        # ----------------------------------------------------
+        # ENEMY DAMAGE
+        # ----------------------------------------------------
+
+        st.session_state.enemy_hp -= damage
+
+        score_gain = damage * 10
+
+        xp_gain = config["xp"] + combo
+
+        coin_gain = config["coins"]
+
+        add_player_stat(player, "score", score_gain)
+        add_player_stat(player, "xp", xp_gain)
+        add_player_stat(player, "coins", coin_gain)
+
+        add_log(
+            f"✅ {player_name}: +{score_gain} score | "
+            f"{damage} damage"
         )
 
-    return achievements
+        # ----------------------------------------------------
+        # COMBO REWARDS
+        # ----------------------------------------------------
+
+        if combo == 3:
+
+            st.session_state[f"shield{player}"] = True
+
+            add_log(
+                f"🛡️ {player_name} unlocked SHIELD!"
+            )
+
+        if combo == 5:
+
+            st.session_state[f"crit{player}"] = True
+
+            add_log(
+                f"💥 {player_name} unlocked CRITICAL!"
+            )
+
+        if combo == 8:
+
+            st.session_state[f"overdrive{player}"] = True
+
+            add_log(
+                f"⚡ {player_name} unlocked OVERDRIVE!"
+            )
+
+        # ====================================================
+        # ENEMY DEFEATED
+        # ====================================================
+
+        if st.session_state.enemy_hp <= 0:
+
+            bonus = 500 + st.session_state.round * 100
+
+            add_player_stat(player, "score", bonus)
+
+            add_player_stat(
+                player,
+                "coins",
+                10
+            )
+
+            add_player_stat(
+                player,
+                "xp",
+                25
+            )
+
+            add_log(
+                f"💀 {player_name} defeated "
+                f"{st.session_state.enemy_name}!"
+            )
+
+            st.session_state.message = (
+                f"🏆 {player_name} defeated "
+                f"{st.session_state.enemy_name}!"
+            )
+
+            # QUICK BATTLE ends at round 5
+            if (
+                st.session_state.battle_type
+                == "Quick Battle"
+                and st.session_state.round >= 5
+            ):
+
+                finish_game("victory")
+
+                return
+
+            # Next round
+            st.session_state.round += 1
+
+            create_enemy()
+
+            new_question()
+
+            # In 2-player mode, switch turn
+            if st.session_state.mode == "2 Players":
+
+                if player == 1:
+                    st.session_state.current_player = 2
+                else:
+                    st.session_state.current_player = 1
+
+            return
+
+        # If enemy still alive:
+        # switch player in 2-player mode
+        if st.session_state.mode == "2 Players":
+
+            if player == 1:
+                st.session_state.current_player = 2
+            else:
+                st.session_state.current_player = 1
+
+        new_question()
+
+        return
+
+    # ========================================================
+    # WRONG
+    # ========================================================
+
+    st.session_state[f"p{player}_combo"] = 0
+
+    damage_taken = config["enemy_damage"]
+
+    # Boss damage
+    if st.session_state.round % 5 == 0:
+
+        damage_taken = int(
+            damage_taken * 1.35
+        )
+
+    shield_key = f"shield{player}"
+
+    if st.session_state[shield_key]:
+
+        st.session_state[shield_key] = False
+
+        st.session_state.message = (
+            f"🛡️ SHIELD BLOCKED THE ATTACK!"
+        )
+
+        add_log(
+            f"🛡️ {player_name}'s shield blocked damage."
+        )
+
+    else:
+
+        hp_key = f"p{player}_hp"
+
+        st.session_state[hp_key] -= damage_taken
+
+        st.session_state.message = (
+            f"💔 Wrong answer! "
+            f"{player_name} lost {damage_taken} HP."
+        )
+
+        add_log(
+            f"❌ {player_name} took {damage_taken} damage."
+        )
+
+    # ========================================================
+    # PLAYER DEFEATED
+    # ========================================================
+
+    if st.session_state[f"p{player}_hp"] <= 0:
+
+        st.session_state[f"p{player}_hp"] = 0
+
+        if st.session_state.mode == "1 Player":
+
+            finish_game("defeat")
+
+            return
+
+        else:
+
+            # In 2-player mode, one player can be eliminated.
+            # The other player continues.
+
+            other_player = 2 if player == 1 else 1
+
+            other_hp = st.session_state[
+                f"p{other_player}_hp"
+            ]
+
+            if other_hp <= 0:
+
+                finish_game("draw")
+
+                return
+
+            st.session_state.message = (
+                f"💀 {player_name} has been eliminated!"
+            )
+
+            st.session_state.current_player = other_player
+
+    else:
+
+        if st.session_state.mode == "2 Players":
+
+            if player == 1:
+                st.session_state.current_player = 2
+            else:
+                st.session_state.current_player = 1
+
+    new_question()
+
+
+# ============================================================
+# POWER UPS
+# ============================================================
+
+def use_shield():
+
+    player = st.session_state.current_player
+
+    coin_key = f"p{player}_coins"
+    shield_key = f"shield{player}"
+
+    if st.session_state[shield_key]:
+
+        st.session_state.message = (
+            "🛡️ Shield is already active."
+        )
+
+        return
+
+    if st.session_state[coin_key] < 5:
+
+        st.session_state.message = (
+            "🪙 You need 5 coins."
+        )
+
+        return
+
+    st.session_state[coin_key] -= 5
+
+    st.session_state[shield_key] = True
+
+    st.session_state.message = (
+        "🛡️ Shield activated!"
+    )
+
+
+def use_critical():
+
+    player = st.session_state.current_player
+
+    coin_key = f"p{player}_coins"
+    crit_key = f"crit{player}"
+
+    if st.session_state[crit_key]:
+
+        st.session_state.message = (
+            "💥 Critical is already active."
+        )
+
+        return
+
+    if st.session_state[coin_key] < 8:
+
+        st.session_state.message = (
+            "🪙 You need 8 coins."
+        )
+
+        return
+
+    st.session_state[coin_key] -= 8
+
+    st.session_state[crit_key] = True
+
+    st.session_state.message = (
+        "💥 Critical Attack armed!"
+    )
+
+
+def use_heal():
+
+    player = st.session_state.current_player
+
+    coin_key = f"p{player}_coins"
+    hp_key = f"p{player}_hp"
+    max_hp_key = f"p{player}_max_hp"
+
+    if st.session_state[coin_key] < 10:
+
+        st.session_state.message = (
+            "🪙 You need 10 coins."
+        )
+
+        return
+
+    if st.session_state[hp_key] >= st.session_state[max_hp_key]:
+
+        st.session_state.message = (
+            "❤️ HP is already full."
+        )
+
+        return
+
+    st.session_state[coin_key] -= 10
+
+    st.session_state[hp_key] = min(
+        st.session_state[max_hp_key],
+        st.session_state[hp_key] + 30
+    )
+
+    st.session_state.message = (
+        "❤️ +30 HP restored!"
+    )
 
 
 # ============================================================
 # FINISH GAME
 # ============================================================
 
-def finish_game(result, reason):
+def finish_game(result):
+
+    check_achievements()
 
     st.session_state.result = result
 
-    st.session_state.achievements = (
-        calculate_achievements()
+    if result == "victory":
+        st.session_state.total_wins += 1
+
+    elif result == "defeat":
+        st.session_state.total_losses += 1
+
+    timestamp = datetime.now().strftime(
+        "%d %b %Y • %I:%M %p"
     )
 
-    if result == "VICTORY":
-
-        st.session_state.wins += 1
-
-    else:
-
-        st.session_state.losses += 1
-
     record = {
-        "player": st.session_state.name,
-        "score": st.session_state.score,
-        "difficulty": st.session_state.difficulty,
+        "time": timestamp,
         "mode": st.session_state.mode,
+        "difficulty": st.session_state.difficulty,
         "round": st.session_state.round,
-        "combo": st.session_state.best_combo,
-        "correct": st.session_state.correct,
+        "p1": st.session_state.player1_name,
+        "p2": st.session_state.player2_name
+        if st.session_state.mode == "2 Players"
+        else "-",
+        "p1_score": st.session_state.p1_score,
+        "p2_score": st.session_state.p2_score,
         "result": result,
     }
 
-    st.session_state.history.append(
+    st.session_state.history.insert(
+        0,
         record
     )
 
-    if len(st.session_state.history) > 15:
+    if len(st.session_state.history) > 20:
 
         st.session_state.history = (
-            st.session_state.history[-15:]
+            st.session_state.history[:20]
         )
-
-    st.session_state.message = reason
 
     st.session_state.screen = "result"
 
 
 # ============================================================
-# USE POWERUPS
+# LEVEL SYSTEM
 # ============================================================
 
-def use_shield():
+def get_level(xp):
 
-    if st.session_state.shield <= 0:
-        return
-
-    st.session_state.shield -= 1
-
-    st.session_state.message = (
-        "🛡️ SHIELD READY — YOUR NEXT MISTAKE IS BLOCKED!"
+    return max(
+        1,
+        int(xp / 100) + 1
     )
 
-    st.session_state.message_kind = "success"
 
-    st.rerun()
+def get_level_progress(xp):
 
+    current_level = get_level(xp)
 
-def use_crit():
+    previous = (current_level - 1) * 100
 
-    if st.session_state.crit <= 0:
-        return
+    progress = xp - previous
 
-    st.session_state.crit -= 1
-    st.session_state.crit_ready = True
-
-    st.session_state.message = (
-        "💥 CRITICAL ATTACK READY!"
-    )
-
-    st.session_state.message_kind = "success"
-
-    st.rerun()
-
-
-def use_overdrive():
-
-    if st.session_state.overdrive <= 0:
-        return
-
-    st.session_state.overdrive -= 1
-    st.session_state.overdrive_ready = True
-
-    st.session_state.message = (
-        "⚡ OVERDRIVE READY — NEXT HIT x3!"
-    )
-
-    st.session_state.message_kind = "success"
-
-    st.rerun()
-
-
-def heal():
-
-    if st.session_state.coins < 5:
-
-        st.session_state.message = (
-            "❌ You need 5 coins."
-        )
-
-        st.session_state.message_kind = "error"
-
-        st.rerun()
-
-    if (
-        st.session_state.player_hp
-        >= st.session_state.max_hp
-    ):
-
-        st.session_state.message = (
-            "❤️ Your HP is already full."
-        )
-
-        st.session_state.message_kind = "info"
-
-        st.rerun()
-
-    st.session_state.coins -= 5
-
-    st.session_state.player_hp = min(
-        st.session_state.max_hp,
-        st.session_state.player_hp + 25,
-    )
-
-    st.session_state.message = (
-        "❤️ +25 HP"
-    )
-
-    st.session_state.message_kind = "success"
-
-    st.rerun()
+    return progress
 
 
 # ============================================================
-# ANSWER
-# ============================================================
-
-def submit_answer(selected):
-
-    st.session_state.attempts += 1
-
-    correct_answer = (
-        st.session_state.answer
-    )
-
-    # --------------------------------------------------------
-    # CORRECT
-    # --------------------------------------------------------
-
-    if selected == correct_answer:
-
-        st.session_state.correct += 1
-
-        st.session_state.combo += 1
-
-        st.session_state.best_combo = max(
-            st.session_state.best_combo,
-            st.session_state.combo,
-        )
-
-        config = DIFFICULTY[
-            st.session_state.difficulty
-        ]
-
-        multiplier = get_multiplier()
-
-        damage = int(
-            config["damage"]
-            * multiplier
-        )
-
-        # Critical
-        if st.session_state.crit_ready:
-
-            damage *= 2
-
-            st.session_state.crit_ready = False
-
-            st.session_state.message = (
-                f"💥 CRITICAL HIT! -{damage} HP"
-            )
-
-        # Overdrive
-        elif st.session_state.overdrive_ready:
-
-            damage *= 3
-
-            st.session_state.overdrive_ready = False
-
-            st.session_state.message = (
-                f"⚡ OVERDRIVE! -{damage} HP"
-            )
-
-        elif st.session_state.combo >= 8:
-
-            st.session_state.message = (
-                f"🔥 FEVER ATTACK! -{damage} HP"
-            )
-
-        else:
-
-            st.session_state.message = (
-                f"⚔️ HIT! -{damage} HP"
-            )
-
-        st.session_state.message_kind = "success"
-
-        st.session_state.enemy_hp -= damage
-
-        st.session_state.score += (
-            damage * 10
-        )
-
-        st.session_state.xp += (
-            config["xp"]
-            + st.session_state.combo
-        )
-
-        st.session_state.coins += (
-            config["coins"]
-        )
-
-        # Powerups
-        if (
-            st.session_state.combo >= 3
-            and st.session_state.shield == 0
-        ):
-
-            st.session_state.shield += 1
-
-        if (
-            st.session_state.combo >= 5
-            and st.session_state.crit == 0
-            and not st.session_state.crit_ready
-        ):
-
-            st.session_state.crit += 1
-
-        if (
-            st.session_state.combo >= 8
-            and st.session_state.overdrive == 0
-            and not st.session_state.overdrive_ready
-        ):
-
-            st.session_state.overdrive += 1
-
-        # ----------------------------------------------------
-        # ENEMY DEFEATED
-        # ----------------------------------------------------
-
-        if st.session_state.enemy_hp <= 0:
-
-            boss_defeated = (
-                st.session_state.boss
-            )
-
-            if boss_defeated:
-
-                st.session_state.score += 250
-                st.session_state.coins += 10
-                st.session_state.xp += 50
-
-                st.session_state.message = (
-                    "👑 BOSS DESTROYED! +250 SCORE"
-                )
-
-            else:
-
-                st.session_state.score += 50
-                st.session_state.coins += 3
-
-                st.session_state.message = (
-                    "💀 ENEMY DEFEATED! +50 SCORE"
-                )
-
-            # Quick battle
-            if (
-                st.session_state.mode
-                == "Quick Battle"
-                and st.session_state.round >= 5
-            ):
-
-                finish_game(
-                    "VICTORY",
-                    "🏆 You cleared all five battles!",
-                )
-
-                return
-
-            st.session_state.round += 1
-
-            create_enemy()
-
-            return
-
-        new_question()
-
-    # --------------------------------------------------------
-    # WRONG
-    # --------------------------------------------------------
-
-    else:
-
-        st.session_state.combo = 0
-
-        config = DIFFICULTY[
-            st.session_state.difficulty
-        ]
-
-        damage = config["enemy_damage"]
-
-        if st.session_state.boss:
-
-            damage = int(
-                damage * 1.25
-            )
-
-        # Shield
-        if st.session_state.shield > 0:
-
-            st.session_state.shield -= 1
-
-            st.session_state.message = (
-                "🛡️ SHIELD BLOCKED THE ATTACK!"
-            )
-
-            st.session_state.message_kind = (
-                "success"
-            )
-
-        else:
-
-            st.session_state.player_hp -= damage
-
-            st.session_state.message = (
-                f"💀 WRONG ANSWER! -{damage} HP"
-            )
-
-            st.session_state.message_kind = (
-                "error"
-            )
-
-        if st.session_state.player_hp <= 0:
-
-            st.session_state.player_hp = 0
-
-            finish_game(
-                "DEFEAT",
-                "💀 Your HP reached zero.",
-            )
-
-            return
-
-        new_question()
-
-
-# ============================================================
-# HOME SCREEN
+# HOME
 # ============================================================
 
 def home_screen():
 
     st.markdown(
-        '<div class="arena-title">⚔️ MATHS ARENA PRO</div>',
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        '<div class="arena-subtitle">THINK FAST • ATTACK SMART • MASTER MATHEMATICS</div>',
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
         """
-        ## 🏟️ Welcome to the Arena
+        <div class="hero">
 
-        This is **not a maths exam**.
+            <div class="hero-badge">
+                ⚔️ THE ULTIMATE MATH BATTLE
+            </div>
 
-        Every correct answer becomes an attack.
-        Build combos, unlock power-ups, destroy enemies
-        and survive increasingly difficult rounds.
-        """
+            <div class="hero-title">
+                MATHS ARENA PRO
+            </div>
+
+            <div class="hero-subtitle">
+                THINK FAST • ATTACK SMART • MASTER MATHEMATICS
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    st.divider()
+    # --------------------------------------------------------
+    # MODE
+    # --------------------------------------------------------
 
-    left, center, right = st.columns(
-        [1, 1.4, 1]
-    )
+    st.markdown("### 🎮 Enter The Arena")
 
-    with center:
+    c1, c2 = st.columns(2)
 
-        st.markdown(
-            "### 👤 YOUR FIGHTER"
+    with c1:
+
+        st.session_state.player1_name = st.text_input(
+            "PLAYER 1",
+            value=st.session_state.player1_name,
+            max_chars=18
         )
 
-        name = st.text_input(
-            "Fighter name",
-            value=st.session_state.name,
-            max_chars=18,
-            placeholder="Enter your name",
-        )
-
-        if name.strip():
-
-            st.session_state.name = (
-                name.strip()[:18]
-            )
-
-        st.write("")
-
-        st.markdown(
-            "### 🎮 GAME MODE"
-        )
+    with c2:
 
         mode = st.radio(
-            "Choose mode",
+            "GAME MODE",
             [
-                "Endless Arena",
-                "Quick Battle",
+                "1 Player",
+                "2 Players"
             ],
             horizontal=True,
+            index=(
+                1
+                if st.session_state.mode == "2 Players"
+                else 0
+            )
         )
 
         st.session_state.mode = mode
 
-        st.write("")
+    if mode == "2 Players":
 
-        st.markdown(
-            "### ⚔️ DIFFICULTY"
+        st.session_state.player2_name = st.text_input(
+            "PLAYER 2",
+            value=st.session_state.player2_name,
+            max_chars=18
         )
 
+    else:
+
+        st.session_state.player2_name = "Player 2"
+
+    st.markdown("### ⚔️ Battle Settings")
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+
+        battle_type = st.selectbox(
+            "BATTLE TYPE",
+            [
+                "Endless Arena",
+                "Quick Battle"
+            ]
+        )
+
+        st.session_state.battle_type = battle_type
+
+    with c2:
+
         difficulty = st.selectbox(
-            "Difficulty",
+            "DIFFICULTY",
             [
                 "Basic",
                 "Medium",
                 "Pro",
-                "Master",
-            ],
-            index=[
-                "Basic",
-                "Medium",
-                "Pro",
-                "Master",
-            ].index(
-                st.session_state.difficulty
-            ),
+                "Master"
+            ]
         )
 
-        st.session_state.difficulty = (
-            difficulty
-        )
+        st.session_state.difficulty = difficulty
 
-        st.write("")
+    st.markdown("")
+
+    start_col, profile_col = st.columns([2, 1])
+
+    with start_col:
 
         if st.button(
             "⚔️ ENTER THE ARENA",
-            type="primary",
-            use_container_width=True,
+            use_container_width=True
         ):
+
+            if not st.session_state.player1_name.strip():
+
+                st.session_state.player1_name = "Player 1"
+
+            if mode == "2 Players":
+
+                if not st.session_state.player2_name.strip():
+
+                    st.session_state.player2_name = "Player 2"
 
             start_game()
 
             st.rerun()
 
-    st.write("")
-    st.divider()
+    with profile_col:
 
-    st.markdown(
-        "### 🎮 GAME FEATURES"
-    )
-
-    c1, c2, c3, c4 = st.columns(4)
-
-    with c1:
-
-        st.info(
-            "🔥 **COMBOS**\n\n"
-            "Keep answering correctly "
-            "to increase your damage."
-        )
-
-    with c2:
-
-        st.info(
-            "👑 **BOSSES**\n\n"
-            "Every 5th round brings "
-            "a stronger enemy."
-        )
-
-    with c3:
-
-        st.info(
-            "⚡ **POWER-UPS**\n\n"
-            "Shield, Critical, Overdrive "
-            "and Heal."
-        )
-
-    with c4:
-
-        st.info(
-            "🏆 **REWARDS**\n\n"
-            "Earn score, XP and coins "
-            "during your run."
-        )
-
-    if st.session_state.history:
-
-        st.write("")
-        st.divider()
-
-        st.markdown(
-            "### 🏆 LOCAL HALL OF FAME"
-        )
-
-        best = sorted(
-            st.session_state.history,
-            key=lambda x: x["score"],
-            reverse=True,
-        )[:5]
-
-        for position, run in enumerate(
-            best,
-            start=1,
+        if st.button(
+            "👤 PROFILE",
+            use_container_width=True
         ):
 
-            icon = {
-                1: "🥇",
-                2: "🥈",
-                3: "🥉",
-                4: "4️⃣",
-                5: "5️⃣",
-            }[position]
+            st.session_state.screen = "profile"
+
+            st.rerun()
+
+    st.markdown("---")
+
+    # --------------------------------------------------------
+    # FEATURES
+    # --------------------------------------------------------
+
+    st.markdown("### 🔥 Why This Is A Game")
+
+    f1, f2, f3, f4 = st.columns(4)
+
+    features = [
+        (
+            "⚔️",
+            "Battle System",
+            "Solve maths to attack enemies."
+        ),
+        (
+            "🔥",
+            "Combo",
+            "Keep answering correctly to increase damage."
+        ),
+        (
+            "👥",
+            "2 Player",
+            "Two players can battle on one device."
+        ),
+        (
+            "👑",
+            "Boss Battles",
+            "Survive powerful enemies every 5 rounds."
+        ),
+    ]
+
+    for column, feature in zip(
+        [f1, f2, f3, f4],
+        features
+    ):
+
+        icon, title, description = feature
+
+        with column:
+
+            st.markdown(
+                f"""
+                <div class="game-card">
+
+                    <div class="feature-icon">
+                        {icon}
+                    </div>
+
+                    <div class="feature-title">
+                        {title}
+                    </div>
+
+                    <div class="feature-text">
+                        {description}
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+    # --------------------------------------------------------
+    # SESSION HISTORY
+    # --------------------------------------------------------
+
+    st.markdown("### 🏆 Recent Arena Runs")
+
+    if not st.session_state.history:
+
+        st.info(
+            "No battles yet. Enter the arena and create your first record."
+        )
+
+    else:
+
+        for match in st.session_state.history[:5]:
+
+            result_icon = {
+                "victory": "🏆",
+                "defeat": "💀",
+                "draw": "🤝"
+            }.get(
+                match["result"],
+                "⚔️"
+            )
 
             st.write(
-                f"{icon} **{run['player']}**  "
-                f"— Score: **{run['score']}**  "
-                f"— Combo: **🔥 {run['combo']}**  "
-                f"— {run['difficulty']}"
+                f"{result_icon} "
+                f"**{match['p1']}** "
+                f"vs "
+                f"**{match['p2']}** "
+                f"• Round {match['round']} "
+                f"• {match['difficulty']} "
+                f"• P1 Score: {match['p1_score']}"
             )
+
+
+# ============================================================
+# PLAYER CARD
+# ============================================================
+
+def render_player_card(player):
+
+    if player == 1:
+
+        name = st.session_state.player1_name
+        hp = st.session_state.p1_hp
+        max_hp = st.session_state.p1_max_hp
+        score = st.session_state.p1_score
+        combo = st.session_state.p1_combo
+        coins = st.session_state.p1_coins
+        xp = st.session_state.p1_xp
+
+    else:
+
+        name = st.session_state.player2_name
+        hp = st.session_state.p2_hp
+        max_hp = st.session_state.p2_max_hp
+        score = st.session_state.p2_score
+        combo = st.session_state.p2_combo
+        coins = st.session_state.p2_coins
+        xp = st.session_state.p2_xp
+
+    level = get_level(xp)
+
+    st.markdown(
+        f"""
+        <div class="player-card">
+
+            <div class="fighter-icon">
+                {"🧙" if player == 1 else "🥷"}
+            </div>
+
+            <div class="fighter-name">
+                {name}
+            </div>
+
+            <div class="small-muted">
+                PLAYER {player} • LEVEL {level}
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.progress(
+        max(
+            0.0,
+            min(
+                1.0,
+                hp / max_hp
+            )
+        )
+    )
+
+    st.caption(
+        f"❤️ {hp}/{max_hp} HP"
+    )
+
+    m1, m2, m3 = st.columns(3)
+
+    with m1:
+        st.metric(
+            "SCORE",
+            score
+        )
+
+    with m2:
+        st.metric(
+            "COMBO",
+            combo
+        )
+
+    with m3:
+        st.metric(
+            "🪙",
+            coins
+        )
+
+
+# ============================================================
+# ENEMY CARD
+# ============================================================
+
+def render_enemy_card():
+
+    hp = st.session_state.enemy_hp
+    max_hp = st.session_state.enemy_max_hp
+
+    is_boss = (
+        st.session_state.round % 5 == 0
+    )
+
+    title = (
+        "👑 BOSS"
+        if is_boss
+        else "ENEMY"
+    )
+
+    st.markdown(
+        f"""
+        <div class="enemy-card">
+
+            <div class="fighter-icon">
+                {st.session_state.enemy_icon}
+            </div>
+
+            <div class="fighter-name">
+                {st.session_state.enemy_name}
+            </div>
+
+            <div class="small-muted">
+                {title} • ROUND {st.session_state.round}
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.progress(
+        max(
+            0.0,
+            min(
+                1.0,
+                hp / max_hp
+            )
+        )
+    )
+
+    st.caption(
+        f"❤️ {max(0, hp)}/{max_hp} HP"
+    )
 
 
 # ============================================================
@@ -1428,198 +1988,232 @@ def home_screen():
 
 def battle_screen():
 
+    current_name = get_current_player_name()
+
+    current_combo = get_current_combo()
+
+    multiplier = combo_multiplier(
+        current_combo
+    )
+
+    is_boss = (
+        st.session_state.round % 5 == 0
+    )
+
     # --------------------------------------------------------
     # HEADER
     # --------------------------------------------------------
 
     st.markdown(
-        '<div class="arena-title">⚔️ BATTLE ARENA</div>',
-        unsafe_allow_html=True,
-    )
+        f"""
+        <div style="text-align:center; padding:10px 0 20px 0;">
 
-    st.markdown(
-        f'<div class="arena-subtitle">'
-        f'ROUND {st.session_state.round} • '
-        f'{st.session_state.difficulty.upper()} • '
-        f'{st.session_state.mode.upper()}'
-        f'</div>',
-        unsafe_allow_html=True,
+            <div style="
+                color:#818cf8;
+                font-weight:800;
+                letter-spacing:2px;
+                font-size:12px;
+            ">
+                {"👑 BOSS ROUND" if is_boss else "⚔️ ARENA BATTLE"}
+            </div>
+
+            <div style="
+                font-family:Orbitron;
+                font-size:32px;
+                font-weight:900;
+                margin-top:8px;
+            ">
+                ROUND {st.session_state.round}
+            </div>
+
+            <div style="
+                color:#94a3b8;
+                margin-top:5px;
+            ">
+                {current_name}'s turn
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
     # --------------------------------------------------------
-    # TOP STATS
+    # TOP METRICS
     # --------------------------------------------------------
 
-    a, b, c, d, e = st.columns(5)
+    if st.session_state.mode == "1 Player":
 
-    with a:
+        c1, c2, c3, c4 = st.columns(4)
 
-        st.metric(
-            "❤️ HP",
-            f"{st.session_state.player_hp}/{st.session_state.max_hp}",
-        )
+        with c1:
+            st.metric(
+                "⚔️ SCORE",
+                st.session_state.p1_score
+            )
 
-    with b:
+        with c2:
+            st.metric(
+                "🔥 COMBO",
+                st.session_state.p1_combo
+            )
 
-        st.metric(
-            "💀 ENEMY HP",
-            f"{st.session_state.enemy_hp}/{st.session_state.enemy_max_hp}",
-        )
+        with c3:
+            st.metric(
+                "🪙 COINS",
+                st.session_state.p1_coins
+            )
 
-    with c:
+        with c4:
+            st.metric(
+                "⭐ XP",
+                st.session_state.p1_xp
+            )
 
-        st.metric(
-            "🔥 COMBO",
-            st.session_state.combo,
-        )
+    else:
 
-    with d:
+        c1, c2, c3, c4 = st.columns(4)
 
-        st.metric(
-            "🏆 SCORE",
-            st.session_state.score,
-        )
+        with c1:
+            st.metric(
+                st.session_state.player1_name,
+                st.session_state.p1_score
+            )
 
-    with e:
+        with c2:
+            st.metric(
+                st.session_state.player2_name,
+                st.session_state.p2_score
+            )
 
-        st.metric(
-            "🪙 COINS",
-            st.session_state.coins,
-        )
+        with c3:
+            st.metric(
+                "ROUND",
+                st.session_state.round
+            )
 
-    # --------------------------------------------------------
-    # HP BARS
-    # --------------------------------------------------------
+        with c4:
+            st.metric(
+                "TURN",
+                current_name
+            )
 
-    st.progress(
-        max(
-            0.0,
-            min(
-                1.0,
-                st.session_state.player_hp
-                / st.session_state.max_hp,
-            ),
-        ),
-        text="❤️ YOUR HEALTH",
-    )
-
-    st.progress(
-        max(
-            0.0,
-            min(
-                1.0,
-                st.session_state.enemy_hp
-                / st.session_state.enemy_max_hp,
-            ),
-        ),
-        text=(
-            "👑 BOSS HEALTH"
-            if st.session_state.boss
-            else "💀 ENEMY HEALTH"
-        ),
-    )
-
-    st.write("")
+    st.markdown("---")
 
     # --------------------------------------------------------
     # FIGHTERS
     # --------------------------------------------------------
 
-    player_col, vs_col, enemy_col = st.columns(
-        [1, .35, 1]
-    )
+    if st.session_state.mode == "1 Player":
 
-    with player_col:
-
-        st.markdown(
-            "### 🧑 YOUR FIGHTER"
+        left, middle, right = st.columns(
+            [1, .35, 1]
         )
 
-        st.markdown(
-            f"## {st.session_state.name}"
+        with left:
+            render_player_card(1)
+
+        with middle:
+
+            st.markdown(
+                """
+                <div class="vs">
+                    VS
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with right:
+            render_enemy_card()
+
+    else:
+
+        p1, vs, p2 = st.columns(
+            [1, .35, 1]
         )
 
-        st.caption(
-            f"XP: {st.session_state.xp}"
-        )
+        with p1:
+            render_player_card(1)
 
-    with vs_col:
+        with vs:
+
+            st.markdown(
+                """
+                <div class="vs">
+                    ⚔️
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+        with p2:
+            render_player_card(2)
 
         st.markdown(
-            """
+            f"""
             <div style="
                 text-align:center;
+                margin:15px 0;
+                color:#f87171;
                 font-family:Orbitron;
-                font-size:1.5rem;
-                padding-top:35px;
+                font-size:18px;
+                font-weight:800;
             ">
-            VS
+                TARGET: {st.session_state.enemy_name}
+                • {st.session_state.enemy_hp} HP
             </div>
             """,
-            unsafe_allow_html=True,
+            unsafe_allow_html=True
         )
 
-    with enemy_col:
-
-        if st.session_state.boss:
-
-            st.error(
-                f"👑 BOSS\n\n"
-                f"{st.session_state.enemy_name}"
-            )
-
-        else:
-
-            st.warning(
-                f"💀 ENEMY\n\n"
-                f"{st.session_state.enemy_name}"
-            )
-
     # --------------------------------------------------------
-    # COMBO
+    # CURRENT PLAYER COMBO
     # --------------------------------------------------------
 
-    multiplier = get_multiplier()
+    st.markdown("")
 
     st.markdown(
-        "### 🔥 COMBAT STATUS"
+        f"""
+        <div class="combo-box">
+
+            <div class="small-muted">
+                CURRENT COMBO
+            </div>
+
+            <div class="combo-number">
+                🔥 {current_combo}
+            </div>
+
+            <div class="small-muted">
+                DAMAGE MULTIPLIER: {multiplier}×
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    c1, c2, c3 = st.columns(3)
+    # --------------------------------------------------------
+    # QUESTION
+    # --------------------------------------------------------
 
-    with c1:
+    st.markdown(
+        f"""
+        <div class="question-box">
 
-        st.metric(
-            "Combo",
-            f"🔥 {st.session_state.combo}",
-        )
+            <div class="question-label">
+                SOLVE TO ATTACK
+            </div>
 
-    with c2:
+            <div class="question-text">
+                {st.session_state.question}
+            </div>
 
-        st.metric(
-            "Damage Multiplier",
-            f"x{multiplier}",
-        )
-
-    with c3:
-
-        if st.session_state.combo >= 8:
-
-            st.success(
-                "🔥 FEVER MODE"
-            )
-
-        elif st.session_state.combo >= 5:
-
-            st.info(
-                "⚡ POWER MODE"
-            )
-
-        else:
-
-            st.caption(
-                "Build your combo!"
-            )
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # --------------------------------------------------------
     # MESSAGE
@@ -1627,222 +2221,227 @@ def battle_screen():
 
     if st.session_state.message:
 
-        if (
-            st.session_state.message_kind
-            == "success"
-        ):
-
-            st.success(
-                st.session_state.message
-            )
-
-        elif (
-            st.session_state.message_kind
-            == "error"
-        ):
-
-            st.error(
-                st.session_state.message
-            )
-
-        else:
-
-            st.info(
-                st.session_state.message
-            )
-
-    # --------------------------------------------------------
-    # QUESTION
-    # --------------------------------------------------------
-
-    st.markdown(
-        """
-        <div class="battle-question">
-            <div class="question-label">
-                ⚔️ SOLVE TO ATTACK
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        f"""
-        <div style="
-            text-align:center;
-            font-family:Orbitron;
-            font-size:clamp(2rem,5vw,3.5rem);
-            font-weight:900;
-            padding:10px;
-        ">
-        {st.session_state.question} = ?
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.caption(
-        "Choose the correct answer to damage your enemy."
-    )
+        st.info(
+            st.session_state.message
+        )
 
     # --------------------------------------------------------
     # ANSWERS
     # --------------------------------------------------------
 
-    options = st.session_state.options
-
-    col1, col2 = st.columns(2)
-
-    for index, option in enumerate(options):
-
-        target = (
-            col1
-            if index % 2 == 0
-            else col2
-        )
-
-        with target:
-
-            if st.button(
-                f"⚔️  {format_answer(option)}",
-                key=f"answer_{st.session_state.round}_{st.session_state.attempts}_{index}",
-                use_container_width=True,
-            ):
-
-                submit_answer(option)
-
-                st.rerun()
-
-    st.write("")
-
-    # --------------------------------------------------------
-    # POWERUPS
-    # --------------------------------------------------------
-
     st.markdown(
-        "### ⚡ POWER-UPS"
+        f"### 🎯 {current_name}, choose your attack"
     )
 
-    p1, p2, p3, p4 = st.columns(4)
+    options = list(
+        st.session_state.options
+    )
+
+    # --------------------------------------------------------
+    # ABSOLUTE CORRECT-ANSWER SAFETY
+    # --------------------------------------------------------
+
+    correct = st.session_state.correct_answer
+
+    if correct not in options:
+
+        options = generate_options(correct)
+
+        if correct not in options:
+            options[0] = correct
+
+        st.session_state.options = options
+
+    # Final safety assertion.
+    # This should NEVER fail.
+    if correct not in st.session_state.options:
+
+        st.session_state.options = [
+            correct,
+            correct + 1,
+            correct + 2,
+            correct + 3
+        ]
+
+        random.shuffle(
+            st.session_state.options
+        )
+
+    options = st.session_state.options
+
+    a1, a2 = st.columns(2)
+
+    with a1:
+
+        if st.button(
+            f"⚔️  {options[0]}",
+            key="answer_0",
+            use_container_width=True
+        ):
+
+            answer_question(
+                options[0]
+            )
+
+            st.rerun()
+
+        if st.button(
+            f"⚔️  {options[2]}",
+            key="answer_2",
+            use_container_width=True
+        ):
+
+            answer_question(
+                options[2]
+            )
+
+            st.rerun()
+
+    with a2:
+
+        if st.button(
+            f"⚔️  {options[1]}",
+            key="answer_1",
+            use_container_width=True
+        ):
+
+            answer_question(
+                options[1]
+            )
+
+            st.rerun()
+
+        if st.button(
+            f"⚔️  {options[3]}",
+            key="answer_3",
+            use_container_width=True
+        ):
+
+            answer_question(
+                options[3]
+            )
+
+            st.rerun()
+
+    # --------------------------------------------------------
+    # POWER UPS
+    # --------------------------------------------------------
+
+    st.markdown("---")
+
+    st.markdown("### ⚡ Power Arsenal")
+
+    p1, p2, p3 = st.columns(3)
 
     with p1:
 
-        st.metric(
-            "🛡️ Shield",
-            st.session_state.shield,
-        )
+        shield_active = st.session_state[
+            f"shield{st.session_state.current_player}"
+        ]
 
         if st.button(
-            "Use Shield",
-            disabled=(
-                st.session_state.shield <= 0
-            ),
-            key="use_shield",
-            use_container_width=True,
+            "🛡️ SHIELD • 5 🪙",
+            use_container_width=True
         ):
 
             use_shield()
 
+            st.rerun()
+
+        if shield_active:
+            st.caption(
+                "🛡️ SHIELD ACTIVE"
+            )
+
     with p2:
 
-        st.metric(
-            "💥 Critical",
-            st.session_state.crit,
-        )
+        crit_active = st.session_state[
+            f"crit{st.session_state.current_player}"
+        ]
 
         if st.button(
-            "Use Critical",
-            disabled=(
-                st.session_state.crit <= 0
-                or st.session_state.crit_ready
-            ),
-            key="use_crit",
-            use_container_width=True,
+            "💥 CRITICAL • 8 🪙",
+            use_container_width=True
         ):
 
-            use_crit()
+            use_critical()
+
+            st.rerun()
+
+        if crit_active:
+            st.caption(
+                "💥 CRITICAL ARMED"
+            )
 
     with p3:
 
-        st.metric(
-            "⚡ Overdrive",
-            st.session_state.overdrive,
-        )
-
         if st.button(
-            "Use Overdrive",
-            disabled=(
-                st.session_state.overdrive <= 0
-                or st.session_state.overdrive_ready
-            ),
-            key="use_overdrive",
-            use_container_width=True,
+            "❤️ HEAL +30 • 10 🪙",
+            use_container_width=True
         ):
 
-            use_overdrive()
+            use_heal()
 
-    with p4:
-
-        st.metric(
-            "❤️ Heal",
-            "5 🪙",
-        )
-
-        if st.button(
-            "Heal +25 HP",
-            disabled=(
-                st.session_state.coins < 5
-                or st.session_state.player_hp
-                >= st.session_state.max_hp
-            ),
-            key="heal",
-            use_container_width=True,
-        ):
-
-            heal()
+            st.rerun()
 
     # --------------------------------------------------------
     # ACTIVE EFFECTS
     # --------------------------------------------------------
 
-    active = []
+    player = st.session_state.current_player
 
-    if st.session_state.crit_ready:
+    effects = []
 
-        active.append(
-            "💥 CRITICAL READY"
-        )
+    if st.session_state[f"shield{player}"]:
+        effects.append("🛡️ Shield")
 
-    if st.session_state.overdrive_ready:
+    if st.session_state[f"crit{player}"]:
+        effects.append("💥 Critical")
 
-        active.append(
-            "⚡ OVERDRIVE READY"
-        )
+    if st.session_state[f"overdrive{player}"]:
+        effects.append("⚡ Overdrive")
 
-    if active:
+    if effects:
 
-        st.write("")
-
-        st.info(
-            "   |   ".join(active)
+        st.success(
+            "ACTIVE: " + " • ".join(effects)
         )
 
     # --------------------------------------------------------
-    # END RUN
+    # BATTLE LOG
     # --------------------------------------------------------
 
-    st.write("")
-    st.divider()
+    with st.expander(
+        "📜 Battle Log",
+        expanded=False
+    ):
+
+        if st.session_state.battle_log:
+
+            for log in st.session_state.battle_log:
+
+                st.write(
+                    log
+                )
+
+        else:
+
+            st.caption(
+                "Battle events will appear here."
+            )
+
+    # --------------------------------------------------------
+    # EXIT
+    # --------------------------------------------------------
+
+    st.markdown("")
 
     if st.button(
         "🏳️ END RUN",
-        use_container_width=True,
+        use_container_width=True
     ):
 
-        finish_game(
-            "DEFEAT",
-            "You ended the run.",
-        )
+        finish_game("defeat")
 
         st.rerun()
 
@@ -1853,146 +2452,205 @@ def battle_screen():
 
 def result_screen():
 
-    if st.session_state.result == "VICTORY":
+    result = st.session_state.result
 
-        st.success(
-            "🏆 ARENA CLEARED!"
-        )
+    if result == "victory":
 
-        st.markdown(
-            "# 🏆 VICTORY"
-        )
+        title = "🏆 VICTORY"
+        subtitle = "THE ARENA HAS BEEN CONQUERED."
 
-        st.write(
-            "You defeated the arena. "
-            "That was a strong run."
-        )
+    elif result == "draw":
+
+        title = "🤝 DRAW"
+        subtitle = "BOTH FIGHTERS HAVE FALLEN."
 
     else:
 
-        st.error(
-            "💀 RUN OVER"
-        )
-
-        st.markdown(
-            "# 💀 GAME OVER"
-        )
-
-        st.write(
-            st.session_state.message
-        )
-
-    st.divider()
-
-    # --------------------------------------------------------
-    # FINAL STATS
-    # --------------------------------------------------------
+        title = "💀 RUN OVER"
+        subtitle = "THE ARENA DEFEATED YOU THIS TIME."
 
     st.markdown(
-        "### 📊 FINAL STATS"
+        f"""
+        <div class="result-box">
+
+            <div class="result-title">
+                {title}
+            </div>
+
+            <div style="
+                color:#94a3b8;
+                margin-top:12px;
+                font-size:15px;
+            ">
+                {subtitle}
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    a, b, c, d = st.columns(4)
+    st.markdown("")
 
-    with a:
+    # --------------------------------------------------------
+    # SCORES
+    # --------------------------------------------------------
 
-        st.metric(
-            "🏆 SCORE",
-            st.session_state.score,
-        )
+    if st.session_state.mode == "1 Player":
 
-    with b:
+        c1, c2, c3, c4 = st.columns(4)
 
-        st.metric(
-            "🔥 BEST COMBO",
-            st.session_state.best_combo,
-        )
+        with c1:
+            st.metric(
+                "SCORE",
+                st.session_state.p1_score
+            )
 
-    with c:
+        with c2:
+            st.metric(
+                "BEST COMBO",
+                st.session_state.p1_best_combo
+            )
 
-        st.metric(
-            "🎯 CORRECT",
-            st.session_state.correct,
-        )
+        with c3:
+            st.metric(
+                "CORRECT",
+                st.session_state.p1_correct
+            )
 
-    with d:
+        with c4:
+            st.metric(
+                "🪙 COINS",
+                st.session_state.p1_coins
+            )
 
-        st.metric(
-            "🪙 COINS",
-            st.session_state.coins,
-        )
+    else:
 
-    st.write("")
+        c1, c2 = st.columns(2)
+
+        with c1:
+
+            st.markdown(
+                f"### 🧙 {st.session_state.player1_name}"
+            )
+
+            st.metric(
+                "SCORE",
+                st.session_state.p1_score
+            )
+
+            st.metric(
+                "BEST COMBO",
+                st.session_state.p1_best_combo
+            )
+
+            st.metric(
+                "CORRECT",
+                st.session_state.p1_correct
+            )
+
+        with c2:
+
+            st.markdown(
+                f"### 🥷 {st.session_state.player2_name}"
+            )
+
+            st.metric(
+                "SCORE",
+                st.session_state.p2_score
+            )
+
+            st.metric(
+                "BEST COMBO",
+                st.session_state.p2_best_combo
+            )
+
+            st.metric(
+                "CORRECT",
+                st.session_state.p2_correct
+            )
 
     # --------------------------------------------------------
     # ACCURACY
     # --------------------------------------------------------
 
-    accuracy = 0
+    p1_accuracy = 0
 
-    if st.session_state.attempts > 0:
+    if st.session_state.p1_attempts > 0:
 
-        accuracy = (
-            st.session_state.correct
-            / st.session_state.attempts
-            * 100
+        p1_accuracy = (
+            st.session_state.p1_correct
+            / st.session_state.p1_attempts
+        ) * 100
+
+    p2_accuracy = 0
+
+    if st.session_state.p2_attempts > 0:
+
+        p2_accuracy = (
+            st.session_state.p2_correct
+            / st.session_state.p2_attempts
+        ) * 100
+
+    st.markdown("### 🎯 Accuracy")
+
+    if st.session_state.mode == "1 Player":
+
+        st.progress(
+            p1_accuracy / 100
         )
 
-    st.markdown(
-        "### 🎯 PERFORMANCE"
-    )
-
-    p1, p2, p3 = st.columns(3)
-
-    with p1:
-
-        st.metric(
-            "Accuracy",
-            f"{accuracy:.0f}%",
+        st.caption(
+            f"{p1_accuracy:.1f}%"
         )
 
-    with p2:
+    else:
 
-        st.metric(
-            "Round",
-            st.session_state.round,
-        )
+        a1, a2 = st.columns(2)
 
-    with p3:
+        with a1:
 
-        st.metric(
-            "Difficulty",
-            st.session_state.difficulty,
-        )
+            st.write(
+                st.session_state.player1_name
+            )
 
-    st.write("")
+            st.progress(
+                p1_accuracy / 100
+            )
+
+            st.caption(
+                f"{p1_accuracy:.1f}%"
+            )
+
+        with a2:
+
+            st.write(
+                st.session_state.player2_name
+            )
+
+            st.progress(
+                p2_accuracy / 100
+            )
+
+            st.caption(
+                f"{p2_accuracy:.1f}%"
+            )
 
     # --------------------------------------------------------
     # ACHIEVEMENTS
     # --------------------------------------------------------
 
-    st.markdown(
-        "### 🏅 ACHIEVEMENTS"
-    )
+    st.markdown("### 🏅 Achievements")
 
     if st.session_state.achievements:
 
-        cols = st.columns(
-            min(
-                3,
-                len(
-                    st.session_state.achievements
-                ),
-            )
-        )
+        cols = st.columns(3)
 
         for index, achievement in enumerate(
             st.session_state.achievements
         ):
 
-            with cols[
-                index % len(cols)
-            ]:
+            with cols[index % 3]:
 
                 st.success(
                     achievement
@@ -2001,41 +2659,47 @@ def result_screen():
     else:
 
         st.info(
-            "No achievements unlocked yet."
+            "Keep playing to unlock achievements."
         )
-
-    st.write("")
 
     # --------------------------------------------------------
     # ACTIONS
     # --------------------------------------------------------
 
-    st.markdown(
-        "### ⚔️ READY?"
-    )
+    st.markdown("---")
 
-    a1, a2 = st.columns(2)
+    c1, c2, c3 = st.columns(3)
 
-    with a1:
+    with c1:
 
         if st.button(
             "⚔️ PLAY AGAIN",
-            type="primary",
-            use_container_width=True,
+            use_container_width=True
         ):
 
             start_game()
 
             st.rerun()
 
-    with a2:
+    with c2:
 
         if st.button(
-            "🏠 BACK TO HOME",
-            use_container_width=True,
+            "🏠 HOME",
+            use_container_width=True
         ):
 
             st.session_state.screen = "home"
+
+            st.rerun()
+
+    with c3:
+
+        if st.button(
+            "👤 PROFILE",
+            use_container_width=True
+        ):
+
+            st.session_state.screen = "profile"
 
             st.rerun()
 
@@ -2043,80 +2707,37 @@ def result_screen():
     # RECENT RUNS
     # --------------------------------------------------------
 
-    st.write("")
-    st.divider()
+    st.markdown("---")
 
-    st.markdown(
-        "### 📜 RECENT RUNS"
-    )
+    st.markdown("### 📜 Recent Runs")
 
     if not st.session_state.history:
 
-        st.info(
+        st.caption(
             "No previous runs."
         )
 
     else:
 
-        for number, run in enumerate(
-            reversed(
-                st.session_state.history
-            ),
-            start=1,
-        ):
+        for match in st.session_state.history[:10]:
 
-            icon = (
-                "🏆"
-                if run["result"] == "VICTORY"
-                else "💀"
+            icon = {
+                "victory": "🏆",
+                "defeat": "💀",
+                "draw": "🤝"
+            }.get(
+                match["result"],
+                "⚔️"
             )
 
-            st.markdown(
-                f"#### {icon} {run['player']}"
+            st.write(
+                f"{icon} "
+                f"{match['time']} • "
+                f"{match['mode']} • "
+                f"{match['difficulty']} • "
+                f"Round {match['round']} • "
+                f"{match['p1']} {match['p1_score']}"
             )
-
-            c1, c2, c3, c4, c5 = st.columns(5)
-
-            with c1:
-
-                st.metric(
-                    "Score",
-                    run["score"],
-                )
-
-            with c2:
-
-                st.metric(
-                    "Combo",
-                    f"🔥 {run['combo']}",
-                )
-
-            with c3:
-
-                st.metric(
-                    "Correct",
-                    run["correct"],
-                )
-
-            with c4:
-
-                st.metric(
-                    "Difficulty",
-                    run["difficulty"],
-                )
-
-            with c5:
-
-                st.metric(
-                    "Result",
-                    run["result"],
-                )
-
-            if number < len(
-                st.session_state.history
-            ):
-
-                st.divider()
 
 
 # ============================================================
@@ -2126,73 +2747,123 @@ def result_screen():
 def profile_screen():
 
     st.markdown(
-        "# 👤 PLAYER PROFILE"
+        """
+        <div class="hero">
+
+            <div class="hero-badge">
+                👤 PLAYER PROFILE
+            </div>
+
+            <div class="hero-title">
+                ARENA PROFILE
+            </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    total_runs = (
-        st.session_state.wins
-        + st.session_state.losses
+    st.markdown(
+        f"### 🧙 {st.session_state.player1_name}"
     )
 
-    if total_runs:
+    level = get_level(
+        st.session_state.p1_xp
+    )
 
-        win_rate = (
-            st.session_state.wins
-            / total_runs
-            * 100
-        )
-
-    else:
-
-        win_rate = 0
+    progress = get_level_progress(
+        st.session_state.p1_xp
+    )
 
     c1, c2, c3, c4 = st.columns(4)
 
     with c1:
 
         st.metric(
-            "PLAYER",
-            st.session_state.name,
+            "LEVEL",
+            level
         )
 
     with c2:
 
         st.metric(
-            "RUNS",
-            total_runs,
+            "TOTAL SCORE",
+            st.session_state.p1_score
         )
 
     with c3:
 
         st.metric(
-            "WINS",
-            st.session_state.wins,
+            "BEST COMBO",
+            st.session_state.p1_best_combo
         )
 
     with c4:
 
         st.metric(
-            "WIN RATE",
-            f"{win_rate:.0f}%",
+            "🪙 COINS",
+            st.session_state.p1_coins
         )
 
-    st.divider()
+    st.markdown("### ⭐ XP Progress")
 
-    st.markdown(
-        "### 🎮 ABOUT THIS VERSION"
+    st.progress(
+        min(
+            1.0,
+            progress / 100
+        )
     )
 
-    st.info(
-        "Your gameplay data is kept in the current "
-        "Streamlit session. This version intentionally "
-        "does not use SQLite or an external API."
+    st.caption(
+        f"{progress}/100 XP toward next level"
     )
 
-    st.write("")
+    st.markdown("### 🏆 Achievements")
+
+    if st.session_state.achievements:
+
+        for achievement in st.session_state.achievements:
+
+            st.success(
+                achievement
+            )
+
+    else:
+
+        st.info(
+            "Play battles to unlock achievements."
+        )
+
+    st.markdown("### 📊 Lifetime Session Stats")
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+
+        st.metric(
+            "Wins",
+            st.session_state.total_wins
+        )
+
+    with c2:
+
+        st.metric(
+            "Losses",
+            st.session_state.total_losses
+        )
+
+    with c3:
+
+        st.metric(
+            "Matches",
+            len(st.session_state.history)
+        )
+
+    st.markdown("")
 
     if st.button(
-        "🏠 BACK HOME",
-        use_container_width=True,
+        "🏠 BACK TO HOME",
+        use_container_width=True
     ):
 
         st.session_state.screen = "home"
@@ -2204,82 +2875,84 @@ def profile_screen():
 # SIDEBAR
 # ============================================================
 
-with st.sidebar:
+def sidebar():
 
-    st.markdown(
-        "## ⚔️ MATHS ARENA"
-    )
+    with st.sidebar:
 
-    st.caption(
-        "Think fast. Attack smart."
-    )
-
-    st.divider()
-
-    if st.session_state.screen == "battle":
-
-        st.write(
-            f"👤 **{st.session_state.name}**"
+        st.markdown(
+            "## ⚔️ Maths Arena Pro"
         )
 
-        st.write(
-            f"🎮 **{st.session_state.mode}**"
-        )
-
-        st.write(
-            f"⚔️ **{st.session_state.difficulty}**"
-        )
-
-        st.write(
-            f"🏟️ **Round {st.session_state.round}**"
-        )
-
-        st.write(
-            f"🔥 **Combo {st.session_state.combo}**"
-        )
-
-        st.write(
-            f"🏆 **{st.session_state.score} Score**"
+        st.caption(
+            "Think fast. Attack smart."
         )
 
         st.divider()
 
-        if st.button(
-            "🏳️ End Run",
-            use_container_width=True,
-        ):
+        if st.session_state.screen != "battle":
 
-            finish_game(
-                "DEFEAT",
-                "You ended the run.",
+            if st.button(
+                "🏠 Home",
+                use_container_width=True
+            ):
+
+                st.session_state.screen = "home"
+
+                st.rerun()
+
+            if st.button(
+                "👤 Profile",
+                use_container_width=True
+            ):
+
+                st.session_state.screen = "profile"
+
+                st.rerun()
+
+        else:
+
+            st.markdown(
+                f"**PLAYER:** "
+                f"{get_current_player_name()}"
             )
 
-            st.rerun()
+            st.markdown(
+                f"**MODE:** "
+                f"{st.session_state.mode}"
+            )
 
-    else:
+            st.markdown(
+                f"**DIFFICULTY:** "
+                f"{st.session_state.difficulty}"
+            )
 
-        if st.button(
-            "🏠 Home",
-            use_container_width=True,
-        ):
+            st.markdown(
+                f"**ROUND:** "
+                f"{st.session_state.round}"
+            )
 
-            st.session_state.screen = "home"
+            st.markdown(
+                f"**COMBO:** "
+                f"🔥 {get_current_combo()}"
+            )
 
-            st.rerun()
+            st.divider()
 
-        if st.button(
-            "👤 Profile",
-            use_container_width=True,
-        ):
+            if st.button(
+                "🏳️ End Run",
+                use_container_width=True
+            ):
 
-            st.session_state.screen = "profile"
+                finish_game("defeat")
 
-            st.rerun()
+                st.rerun()
 
 
 # ============================================================
-# ROUTER
+# MAIN ROUTER
 # ============================================================
+
+sidebar()
 
 if st.session_state.screen == "home":
 
